@@ -1,0 +1,11 @@
+# Cấu hình Supabase CLI tối thiểu. Chưa kiểm chứng bằng CLI (chưa cài trên máy dựng).
+# Chạy `npx supabase init` để sinh bản đầy đủ nếu cần, rồi giữ lại các giá trị dưới đây.
+project_id = "vmg-brand-lab"
+
+[db]
+major_version = 17
+
+[auth]
+site_url = "http://localhost:3000"
+# Đăng ký chỉ theo lời mời (spec 3.1): tắt tự đăng ký.
+enable_signup = false

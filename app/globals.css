@@ -1,0 +1,38 @@
+@import "tailwindcss";
+
+/* Token giao diện của Brand Lab (spec 4.4). Một nơi khai báo, sửa được. */
+:root {
+  --vmg-red: #be202f;
+  --vmg-gold: #8b672a;
+  --vmg-charcoal: #2a2420;
+  --vmg-black-80: rgb(0 0 0 / 0.8);
+  --vmg-black-50: rgb(0 0 0 / 0.5);
+  /* Nền kem ấm: ĐỀ XUẤT theo tông hình tham chiếu VIMI và THE INK, không phải mã chuẩn. */
+  --surface: #fbf7f0;
+  --surface-card: #ffffff;
+  /* Màu thương hiệu thành viên đã có mã chính thức. UpLearn, EduNext chưa có mã (Q4). */
+  --brand-tesol: #012a9e;
+  --brand-vmp-blue: #29338d;
+  --brand-vmp-orange: #f69220;
+  /* Font thương hiệu (gốc Brown) chưa có giấy phép dùng cho ứng dụng (Q3). */
+  --font-brand: Arial, system-ui, sans-serif;
+}
+
+@theme inline {
+  --color-vmg-red: var(--vmg-red);
+  --color-vmg-gold: var(--vmg-gold);
+  --color-vmg-charcoal: var(--vmg-charcoal);
+  --color-vmg-muted: var(--vmg-black-80);
+  --color-vmg-faint: var(--vmg-black-50);
+  --color-surface: var(--surface);
+  --color-surface-card: var(--surface-card);
+  --font-sans: var(--font-brand);
+}
+
+body {
+  background: var(--surface);
+  color: var(--vmg-charcoal);
+  font-family: var(--font-brand);
+  /* Chữ nội dung tối thiểu 16 px trên điện thoại (spec 4.4). */
+  font-size: 1rem;
+}

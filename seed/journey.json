@@ -1,0 +1,1554 @@
+{
+ "meta": {
+  "version": "2.0-draft",
+  "source_file": "Hành trình khách hàng VMG theo các line sản phẩm (bản cập nhật 20/10/2026; thay bản 15/10/2026)",
+  "status": "proposed",
+  "note": "Seed khởi tạo trích từ file nguồn. Chưa phát hành cho nhân viên cho đến khi Marketing và R&D xác nhận các mục trong verify_list.",
+  "conventions": [
+   "Trục dọc là độ tuổi học viên (5 chặng). Theo chiều ngang là các line sản phẩm: Line 1 (chính) ESL B2C học offline kèm khảo thí Cambridge và IELTS do VMT tổ chức; Line 2 VMG e-Academy học trực tuyến có giáo viên; hai line phụ chạy song song: B2G (trường học) và Tiếng Trung",
+   "Các đích sau này (nghề giáo, bằng cấp và chứng chỉ, giao tiếp và chuyên môn, du học) nằm ở tầng đích cuối và nối với nhiều line",
+   "Tên sản phẩm giữ theo danh mục hiện hành, không rút gọn; dòng đầu là tên sản phẩm, dòng sau là khóa nhỏ trong sản phẩm",
+   "Thẻ nhỏ góc phải là thương hiệu thành viên (VMG bảo chứng); mỗi ô mang màu thương hiệu; không dùng tag vòng đời",
+   "Ô nền trắng viền vàng là khảo thí do VMT tổ chức; khung viền xanh ngọc là hai nhóm của VMG e-Academy (Juniors, Prep)",
+   "Mũi tên nét liền là thứ tự trong một line (màu theo line). Mũi tên nét đứt và các nhánh nối sang tầng đích là đề xuất liên kết để thảo luận, không phải điều kiện bắt buộc",
+   "Hai chiều nét đứt xanh ngọc: e-Academy cùng chương trình với bản offline; nét đứt B2G: kênh trường học, cross-sell, giáo viên; nét đứt Tiếng Trung",
+   "Juniors và Prep của e-Academy đặt chồng nhau ở tuổi 11-16, không phải hai chặng nối tiếp",
+   "IELTS Express xếp song song với NextGen IELTS theo thứ tự hàng, không khớp chính xác từng band",
+   "Mốc 16+ và từ 18 tuổi là mốc tham chiếu theo cấp học, không phải điều kiện đầu vào",
+   "Học viên e-Academy thi IELTS và Cambridge qua VMT như học viên offline",
+   "FuturePath chưa phải sản phẩm thương mại nên không có trên hành trình"
+  ],
+  "official_colors": {
+   "vmg-tesol": "#012A9E",
+   "vmp": [
+    "#29338D",
+    "#F69220"
+   ],
+   "uplearn": "tím (chưa có mã chính thức)"
+  },
+  "verify_list": [
+   "e-Academy: tuổi các khóa (brief chỉ chia Juniors và Prep); Tiếng Anh Phản Xạ và Cambridge ESL tạm ở tiểu học; K-12 tạm ở THCS và THPT; Juniors và Prep chồng nhau ở 11-16",
+   "K-12 là tên mới của A01-D01, chỉ triển khai trên e-Academy, không dạy offline",
+   "NextGen IELTS (Prep) và Cambridge ESL online nối với bản offline theo nguyên tắc cùng chương trình: R&D xác nhận; IELTS Lab có thể đổi theo đề án VMG IELTS 2026-2027 (CORE và THE IELTS LAB, dự kiến 03/2027)",
+   "e-Plus Pro thay thế hay song song với EPlus offline; đối tượng e-Plus Pro cần xác nhận",
+   "Thương hiệu: VMG e-Academy chưa có trong file Nền tảng (màu xanh ngọc là đề xuất); B2G tạm thẻ VMG English (màu xám xanh đề xuất); SAT, VSTEP, EPlus, FlexTrack tạm VMG English",
+   "B2G: chưa có giá, mô hình hợp đồng, người trực tiếp dạy, giáo trình mầm non; số liệu hơn 200 trường và khoảng 42.000 học sinh chưa rõ gắn với chương trình nào nên không đưa lên sơ đồ",
+   "Tiếng Trung lớp 3-12 (file nguồn ghi cả 8-15 và 8-18 tuổi): chờ Ban Giám Đốc quyết định; chưa có sĩ số, offline hay online, giáo viên, học phí; không có mũi tên từ khóa lớp 3-12 sang HSK; mũi tên từ lớp 12 sang tiếng Trung giao tiếp 16+ là đề xuất",
+   "IE1 đến IE7 (band 4.0 đến 6.5+, 3 tháng 36 giờ mỗi cấp): R&D xác nhận",
+   "Cam kết đầu ra trong danh mục sản phẩm khác cách chia cấp trong hành trình (ví dụ NextGen 5.5 và 6.5; IELTS Express 0 lên 6.0 trong 1 năm)",
+   "Mốc ngày trong timed_notes: xác nhận còn hiệu lực trước khi hiển thị"
+  ]
+ },
+ "stages": [
+  {
+   "key": "s1",
+   "age_label": "4-6 tuổi",
+   "title": "MẦM NON",
+   "lead_product": "E-PIONEER",
+   "decider": "Phụ huynh quyết định",
+   "outcomes": [],
+   "sort": 1
+  },
+  {
+   "key": "s2",
+   "age_label": "6-11 tuổi",
+   "title": "TIỂU HỌC",
+   "lead_product": "E-CONTENDER & E-GENIUS",
+   "decider": "Phụ huynh quyết định",
+   "outcomes": [
+    "Nắm vững nền tảng tiếng Anh, giao tiếp cơ bản",
+    "Phát triển 4 kỹ năng theo chuẩn Cambridge",
+    "Hình thành phản xạ, tư duy tiếng Anh tự nhiên",
+    "Làm quen định dạng đề Cambridge",
+    "Sẵn sàng thi Starters, Movers, Flyers"
+   ],
+   "sort": 2
+  },
+  {
+   "key": "s3",
+   "age_label": "11-16 tuổi",
+   "title": "THCS VÀ TIỀN THPT",
+   "lead_product": "NEXTGEN IELTS",
+   "decider": "Phụ huynh và học sinh cùng quyết định",
+   "outcomes": [
+    "Nắm vững ngữ pháp, phát âm, từ vựng theo chủ đề",
+    "Thành thạo 4 kỹ năng nghe, nói, đọc, viết",
+    "Luyện chiến lược và kỹ thuật làm bài",
+    "Thực hành thi IELTS thực tế trên máy tính theo chuẩn British Council và IDP",
+    "Đạt chuẩn đầu ra IELTS theo lộ trình, tăng cơ hội miễn thi THPT, học bổng, du học và tuyển thẳng Đại học"
+   ],
+   "sort": 3
+  },
+  {
+   "key": "s4",
+   "age_label": "16+",
+   "title": "TỪ BAND 4.0, KHÔNG GIỚI HẠN TUỔI ĐÍCH",
+   "lead_product": "NEXTGEN IELTS VÀ IELTS EXPRESS",
+   "decider": "Người học tự quyết định",
+   "outcomes": [],
+   "sort": 4,
+   "note": "Mốc 16+ là mốc tham chiếu theo cấp học, không phải điều kiện đầu vào"
+  },
+  {
+   "key": "s5",
+   "age_label": "Từ 18 tuổi",
+   "title": "SAU PHỔ THÔNG VÀ ĐI LÀM",
+   "lead_product": null,
+   "decider": "Người học tự quyết định; mọi line đều có thể dẫn tới tầng đích",
+   "outcomes": [],
+   "sort": 5,
+   "note": "Mốc từ 18 tuổi là mốc tham chiếu theo cấp học, không phải điều kiện đầu vào"
+  }
+ ],
+ "lines": [
+  {
+   "key": "b2g",
+   "label": "LINE PHỤ · B2G",
+   "description": "Enhanced English, trường công",
+   "kind": "secondary",
+   "color_proposed": "xám xanh (đề xuất, chưa có mã chính thức)",
+   "sort": 1
+  },
+  {
+   "key": "l1",
+   "label": "LINE 1 (CHÍNH) · ESL B2C",
+   "description": "Học offline tại trung tâm, kèm khảo thí Cambridge và IELTS (VMT)",
+   "kind": "primary",
+   "color_proposed": "theo màu từng thương hiệu",
+   "sort": 2,
+   "sublanes": [
+    {
+     "key": "support",
+     "label": "HỌC THUẬT BỔ TRỢ"
+    },
+    {
+     "key": "main",
+     "label": "DÒNG NGOẠI NGỮ: MỘT HỌC VIÊN TIÊU BIỂU"
+    },
+    {
+     "key": "parallel",
+     "label": "NHÁNH SONG SONG"
+    }
+   ]
+  },
+  {
+   "key": "eacademy",
+   "label": "LINE 2 · VMG e-ACADEMY",
+   "description": "Học trực tuyến có giáo viên, lớp nhỏ · Prep (teens, người lớn) và Juniors (học sinh) chồng nhau ở tuổi 11-16",
+   "kind": "primary",
+   "color_proposed": "xanh ngọc (đề xuất, chưa có mã chính thức)",
+   "sort": 3
+  },
+  {
+   "key": "zh",
+   "label": "LINE PHỤ · TIẾNG TRUNG",
+   "description": "Lớp 3-12 (8-18 tuổi) và từ 16 tuổi; 10 khóa lớp 3-12 (580 tiết) và 16+",
+   "kind": "secondary",
+   "color_proposed": "theo thương hiệu VMG Tiếng Trung",
+   "sort": 4
+  },
+  {
+   "key": "goals",
+   "label": "TẦNG ĐÍCH: CÁC SẢN PHẨM CÓ ĐÍCH SAU NÀY, NỐI VỚI NHIỀU LINE",
+   "description": "Nghề giáo và giáo viên; Bằng cấp và chứng chỉ; Giao tiếp và chuyên môn; Du học",
+   "kind": "goal_tier",
+   "sort": 5
+  }
+ ],
+ "nodes": [
+  {
+   "code": "n01",
+   "stage": "s1",
+   "lane": "main",
+   "kind": "level",
+   "brand_slug": "vmg-english",
+   "product_name": "E-PIONEER",
+   "item_name": "Little Seeds",
+   "duration_text": "9 tháng",
+   "description": "Phát triển tư duy qua trò chơi, bài hát; nghe, nhận biết và phản xạ câu đơn giản",
+   "product_code_hints": [
+    "ESL_KINDY"
+   ],
+   "brand_confirmed": true,
+   "line": "l1"
+  },
+  {
+   "code": "n02",
+   "stage": "s1",
+   "lane": "main",
+   "kind": "level",
+   "brand_slug": "vmg-english",
+   "product_name": "E-PIONEER",
+   "item_name": "Green Buds",
+   "duration_text": "9 tháng",
+   "description": "Hình thành phản xạ giao tiếp; phát âm chuẩn, làm quen nghe - nói; bắt đầu tạo câu và cụm từ",
+   "product_code_hints": [
+    "ESL_KINDY"
+   ],
+   "brand_confirmed": true,
+   "line": "l1"
+  },
+  {
+   "code": "n03",
+   "stage": "s1",
+   "lane": "main",
+   "kind": "level",
+   "brand_slug": "vmg-english",
+   "product_name": "E-PIONEER",
+   "item_name": "Bright Blooms",
+   "duration_text": "6 tháng",
+   "description": "Phát triển tư duy ngôn ngữ; tăng khả năng tập trung, ghi nhớ; phản hồi bằng cụm từ và câu ngắn",
+   "product_code_hints": [
+    "ESL_KINDY"
+   ],
+   "brand_confirmed": true,
+   "line": "l1"
+  },
+  {
+   "code": "n04",
+   "stage": "s2",
+   "lane": "main",
+   "kind": "level",
+   "brand_slug": "vmg-english",
+   "product_name": "E-CONTENDER & E-GENIUS",
+   "item_name": "Pre Cambridge",
+   "duration_text": "8-12 tháng",
+   "description": "Làm quen định dạng đề Cambridge",
+   "product_code_hints": [
+    "ESL_KIDS"
+   ],
+   "brand_confirmed": true,
+   "line": "l1"
+  },
+  {
+   "code": "n05",
+   "stage": "s2",
+   "lane": "main",
+   "kind": "level",
+   "brand_slug": "vmg-english",
+   "product_name": "E-CONTENDER & E-GENIUS",
+   "item_name": "Cambridge Starters",
+   "duration_text": "8-12 tháng",
+   "description": null,
+   "product_code_hints": [
+    "ESL_KIDS"
+   ],
+   "brand_confirmed": true,
+   "line": "l1"
+  },
+  {
+   "code": "n06",
+   "stage": "s2",
+   "lane": "main",
+   "kind": "exam",
+   "brand_slug": "vmt",
+   "product_name": "THI CAMBRIDGE",
+   "item_name": "Starters",
+   "duration_text": null,
+   "description": "Cột mốc sau cấp Starters; VMT tổ chức theo chuẩn VN055",
+   "product_code_hints": [
+    "KHẢO THÍ_CAMBRIDGE"
+   ],
+   "brand_confirmed": true,
+   "line": "l1"
+  },
+  {
+   "code": "n07",
+   "stage": "s2",
+   "lane": "main",
+   "kind": "level",
+   "brand_slug": "vmg-english",
+   "product_name": "E-CONTENDER & E-GENIUS",
+   "item_name": "Cambridge Movers",
+   "duration_text": "8-12 tháng",
+   "description": null,
+   "product_code_hints": [
+    "ESL_KIDS"
+   ],
+   "brand_confirmed": true,
+   "line": "l1"
+  },
+  {
+   "code": "n08",
+   "stage": "s2",
+   "lane": "main",
+   "kind": "exam",
+   "brand_slug": "vmt",
+   "product_name": "THI CAMBRIDGE",
+   "item_name": "Movers",
+   "duration_text": null,
+   "description": "Cột mốc sau cấp Movers",
+   "product_code_hints": [
+    "KHẢO THÍ_CAMBRIDGE"
+   ],
+   "brand_confirmed": true,
+   "line": "l1"
+  },
+  {
+   "code": "n09",
+   "stage": "s2",
+   "lane": "main",
+   "kind": "level",
+   "brand_slug": "vmg-english",
+   "product_name": "E-CONTENDER & E-GENIUS",
+   "item_name": "Cambridge Flyers",
+   "duration_text": "8-12 tháng",
+   "description": null,
+   "product_code_hints": [
+    "ESL_KIDS"
+   ],
+   "brand_confirmed": true,
+   "line": "l1"
+  },
+  {
+   "code": "n10",
+   "stage": "s2",
+   "lane": "main",
+   "kind": "exam",
+   "brand_slug": "vmt",
+   "product_name": "THI CAMBRIDGE",
+   "item_name": "Flyers",
+   "duration_text": null,
+   "description": "Cột mốc cuối chặng tiểu học, chuyển tiếp sang NEXTGEN IELTS",
+   "product_code_hints": [
+    "KHẢO THÍ_CAMBRIDGE"
+   ],
+   "brand_confirmed": true,
+   "line": "l1"
+  },
+  {
+   "code": "n11",
+   "stage": "s3",
+   "lane": "main",
+   "kind": "level",
+   "brand_slug": "vmg-ielts",
+   "product_name": "NEXTGEN IELTS",
+   "item_name": "Pre-IELTS: IELTS Onset",
+   "duration_text": "9-14 tháng",
+   "description": null,
+   "product_code_hints": [
+    "ESL_NEXTGEN"
+   ],
+   "brand_confirmed": true,
+   "line": "l1"
+  },
+  {
+   "code": "n12",
+   "stage": "s3",
+   "lane": "main",
+   "kind": "level",
+   "brand_slug": "vmg-ielts",
+   "product_name": "NEXTGEN IELTS",
+   "item_name": "IELTS Foundation",
+   "duration_text": "7-10 tháng",
+   "description": null,
+   "product_code_hints": [
+    "ESL_NEXTGEN"
+   ],
+   "brand_confirmed": true,
+   "line": "l1"
+  },
+  {
+   "code": "n13",
+   "stage": "s4",
+   "lane": "main",
+   "kind": "level",
+   "brand_slug": "vmg-ielts",
+   "product_name": "NEXTGEN IELTS",
+   "item_name": "IELTS 4.0",
+   "duration_text": "7-10 tháng",
+   "description": null,
+   "product_code_hints": [
+    "ESL_NEXTGEN"
+   ],
+   "brand_confirmed": true,
+   "line": "l1"
+  },
+  {
+   "code": "n14",
+   "stage": "s4",
+   "lane": "main",
+   "kind": "level",
+   "brand_slug": "vmg-ielts",
+   "product_name": "NEXTGEN IELTS",
+   "item_name": "IELTS 5.0",
+   "duration_text": "6-9 tháng",
+   "description": null,
+   "product_code_hints": [
+    "ESL_NEXTGEN"
+   ],
+   "brand_confirmed": true,
+   "line": "l1"
+  },
+  {
+   "code": "n15",
+   "stage": "s4",
+   "lane": "main",
+   "kind": "exam",
+   "brand_slug": "vmt",
+   "product_name": "THI IELTS",
+   "item_name": "Đầu ra 5.0",
+   "duration_text": null,
+   "description": "VMT tổ chức; thi khi hoàn thành cấp IELTS 5.0",
+   "product_code_hints": [
+    "KHẢO THÍ_IELTS"
+   ],
+   "brand_confirmed": true,
+   "line": "l1"
+  },
+  {
+   "code": "n16",
+   "stage": "s4",
+   "lane": "main",
+   "kind": "level",
+   "brand_slug": "vmg-ielts",
+   "product_name": "NEXTGEN IELTS",
+   "item_name": "IELTS 6.0",
+   "duration_text": "6-9 tháng",
+   "description": null,
+   "product_code_hints": [
+    "ESL_NEXTGEN"
+   ],
+   "brand_confirmed": true,
+   "line": "l1"
+  },
+  {
+   "code": "n17",
+   "stage": "s4",
+   "lane": "main",
+   "kind": "exam",
+   "brand_slug": "vmt",
+   "product_name": "THI IELTS",
+   "item_name": "Đầu ra 6.0",
+   "duration_text": null,
+   "description": "Thi khi hoàn thành cấp IELTS 6.0",
+   "product_code_hints": [
+    "KHẢO THÍ_IELTS"
+   ],
+   "brand_confirmed": true,
+   "line": "l1"
+  },
+  {
+   "code": "n18",
+   "stage": "s4",
+   "lane": "main",
+   "kind": "level",
+   "brand_slug": "vmg-ielts",
+   "product_name": "NEXTGEN IELTS",
+   "item_name": "IELTS 7.0",
+   "duration_text": "6-9 tháng",
+   "description": null,
+   "product_code_hints": [
+    "ESL_NEXTGEN"
+   ],
+   "brand_confirmed": true,
+   "line": "l1"
+  },
+  {
+   "code": "n19",
+   "stage": "s4",
+   "lane": "main",
+   "kind": "exam",
+   "brand_slug": "vmt",
+   "product_name": "THI IELTS",
+   "item_name": "Đầu ra 7.0",
+   "duration_text": null,
+   "description": "Thi khi hoàn thành cấp IELTS 7.0",
+   "product_code_hints": [
+    "KHẢO THÍ_IELTS"
+   ],
+   "brand_confirmed": true,
+   "line": "l1"
+  },
+  {
+   "code": "n20",
+   "stage": "s4",
+   "lane": "parallel",
+   "kind": "level",
+   "brand_slug": "vmg-ielts",
+   "product_name": "IELTS EXPRESS",
+   "item_name": "IE1 · khởi điểm band 4.0",
+   "duration_text": "3 tháng, 36 giờ · cam kết đầu ra từng cấp",
+   "description": null,
+   "product_code_hints": [
+    "EAP_IELTS EXPRESS"
+   ],
+   "brand_confirmed": true,
+   "row_hint": "n13",
+   "verify_note": "7 cấp IE1 đến IE7 (band 4.0 đến 6.5+) lấy từ tài liệu sản phẩm TMĐT, cần R&D xác nhận; xếp song song theo thứ tự hàng, không khớp chính xác từng band",
+   "line": "l1"
+  },
+  {
+   "code": "n21",
+   "stage": "s4",
+   "lane": "parallel",
+   "kind": "level",
+   "brand_slug": "vmg-ielts",
+   "product_name": "IELTS EXPRESS",
+   "item_name": "IE2",
+   "duration_text": "3 tháng, 36 giờ · cam kết đầu ra từng cấp",
+   "description": null,
+   "product_code_hints": [
+    "EAP_IELTS EXPRESS"
+   ],
+   "brand_confirmed": true,
+   "row_hint": "n14",
+   "verify_note": null,
+   "line": "l1"
+  },
+  {
+   "code": "n22",
+   "stage": "s4",
+   "lane": "parallel",
+   "kind": "level",
+   "brand_slug": "vmg-ielts",
+   "product_name": "IELTS EXPRESS",
+   "item_name": "IE3",
+   "duration_text": "3 tháng, 36 giờ · cam kết đầu ra từng cấp",
+   "description": null,
+   "product_code_hints": [
+    "EAP_IELTS EXPRESS"
+   ],
+   "brand_confirmed": true,
+   "row_hint": "n15",
+   "verify_note": null,
+   "line": "l1"
+  },
+  {
+   "code": "n23",
+   "stage": "s4",
+   "lane": "parallel",
+   "kind": "level",
+   "brand_slug": "vmg-ielts",
+   "product_name": "IELTS EXPRESS",
+   "item_name": "IE4",
+   "duration_text": "3 tháng, 36 giờ · cam kết đầu ra từng cấp",
+   "description": null,
+   "product_code_hints": [
+    "EAP_IELTS EXPRESS"
+   ],
+   "brand_confirmed": true,
+   "row_hint": "n16",
+   "verify_note": null,
+   "line": "l1"
+  },
+  {
+   "code": "n24",
+   "stage": "s4",
+   "lane": "parallel",
+   "kind": "level",
+   "brand_slug": "vmg-ielts",
+   "product_name": "IELTS EXPRESS",
+   "item_name": "IE5",
+   "duration_text": "3 tháng, 36 giờ · cam kết đầu ra từng cấp",
+   "description": null,
+   "product_code_hints": [
+    "EAP_IELTS EXPRESS"
+   ],
+   "brand_confirmed": true,
+   "row_hint": "n17",
+   "verify_note": null,
+   "line": "l1"
+  },
+  {
+   "code": "n25",
+   "stage": "s4",
+   "lane": "parallel",
+   "kind": "level",
+   "brand_slug": "vmg-ielts",
+   "product_name": "IELTS EXPRESS",
+   "item_name": "IE6",
+   "duration_text": "3 tháng, 36 giờ · cam kết đầu ra từng cấp",
+   "description": null,
+   "product_code_hints": [
+    "EAP_IELTS EXPRESS"
+   ],
+   "brand_confirmed": true,
+   "row_hint": "n18",
+   "verify_note": null,
+   "line": "l1"
+  },
+  {
+   "code": "n26",
+   "stage": "s4",
+   "lane": "parallel",
+   "kind": "level",
+   "brand_slug": "vmg-ielts",
+   "product_name": "IELTS EXPRESS",
+   "item_name": "IE7 · đích band 6.5+",
+   "duration_text": "3 tháng, 36 giờ · cam kết đầu ra từng cấp",
+   "description": null,
+   "product_code_hints": [
+    "EAP_IELTS EXPRESS"
+   ],
+   "brand_confirmed": true,
+   "row_hint": "n19",
+   "verify_note": null,
+   "line": "l1"
+  },
+  {
+   "code": "n27",
+   "stage": "s4",
+   "lane": "support",
+   "kind": "support_product",
+   "brand_slug": "vmt",
+   "product_name": "IELTS MOCK TEST",
+   "item_name": "Thi thử chuẩn quốc tế",
+   "duration_text": null,
+   "description": "Chấm chữa chi tiết, tư vấn lộ trình trước kỳ thi thật",
+   "product_code_hints": [
+    "KHẢO THÍ_IELTS MOCK TEST"
+   ],
+   "brand_confirmed": true,
+   "attach_to": "n15",
+   "line": "l1"
+  },
+  {
+   "code": "n28",
+   "stage": "s4",
+   "lane": "support",
+   "kind": "support_product",
+   "brand_slug": "vmg-ielts",
+   "product_name": "IELTS EXAM FOCUS",
+   "item_name": "12 buổi (1 tháng) trước kỳ thi thật",
+   "duration_text": null,
+   "description": "Dành cho học viên đã có nền; không cam kết đầu ra",
+   "product_code_hints": [
+    "EAP_IELTS EXAM FOCUS"
+   ],
+   "brand_confirmed": true,
+   "attach_to": "n15",
+   "line": "l1"
+  },
+  {
+   "code": "n29",
+   "stage": "s4",
+   "lane": "support",
+   "kind": "support_product",
+   "brand_slug": "vmg-ielts",
+   "product_name": "IELTS EXAM FOCUS",
+   "item_name": "12 buổi (1 tháng) trước kỳ thi thật",
+   "duration_text": null,
+   "description": "Dành cho học viên đã có nền; không cam kết đầu ra",
+   "product_code_hints": [
+    "EAP_IELTS EXAM FOCUS"
+   ],
+   "brand_confirmed": true,
+   "attach_to": "n19",
+   "same_product_as": "n28",
+   "line": "l1"
+  },
+  {
+   "code": "n30",
+   "stage": "s5",
+   "lane": "main",
+   "kind": "branch_label",
+   "brand_slug": null,
+   "product_name": "TỪ 18 TUỔI: MỖI NGƯỜI CHỌN ĐÍCH ĐẾN RIÊNG",
+   "item_name": null,
+   "duration_text": null,
+   "description": null,
+   "product_code_hints": [],
+   "brand_confirmed": true,
+   "line": "l1"
+  },
+  {
+   "code": "b00",
+   "stage": "s1",
+   "line": "b2g",
+   "kind": "program_header",
+   "brand_slug": "vmg-english",
+   "product_name": "ENHANCED ENGLISH",
+   "item_name": "2 gói · năm học 2026-2027",
+   "duration_text": null,
+   "description": "Core 35 tiết (gọn) hoặc Extended 70 tiết (đầy đủ) · lớp 35-50 em · chưa có giá",
+   "product_code_hints": [
+    "B2G_ESL"
+   ],
+   "brand_confirmed": false,
+   "brand_note": "Thương hiệu tạm gắn VMG English, cần xác nhận (B2G)"
+  },
+  {
+   "code": "b01",
+   "stage": "s1",
+   "line": "b2g",
+   "kind": "level",
+   "brand_slug": "vmg-english",
+   "product_name": "MẦM NON",
+   "item_name": "Pre-A1 · 30 phút/buổi",
+   "duration_text": null,
+   "description": "Nghe, nhận biết, phản hồi bằng hành động; bài hát, rối tay · giáo trình chưa nêu",
+   "product_code_hints": [
+    "B2G_ESL"
+   ],
+   "brand_confirmed": false,
+   "program": "ENHANCED ENGLISH",
+   "brand_note": "Thương hiệu tạm gắn VMG English, cần xác nhận"
+  },
+  {
+   "code": "b02",
+   "stage": "s2",
+   "line": "b2g",
+   "kind": "level",
+   "brand_slug": "vmg-english",
+   "product_name": "TIỂU HỌC",
+   "item_name": "Lớp 1-5 · A1 · 35 phút/buổi",
+   "duration_text": null,
+   "description": "i-Learn Smart Start Listening & Speaking · trao đổi ngắn, khảo sát, show and tell",
+   "product_code_hints": [
+    "B2G_ESL"
+   ],
+   "brand_confirmed": false,
+   "program": "ENHANCED ENGLISH",
+   "brand_note": "Thương hiệu tạm gắn VMG English, cần xác nhận"
+  },
+  {
+   "code": "b03",
+   "stage": "s3",
+   "line": "b2g",
+   "kind": "level",
+   "brand_slug": "vmg-english",
+   "product_name": "THCS",
+   "item_name": "Lớp 6-9 · A1-A2+ · 40-45 phút",
+   "duration_text": null,
+   "description": "Smooth Skills Listening & Speaking · nêu ý kiến, thuyết trình ngắn, thảo luận",
+   "product_code_hints": [
+    "B2G_ESL"
+   ],
+   "brand_confirmed": false,
+   "program": "ENHANCED ENGLISH",
+   "brand_note": "Thương hiệu tạm gắn VMG English, cần xác nhận"
+  },
+  {
+   "code": "b04",
+   "stage": "s4",
+   "line": "b2g",
+   "kind": "level",
+   "brand_slug": "vmg-english",
+   "product_name": "THPT",
+   "item_name": "Lớp 10-11 · B1-B1+ · 40-45 phút",
+   "duration_text": null,
+   "description": "Smooth Skills · panel, tranh biện, thuyết trình học thuật",
+   "product_code_hints": [
+    "B2G_ESL"
+   ],
+   "brand_confirmed": false,
+   "program": "ENHANCED ENGLISH",
+   "brand_note": "Thương hiệu tạm gắn VMG English, cần xác nhận"
+  },
+  {
+   "code": "e01",
+   "stage": "s2",
+   "line": "eacademy",
+   "kind": "level",
+   "brand_slug": "vmg-e-academy",
+   "product_name": "TIẾNG ANH PHẢN XẠ",
+   "item_name": "Juniors · giao tiếp · phân khúc cao cấp",
+   "duration_text": null,
+   "description": "Nghe, nói, phản hồi trực tiếp · 1-3 HV/lớp · 55 phút · 100% GV nước ngoài",
+   "product_code_hints": [],
+   "brand_confirmed": false,
+   "group": "juniors",
+   "brand_note": "Thương hiệu VMG e-Academy chưa có trong file Nền tảng thương hiệu; cần xác nhận (Q25)",
+   "verify_note": "Tuổi tạm đặt ở tiểu học"
+  },
+  {
+   "code": "e02",
+   "stage": "s2",
+   "line": "eacademy",
+   "kind": "level",
+   "brand_slug": "vmg-e-academy",
+   "product_name": "CAMBRIDGE ESL",
+   "item_name": "Juniors · phát triển ngôn ngữ · trung cao cấp",
+   "duration_text": null,
+   "description": "Theo định hướng chương trình Cambridge ESL · 1-4 HV/lớp · 55 phút · 50% GV Việt Nam, 50% GV nước ngoài",
+   "product_code_hints": [],
+   "brand_confirmed": false,
+   "group": "juniors",
+   "brand_note": "Thương hiệu VMG e-Academy chưa có trong file Nền tảng thương hiệu; cần xác nhận (Q25)",
+   "verify_note": "Tuổi tạm đặt ở tiểu học; nối với bản offline theo nguyên tắc cùng chương trình, cần R&D xác nhận"
+  },
+  {
+   "code": "e03",
+   "stage": "s3",
+   "line": "eacademy",
+   "kind": "level",
+   "brand_slug": "vmg-e-academy",
+   "product_name": "K-12",
+   "item_name": "Juniors · hỗ trợ chương trình ở trường",
+   "duration_text": null,
+   "description": "Gồm luyện thi THPT (A01-D01), nay chỉ học online · 1-4 HV/lớp · 50 phút · 100% GV Việt Nam · độ tuổi cần xác nhận",
+   "product_code_hints": [
+    "A01-D01_*"
+   ],
+   "brand_confirmed": false,
+   "group": "juniors",
+   "brand_note": "Thương hiệu VMG e-Academy chưa có trong file Nền tảng thương hiệu; cần xác nhận (Q25)",
+   "stage_span": [
+    "s3",
+    "s4"
+   ],
+   "verify_note": "K-12 là tên mới của A01-D01, chỉ triển khai trên e-Academy, không dạy offline; tạm đặt ở THCS và THPT, tên K-12 có thể gồm cả tiểu học"
+  },
+  {
+   "code": "e04",
+   "stage": "s3",
+   "line": "eacademy",
+   "kind": "level",
+   "brand_slug": "vmg-e-academy",
+   "product_name": "NEXTGEN IELTS",
+   "item_name": "Prep · IELTS cho teens",
+   "duration_text": null,
+   "description": "Học online · 4-6 HV/lớp · 90 phút/buổi · 75% GV Việt Nam, 25% GV nước ngoài",
+   "product_code_hints": [
+    "ESL_NEXTGEN"
+   ],
+   "brand_confirmed": false,
+   "group": "prep",
+   "brand_note": "Thương hiệu VMG e-Academy chưa có trong file Nền tảng thương hiệu; cần xác nhận (Q25)",
+   "verify_note": "Nối với NextGen IELTS offline theo nguyên tắc cùng chương trình, cần R&D xác nhận"
+  },
+  {
+   "code": "e05",
+   "stage": "s4",
+   "line": "eacademy",
+   "kind": "level",
+   "brand_slug": "vmg-e-academy",
+   "product_name": "IELTS LAB",
+   "item_name": "Prep · luyện tập và sửa lỗi chuyên sâu",
+   "duration_text": null,
+   "description": "4-6 HV/lớp · 90 phút/buổi · 100% GV Việt Nam",
+   "product_code_hints": [],
+   "brand_confirmed": false,
+   "group": "prep",
+   "brand_note": "Thương hiệu VMG e-Academy chưa có trong file Nền tảng thương hiệu; cần xác nhận (Q25)",
+   "verify_note": "Có thể đổi theo đề án VMG IELTS 2026-2027 (CORE và THE IELTS LAB, dự kiến 03/2027); lưu ý trùng tên THE IELTS LAB trong cổng phát hành"
+  },
+  {
+   "code": "e06",
+   "stage": "s4",
+   "line": "eacademy",
+   "kind": "level",
+   "brand_slug": "vmg-e-academy",
+   "product_name": "e-PLUS PRO",
+   "item_name": "Prep · tiếng Anh ứng dụng · trung cao cấp",
+   "duration_text": null,
+   "description": "4-6 HV/lớp · 90 phút/buổi · 50% GV Việt Nam, 50% GV nước ngoài · đối tượng cần xác nhận",
+   "product_code_hints": [],
+   "brand_confirmed": false,
+   "group": "prep",
+   "brand_note": "Thương hiệu VMG e-Academy chưa có trong file Nền tảng thương hiệu; cần xác nhận (Q25)",
+   "verify_note": "Chưa rõ thay thế hay song song với EPlus offline"
+  },
+  {
+   "code": "ea_gap1",
+   "stage": "s1",
+   "line": "eacademy",
+   "kind": "gap_note",
+   "brand_slug": null,
+   "product_name": "Chưa có sản phẩm online cho lứa tuổi này",
+   "item_name": null,
+   "duration_text": null,
+   "description": null,
+   "product_code_hints": [],
+   "brand_confirmed": true
+  },
+  {
+   "code": "ea_gap2",
+   "stage": "s2",
+   "line": "eacademy",
+   "kind": "gap_note",
+   "brand_slug": null,
+   "product_name": "Prep dành cho teens và người lớn, chưa có khóa cho lứa tiểu học",
+   "item_name": null,
+   "duration_text": null,
+   "description": null,
+   "product_code_hints": [],
+   "brand_confirmed": true,
+   "group": "prep"
+  },
+  {
+   "code": "z00",
+   "stage": "s1",
+   "line": "zh",
+   "kind": "gap_note",
+   "brand_slug": null,
+   "product_name": "Chưa có sản phẩm tiếng Trung dưới 8 tuổi",
+   "item_name": null,
+   "duration_text": null,
+   "description": null,
+   "product_code_hints": [],
+   "brand_confirmed": true
+  },
+  {
+   "code": "z01",
+   "stage": "s2",
+   "line": "zh",
+   "kind": "level",
+   "brand_slug": "vmg-chinese",
+   "product_name": "TIẾNG TRUNG",
+   "item_name": "Lớp 3-5 · 8-11 tuổi",
+   "duration_text": null,
+   "description": "3 khóa 40, 40 và 50 tiết · 2 tiết/tuần · học qua bài hát, trò chơi, kể chuyện, vận động",
+   "product_code_hints": [
+    "TIẾNG TRUNG_*"
+   ],
+   "brand_confirmed": true,
+   "decision_pending": true,
+   "verify_note": "Lộ trình lớp 3-12 là mở rộng danh mục, chờ Ban Giám Đốc quyết định"
+  },
+  {
+   "code": "z02",
+   "stage": "s3",
+   "line": "zh",
+   "kind": "level",
+   "brand_slug": "vmg-chinese",
+   "product_name": "TIẾNG TRUNG",
+   "item_name": "Lớp 6-9 · 11-15 tuổi",
+   "duration_text": null,
+   "description": "4 khóa, mỗi khóa 60 tiết · ngữ pháp có hệ thống, đọc hiểu · nhận người mới ở lớp 6",
+   "product_code_hints": [
+    "TIẾNG TRUNG_*"
+   ],
+   "brand_confirmed": true,
+   "decision_pending": true,
+   "verify_note": "Lộ trình lớp 3-12 là mở rộng danh mục, chờ Ban Giám Đốc quyết định"
+  },
+  {
+   "code": "z03",
+   "stage": "s3",
+   "line": "zh",
+   "kind": "level",
+   "brand_slug": "vmg-chinese",
+   "product_name": "TIẾNG TRUNG",
+   "item_name": "Lớp 10-12 · 15-18 tuổi",
+   "duration_text": null,
+   "description": "3 khóa, mỗi khóa 70 tiết · đọc văn nghị luận, viết luận, viết CV bằng tiếng Trung",
+   "product_code_hints": [
+    "TIẾNG TRUNG_*"
+   ],
+   "brand_confirmed": true,
+   "decision_pending": true,
+   "verify_note": "Lộ trình lớp 3-12 là mở rộng danh mục, chờ Ban Giám Đốc quyết định"
+  },
+  {
+   "code": "z04",
+   "stage": "s4",
+   "line": "zh",
+   "kind": "product",
+   "brand_slug": "vmg-chinese",
+   "product_name": "TIẾNG TRUNG",
+   "item_name": "Giao tiếp · từ 16 tuổi",
+   "duration_text": null,
+   "description": "Giao tiếp công việc tại công ty, nhà máy Trung Quốc",
+   "product_code_hints": [
+    "TIẾNG TRUNG_GIAO TIẾP"
+   ],
+   "brand_confirmed": true
+  },
+  {
+   "code": "z05",
+   "stage": "s4",
+   "line": "zh",
+   "kind": "product",
+   "brand_slug": "vmg-chinese",
+   "product_name": "LUYỆN THI HSK",
+   "item_name": "Từ 16 tuổi, đến HSK4",
+   "duration_text": null,
+   "description": "Đủ 4 kỹ năng; cam kết đầu ra theo từng level",
+   "product_code_hints": [
+    "TIẾNG TRUNG_HSK"
+   ],
+   "brand_confirmed": true
+  },
+  {
+   "code": "gd1",
+   "stage": "s5",
+   "line": "goals",
+   "kind": "goal_group",
+   "brand_slug": null,
+   "product_name": "NGHỀ GIÁO VÀ GIÁO VIÊN",
+   "item_name": "Mục tiêu: nâng năng lực và chứng chỉ cho giáo viên",
+   "duration_text": null,
+   "description": null,
+   "product_code_hints": [],
+   "brand_confirmed": true,
+   "sort": 1
+  },
+  {
+   "code": "gd2",
+   "stage": "s5",
+   "line": "goals",
+   "kind": "goal_group",
+   "brand_slug": null,
+   "product_name": "BẰNG CẤP VÀ CHỨNG CHỈ",
+   "item_name": "Thi cử và chứng chỉ ngoài dòng IELTS, Cambridge",
+   "duration_text": null,
+   "description": null,
+   "product_code_hints": [],
+   "brand_confirmed": true,
+   "sort": 2
+  },
+  {
+   "code": "gd3",
+   "stage": "s5",
+   "line": "goals",
+   "kind": "goal_group",
+   "brand_slug": null,
+   "product_name": "GIAO TIẾP VÀ CHUYÊN MÔN",
+   "item_name": "Mục tiêu: dùng ngoại ngữ trong công việc",
+   "duration_text": null,
+   "description": null,
+   "product_code_hints": [],
+   "brand_confirmed": true,
+   "sort": 3
+  },
+  {
+   "code": "gd4",
+   "stage": "s5",
+   "line": "goals",
+   "kind": "goal_group",
+   "brand_slug": null,
+   "product_name": "DU HỌC",
+   "item_name": "Mục tiêu: đi học hoặc đi làm ở nước ngoài",
+   "duration_text": null,
+   "description": null,
+   "product_code_hints": [],
+   "brand_confirmed": true,
+   "sort": 4
+  },
+  {
+   "code": "p01",
+   "stage": "s5",
+   "line": "goals",
+   "kind": "product",
+   "brand_slug": "edunext",
+   "product_name": "TIẾNG ANH CHO GIÁO VIÊN",
+   "item_name": "Nền tảng ứng dụng AI",
+   "duration_text": null,
+   "description": "Giáo viên trường đối tác (B2G) trải nghiệm miễn phí 09 đến 11/2026; giáo viên bộ môn tự đăng ký (B2C)",
+   "product_code_hints": [],
+   "brand_confirmed": true,
+   "group": "gd1",
+   "timed_notes": [
+    {
+     "text": "Giáo viên trường đối tác (B2G) trải nghiệm miễn phí 09 đến 11/2026",
+     "valid_from": "2026-09-01",
+     "valid_to": "2026-11-30",
+     "needs_confirm": false
+    }
+   ]
+  },
+  {
+   "code": "p02",
+   "stage": "s5",
+   "line": "goals",
+   "kind": "product",
+   "brand_slug": "vmg-tesol",
+   "product_name": "CHỨNG CHỈ TESOL",
+   "item_name": "120H, 140H và E-PATH",
+   "duration_text": null,
+   "description": "Chứng chỉ giảng dạy; học trực tiếp, trực tuyến hoặc tự học",
+   "product_code_hints": [
+    "TESOL_120H",
+    "TESOL_140H",
+    "TESOL_EPATH"
+   ],
+   "brand_confirmed": true,
+   "group": "gd1"
+  },
+  {
+   "code": "p03",
+   "stage": "s5",
+   "line": "goals",
+   "kind": "product",
+   "brand_slug": "vmg-english",
+   "product_name": "VSTEP",
+   "item_name": "Mastery và Express",
+   "duration_text": null,
+   "description": "Mastery đưa người mất gốc lên B2; Express giúp làm quen cấu trúc đề thi",
+   "product_code_hints": [
+    "VSTEP_MASTERY",
+    "VSTEP_EXPRESS",
+    "VSTEP_EPATH"
+   ],
+   "brand_confirmed": false,
+   "group": "gd2",
+   "brand_note": "Thương hiệu tạm gắn VMG English, cần xác nhận"
+  },
+  {
+   "code": "p04",
+   "stage": "s5",
+   "line": "goals",
+   "kind": "product",
+   "brand_slug": "vmg-english",
+   "product_name": "EPLUS VÀ FLEXTRACK",
+   "item_name": "Tiếng Anh giao tiếp và ngành nghề 1-1",
+   "duration_text": null,
+   "description": "Cho người đi làm; bán chung một nhóm từ quý 4/2026",
+   "product_code_hints": [
+    "ESL_EPLUS",
+    "ESL FLEXTRACK_CÔNG SỞ",
+    "ESL FLEXTRACK_NGÀNH NGHỀ"
+   ],
+   "brand_confirmed": false,
+   "group": "gd3",
+   "brand_note": "Thương hiệu tạm gắn VMG English, cần xác nhận",
+   "timed_notes": [
+    {
+     "text": "Bán chung một nhóm từ quý 4/2026",
+     "valid_from": "2026-10-01",
+     "valid_to": null,
+     "needs_confirm": true
+    }
+   ]
+  },
+  {
+   "code": "p05",
+   "stage": "s5",
+   "line": "goals",
+   "kind": "product",
+   "brand_slug": "uplearn",
+   "product_name": "SÀN HỌC TRỰC TUYẾN",
+   "item_name": "Ngoại ngữ chuyên ngành",
+   "duration_text": null,
+   "description": "Ra mắt mềm 28/10/2026; VSTEP E-PATH và Corporate English tặng học miễn phí",
+   "product_code_hints": [],
+   "brand_confirmed": true,
+   "group": "gd3",
+   "timed_notes": [
+    {
+     "text": "Ra mắt mềm 28/10/2026",
+     "valid_from": "2026-10-28",
+     "valid_to": null,
+     "needs_confirm": false
+    }
+   ]
+  },
+  {
+   "code": "p06",
+   "stage": "s5",
+   "line": "goals",
+   "kind": "product",
+   "brand_slug": "vmg-english",
+   "product_name": "SAT",
+   "item_name": "SAT 1050, 1250, 1400, 1550+",
+   "duration_text": null,
+   "description": "Bốn cấp độ theo mục tiêu điểm, nối sang du học",
+   "product_code_hints": [
+    "SAT_1050",
+    "SAT_1250",
+    "SAT_1400",
+    "SAT_1550+"
+   ],
+   "brand_confirmed": false,
+   "group": "gd4",
+   "brand_note": "Thương hiệu tạm gắn VMG English, cần xác nhận"
+  },
+  {
+   "code": "p07",
+   "stage": "s5",
+   "line": "goals",
+   "kind": "product",
+   "brand_slug": "vmp",
+   "product_name": "DU HỌC DÀI HẠN",
+   "item_name": null,
+   "duration_text": null,
+   "description": "Mỹ, Úc, Canada, Đài Loan: tư vấn trường, hồ sơ, visa, luyện phỏng vấn",
+   "product_code_hints": [
+    "DHDH_*"
+   ],
+   "brand_confirmed": true,
+   "group": "gd4"
+  },
+  {
+   "code": "p08",
+   "stage": "s5",
+   "line": "goals",
+   "kind": "product",
+   "brand_slug": "vmp",
+   "product_name": "DU HỌC NGHỀ",
+   "item_name": null,
+   "duration_text": null,
+   "description": "Hàn Quốc, Nhật Bản, Đài Loan: đào tạo tiếng, kỹ năng, phỏng vấn, hồ sơ pháp lý",
+   "product_code_hints": [
+    "XKLĐ_*"
+   ],
+   "brand_confirmed": true,
+   "group": "gd4",
+   "name_note": "Cách gọi công khai là Du học nghề"
+  }
+ ],
+ "edges": [
+  {
+   "from_code": "n01",
+   "to_code": "n02",
+   "kind": "sequence",
+   "proposed": false,
+   "two_way": false
+  },
+  {
+   "from_code": "n02",
+   "to_code": "n03",
+   "kind": "sequence",
+   "proposed": false,
+   "two_way": false
+  },
+  {
+   "from_code": "n03",
+   "to_code": "n04",
+   "kind": "sequence",
+   "proposed": false,
+   "two_way": false
+  },
+  {
+   "from_code": "n04",
+   "to_code": "n05",
+   "kind": "sequence",
+   "proposed": false,
+   "two_way": false
+  },
+  {
+   "from_code": "n05",
+   "to_code": "n06",
+   "kind": "sequence",
+   "proposed": false,
+   "two_way": false
+  },
+  {
+   "from_code": "n06",
+   "to_code": "n07",
+   "kind": "sequence",
+   "proposed": false,
+   "two_way": false
+  },
+  {
+   "from_code": "n07",
+   "to_code": "n08",
+   "kind": "sequence",
+   "proposed": false,
+   "two_way": false
+  },
+  {
+   "from_code": "n08",
+   "to_code": "n09",
+   "kind": "sequence",
+   "proposed": false,
+   "two_way": false
+  },
+  {
+   "from_code": "n09",
+   "to_code": "n10",
+   "kind": "sequence",
+   "proposed": false,
+   "two_way": false
+  },
+  {
+   "from_code": "n10",
+   "to_code": "n11",
+   "kind": "sequence",
+   "proposed": false,
+   "two_way": false
+  },
+  {
+   "from_code": "n11",
+   "to_code": "n12",
+   "kind": "sequence",
+   "proposed": false,
+   "two_way": false
+  },
+  {
+   "from_code": "n12",
+   "to_code": "n13",
+   "kind": "sequence",
+   "proposed": false,
+   "two_way": false
+  },
+  {
+   "from_code": "n13",
+   "to_code": "n14",
+   "kind": "sequence",
+   "proposed": false,
+   "two_way": false
+  },
+  {
+   "from_code": "n14",
+   "to_code": "n15",
+   "kind": "sequence",
+   "proposed": false,
+   "two_way": false
+  },
+  {
+   "from_code": "n15",
+   "to_code": "n16",
+   "kind": "sequence",
+   "proposed": false,
+   "two_way": false
+  },
+  {
+   "from_code": "n16",
+   "to_code": "n17",
+   "kind": "sequence",
+   "proposed": false,
+   "two_way": false
+  },
+  {
+   "from_code": "n17",
+   "to_code": "n18",
+   "kind": "sequence",
+   "proposed": false,
+   "two_way": false
+  },
+  {
+   "from_code": "n18",
+   "to_code": "n19",
+   "kind": "sequence",
+   "proposed": false,
+   "two_way": false
+  },
+  {
+   "from_code": "n19",
+   "to_code": "n30",
+   "kind": "sequence",
+   "proposed": false,
+   "two_way": false
+  },
+  {
+   "from_code": "n20",
+   "to_code": "n21",
+   "kind": "sequence",
+   "proposed": false,
+   "two_way": false
+  },
+  {
+   "from_code": "n21",
+   "to_code": "n22",
+   "kind": "sequence",
+   "proposed": false,
+   "two_way": false
+  },
+  {
+   "from_code": "n22",
+   "to_code": "n23",
+   "kind": "sequence",
+   "proposed": false,
+   "two_way": false
+  },
+  {
+   "from_code": "n23",
+   "to_code": "n24",
+   "kind": "sequence",
+   "proposed": false,
+   "two_way": false
+  },
+  {
+   "from_code": "n24",
+   "to_code": "n25",
+   "kind": "sequence",
+   "proposed": false,
+   "two_way": false
+  },
+  {
+   "from_code": "n25",
+   "to_code": "n26",
+   "kind": "sequence",
+   "proposed": false,
+   "two_way": false
+  },
+  {
+   "from_code": "n27",
+   "to_code": "n15",
+   "kind": "side",
+   "proposed": false,
+   "two_way": false
+  },
+  {
+   "from_code": "n28",
+   "to_code": "n15",
+   "kind": "side",
+   "proposed": false,
+   "two_way": false
+  },
+  {
+   "from_code": "n29",
+   "to_code": "n19",
+   "kind": "side",
+   "proposed": false,
+   "two_way": false
+  },
+  {
+   "from_code": "n27",
+   "to_code": "n28",
+   "kind": "side_group",
+   "proposed": false,
+   "two_way": false
+  },
+  {
+   "from_code": "n30",
+   "to_code": "gd2",
+   "kind": "branch",
+   "proposed": true,
+   "two_way": false,
+   "label": "Từ 18 tuổi: mỗi người chọn đích đến riêng"
+  },
+  {
+   "from_code": "n30",
+   "to_code": "gd3",
+   "kind": "branch",
+   "proposed": true,
+   "two_way": false
+  },
+  {
+   "from_code": "n30",
+   "to_code": "gd4",
+   "kind": "branch",
+   "proposed": true,
+   "two_way": false
+  },
+  {
+   "from_code": "b00",
+   "to_code": "b01",
+   "kind": "sequence",
+   "proposed": false,
+   "two_way": false
+  },
+  {
+   "from_code": "b01",
+   "to_code": "b02",
+   "kind": "sequence",
+   "proposed": false,
+   "two_way": false
+  },
+  {
+   "from_code": "b02",
+   "to_code": "b03",
+   "kind": "sequence",
+   "proposed": false,
+   "two_way": false
+  },
+  {
+   "from_code": "b03",
+   "to_code": "b04",
+   "kind": "sequence",
+   "proposed": false,
+   "two_way": false
+  },
+  {
+   "from_code": "b02",
+   "to_code": "n04",
+   "kind": "b2g_link",
+   "proposed": true,
+   "two_way": false,
+   "label": "Cross-sell: học sinh B2G sang học tại trung tâm"
+  },
+  {
+   "from_code": "b03",
+   "to_code": "n11",
+   "kind": "b2g_link",
+   "proposed": true,
+   "two_way": false,
+   "label": "Cross-sell: sang NextGen IELTS"
+  },
+  {
+   "from_code": "b00",
+   "to_code": "e03",
+   "kind": "b2g_link",
+   "proposed": true,
+   "two_way": false,
+   "label": "Kênh trường học (B2G) là đường phân phối của K-12"
+  },
+  {
+   "from_code": "b04",
+   "to_code": "gd1",
+   "kind": "b2g_link",
+   "proposed": true,
+   "two_way": false,
+   "label": "Giáo viên trường đối tác (B2G)"
+  },
+  {
+   "from_code": "e02",
+   "to_code": "n04",
+   "kind": "same_program",
+   "proposed": true,
+   "two_way": true,
+   "label": "Cùng chương trình Cambridge (Pre Cambridge đến Flyers, thi tại VMT)"
+  },
+  {
+   "from_code": "e04",
+   "to_code": "n11",
+   "kind": "same_program",
+   "proposed": true,
+   "two_way": true,
+   "label": "Cùng chương trình NextGen IELTS"
+  },
+  {
+   "from_code": "e04",
+   "to_code": "e05",
+   "kind": "ea_link",
+   "proposed": true,
+   "two_way": false,
+   "label": "Luyện tập chuyên sâu"
+  },
+  {
+   "from_code": "e05",
+   "to_code": "gd4",
+   "kind": "ea_link",
+   "proposed": true,
+   "two_way": false,
+   "label": "IELTS dẫn tới du học"
+  },
+  {
+   "from_code": "e06",
+   "to_code": "p04",
+   "kind": "ea_link",
+   "proposed": true,
+   "two_way": false,
+   "label": "e-Plus Pro nối nhóm giao tiếp (EPlus)"
+  },
+  {
+   "from_code": "z01",
+   "to_code": "z02",
+   "kind": "sequence",
+   "proposed": false,
+   "two_way": false
+  },
+  {
+   "from_code": "z02",
+   "to_code": "z03",
+   "kind": "sequence",
+   "proposed": false,
+   "two_way": false
+  },
+  {
+   "from_code": "z03",
+   "to_code": "z04",
+   "kind": "zh_link",
+   "proposed": true,
+   "two_way": false,
+   "label": "Tiếp nối sau lớp 12 (đề xuất)"
+  },
+  {
+   "from_code": "z04",
+   "to_code": "z05",
+   "kind": "zh_link",
+   "proposed": false,
+   "two_way": false,
+   "label": "Luyện thi HSK"
+  },
+  {
+   "from_code": "z05",
+   "to_code": "p07",
+   "kind": "zh_link",
+   "proposed": true,
+   "two_way": false,
+   "label": "HSK, du học Đài Loan"
+  },
+  {
+   "from_code": "p06",
+   "to_code": "p07",
+   "kind": "sequence",
+   "proposed": false,
+   "two_way": false
+  }
+ ]
+}

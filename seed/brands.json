@@ -1,0 +1,79 @@
+{
+  "_source": "VMG_BrandLab_Spec_v0.4.md, Phụ lục A.1 (nguồn gốc: file Nền tảng thương hiệu, bảng 4.1). Chỉ gồm dữ liệu cấu trúc; voice_profile và role_summary chưa nạp vì file Nền tảng (.docx) chưa có trong docs/source/.",
+  "_release_note": "Mọi thương hiệu nạp ở trạng thái draft (e-Academy: proposed) và chưa có effective_from: theo spec 9.1 không phát hành cho nhân viên trước khi Ban Giám Đốc phê duyệt Nền tảng (dự kiến 11/2026). Phụ lục A.1 ghi vmg-ielts là effective nhưng không nêu ngày hiệu lực; xem docs/DECISIONS.md D-004.",
+  "feature_flags": [
+    { "key": "vimi_enabled", "value": false, "note": "Spec 5.2 quy tắc 3: tắt cho đến khi bộ quy chuẩn VIMI hoàn thiện" },
+    { "key": "trademark_clear", "value": false, "note": "Spec 4.2: admin bật khi có kết luận tra cứu nhãn hiệu" },
+    { "key": "ai_enabled", "value": true, "note": "Spec 7.4 bước 1" }
+  ],
+  "brands": [
+    {
+      "slug": "vmg", "name_public": "VMG", "kind": "parent", "domain": "system", "delivery": "mixed",
+      "vimi_level": "selective", "color_primary": "#BE202F", "color_secondary": "#8B672A",
+      "release_status": "draft",
+      "note": "Tagline \"Dẫn Lối Tương Lai\" (kế thừa). Dòng mô tả logo mới có hiệu lực theo Bộ chuẩn 1.0; phần hình chờ kết luận nhãn hiệu."
+    },
+    {
+      "slug": "vmg-english", "name_public": "VMG English", "kind": "member", "domain": "language", "delivery": "offline",
+      "vimi_level": "primary", "color_primary": "#BE202F",
+      "release_status": "draft",
+      "note": "Giữ logo hiện hữu có chữ ENGLISH; ngang cấp VMG IELTS; trọng tâm trẻ em và phụ huynh."
+    },
+    {
+      "slug": "vmg-ielts", "name_public": "VMG IELTS", "kind": "member", "domain": "language", "delivery": "mixed",
+      "vimi_level": "selective", "color_primary": "#BE202F",
+      "release_status": "draft",
+      "release_condition": "Thông điệp chương trình mới (CORE, THE IELTS LAB) withheld: chỉ phát hành sau nghiệm thu (dự kiến 03/2027), not_before = 2027-03-01 và phải được admin gỡ cổng thủ công.",
+      "note": "Thương hiệu hiện hữu (Phụ lục A.1 ghi effective)."
+    },
+    {
+      "slug": "vmg-tesol", "name_public": "VMG TESOL", "kind": "member", "domain": "language", "delivery": "mixed",
+      "vimi_level": "limited", "color_primary": "#012A9E",
+      "release_status": "draft",
+      "note": "Giữ logo nền xanh, không ép đổi sang đỏ; nêu đúng đơn vị cấp chứng nhận."
+    },
+    {
+      "slug": "vmg-chinese", "name_public": "VMG Tiếng Trung", "kind": "member", "domain": "language", "delivery": "mixed",
+      "vimi_level": "selective",
+      "color_note": "Đỏ (hệ màu đỏ của lĩnh vực Ngoại ngữ); chưa có mã màu.",
+      "release_status": "draft",
+      "note": "Luyện thi HSK thuộc thương hiệu này."
+    },
+    {
+      "slug": "vmp", "name_public": "VMP - VMG Global Pathways", "kind": "member", "domain": "study_career", "delivery": "offline",
+      "vimi_level": "limited", "color_primary": "#29338D", "color_secondary": "#F69220",
+      "release_status": "draft",
+      "note": "Hai tuyến Du học, Du học nghề. [CẦN XÁC NHẬN, Q5] tên gọi thống nhất trên mọi kênh."
+    },
+    {
+      "slug": "uplearn", "name_public": "UpLearn by VMG", "kind": "member", "domain": "language", "delivery": "online",
+      "vimi_level": "limited",
+      "color_note": "Tím. [CẦN XÁC NHẬN mã] (Q4).",
+      "release_status": "draft",
+      "note": "Nền tảng học ngoại ngữ chuyên ngành; khóa của thương hiệu khác phân phối qua UpLearn giữ tên và nhận diện của khóa."
+    },
+    {
+      "slug": "edunext", "name_public": "EduNext", "kind": "member", "domain": "language", "delivery": "online",
+      "vimi_level": "limited",
+      "color_note": "[CẦN XÁC NHẬN mã] (Q4).",
+      "release_status": "draft",
+      "note": "Tiếng Anh trực tuyến cho giáo viên bộ môn khác; logo riêng, đặt cùng dấu bảo chứng VMG."
+    },
+    {
+      "slug": "vmg-e-academy", "name_public": "VMG e-Academy", "kind": "member", "domain": "language", "delivery": "online",
+      "vimi_level": "limited", "confirmed": false,
+      "color_note": "Xanh ngọc (đề xuất, chưa có mã chính thức).",
+      "release_status": "proposed",
+      "release_condition": "Chờ xác nhận có là thương hiệu thành viên chính thức (Q25). Không cho chọn trong T01, T02.",
+      "note": "ĐỀ XUẤT, chưa có trong file Nền tảng. Line 2 trên hành trình: học trực tuyến có giáo viên, nhóm Juniors và Prep."
+    },
+    {
+      "slug": "vmt", "name_public": "VMT", "kind": "member", "domain": "language", "delivery": "mixed",
+      "vimi_level": "limited",
+      "color_note": "Không có màu thương hiệu; ô khảo thí trên hành trình có nền trắng viền vàng.",
+      "release_status": "draft",
+      "release_condition": "Cổng vmt_public_name chưa mở (Q24): nội dung công khai dùng \"dịch vụ khảo thí\".",
+      "note": "Dịch vụ khảo thí; slug cũ `testing` đổi thành `vmt`. Tên VMT dùng nội bộ và trong Hành trình khách hàng; chưa có nhận diện riêng."
+    }
+  ]
+}
