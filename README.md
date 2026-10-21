@@ -57,5 +57,6 @@ npm test
 | Đăng nhập (email, mật khẩu), chuyển hướng người chưa đăng nhập | Khung có, **chưa thử với Supabase thật** (đã thử trang và luồng lỗi) |
 | Migration chạy trên Supabase thật, kiểm thử RLS trên Supabase thật | Chưa (không có Docker, chưa có dự án Supabase) |
 | Hồ sơ trung tâm (`seed/centers.csv`) | Chưa, cần dữ liệu từ chủ sản phẩm |
-| Google Drive: Shared Drive, tài khoản dịch vụ, `lib/drive/` kèm bản mô phỏng | Chưa, xem [docs/OPEN_QUESTIONS.md](docs/OPEN_QUESTIONS.md) N6 |
+| `lib/drive/` (đăng ký, ghim bản sửa, tải đúng bản đã ghim, sức khỏe liên kết) kèm `MockDrive` | Xong, kiểm thử với bản mô phỏng và client Google giả lập |
+| Google Drive thật: Shared Drive, cây `_NHAP`/`_CHINH_THUC`, tài khoản dịch vụ | Chưa, Marketing cần tạo; xem [docs/OPEN_QUESTIONS.md](docs/OPEN_QUESTIONS.md) N6 |
 | `products`, nội dung Brand Hub từ file nguồn | Chưa, file nguồn chưa có trong `docs/source/` |

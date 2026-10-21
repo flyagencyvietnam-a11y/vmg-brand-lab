@@ -35,6 +35,7 @@ export type NodeRow = {
   product_name: string;
   item_name: string | null;
   duration_text: string | null;
+  commitment_text: string | null;
   description: string | null;
   group_code: string | null;
   stage_span: string[] | null;
@@ -72,6 +73,20 @@ export type JourneyRows = {
   nodeProducts: NodeProductRow[];
 };
 
+// File nguồn gộp cam kết đầu ra vào duration_text sau dấu chấm giữa ("3 tháng, 36 giờ · cam kết đầu ra từng cấp").
+// Tách riêng để view chỉ hiện cam kết khi R&D đã xác nhận (spec 6.1.1, Q23). Ghép lại bằng " · " ra đúng văn bản gốc.
+const COMMITMENT_SEPARATOR = " · ";
+
+export function splitCommitment(durationText: string | null): { duration_text: string | null; commitment_text: string | null } {
+  if (durationText === null) return { duration_text: null, commitment_text: null };
+  const at = durationText.indexOf(COMMITMENT_SEPARATOR + "cam kết");
+  if (at === -1) return { duration_text: durationText, commitment_text: null };
+  return {
+    duration_text: durationText.slice(0, at),
+    commitment_text: durationText.slice(at + COMMITMENT_SEPARATOR.length),
+  };
+}
+
 export function buildJourneyRows(seed: JourneySeed): JourneyRows {
   const stages = seed.stages.map<StageRow>((s) => ({
     key: s.key,
@@ -108,7 +123,7 @@ export function buildJourneyRows(seed: JourneySeed): JourneyRows {
       brand_slug: n.brand_slug,
       product_name: n.product_name,
       item_name: n.item_name,
-      duration_text: n.duration_text,
+      ...splitCommitment(n.duration_text),
       description: n.description,
       group_code: n.group ?? null,
       stage_span: n.stage_span ?? null,

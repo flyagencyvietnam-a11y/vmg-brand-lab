@@ -28,4 +28,12 @@ Theo spec 8.8. Mỗi dòng: quyết định, lý do, hệ quả.
 
 **D-013. Kiểm thử migration và RLS bằng PGlite.** Máy dựng không có Docker nên không chạy được Supabase cục bộ. `tests/rls/helpers.ts` mô phỏng vai trò `anon`, `authenticated`, `service_role`, schema `auth`, `auth.uid()` và quyền mặc định. Đáp ứng một phần mục 8.7 (migration trên cơ sở trống, RLS theo vai trò). Giới hạn: PGlite không phải Supabase; cần chạy lại migration trên Supabase thật trước khi tin.
 
+**D-015. Tách cam kết đầu ra khỏi `duration_text` khi seed (migration 3).** Spec 6.1.1 cấm hiện cam kết IE1-IE7 trước khi R&D xác nhận, nhưng file nguồn gộp chúng vào `duration_text`. Không sửa file nguồn; `splitCommitment` cắt tại " · cam kết" và kiểm thử ghép lại bằng " · " ra đúng văn bản gốc. `commitment_confirmed` mặc định false và `--force` không đụng tới. Dùng migration mới thay vì sửa migration 2 để lịch sử không bị viết lại.
+
+**D-016. Drive qua REST với `fetch`, không dùng `googleapis`; JWT ký bằng `node:crypto`.** Spec 8.1 chỉ cần bốn thao tác (đọc siêu dữ liệu, tải, tải bản sửa, ghim). Ít phụ thuộc, `fetch` và đồng hồ truyền vào được nên kiểm thử không cần mạng. Nếu sau này cần thao tác Drive phức tạp (Picker, liệt kê thư mục hàng loạt), cân nhắc lại.
+
+**D-017. `lib/drive` là cửa duy nhất; `DriveClient` cố ý hẹp.** Không có hàm tạo, sửa, xóa tệp (spec 8.1). `MockDrive` mô phỏng các cách hỏng của Drive thật (sửa tại chỗ, đổi tên, xóa, thùng rác, mất quyền, hết hạn mức, Drive dọn bản sửa chưa ghim). `server.ts` là chỗ duy nhất dùng `server-only` để các module còn lại kiểm thử được.
+
+**D-018. `drift` theo đúng spec: md5 HOẶC modifiedTime khác bản đã ghim.** Hệ quả: chỉ đổi tên tệp trên Drive cũng thành `drift` (Drive cập nhật modifiedTime khi đổi tên). Chấp nhận vì người dùng thường vẫn tải đúng bản đã ghim; quản trị bấm "Xác nhận" là xong. Nếu gây nhiễu thì cân nhắc chỉ so md5 với tệp nhị phân.
+
 **D-014. Font Arial theo spec 4.4, không dùng Geist của scaffold.** Font thương hiệu chưa có giấy phép (Q3).

@@ -102,7 +102,8 @@ describe("buildJourneyRows", () => {
       expect(row.code).toBe(n.code);
       expect(row.product_name).toBe(n.product_name);
       expect(row.item_name).toBe(n.item_name);
-      expect(row.duration_text).toBe(n.duration_text);
+      const joined = row.commitment_text === null ? row.duration_text : `${row.duration_text} · ${row.commitment_text}`;
+      expect(joined).toBe(n.duration_text);
       expect(row.description).toBe(n.description);
       expect(row.verify_note).toBe(n.verify_note ?? null);
       expect(row.brand_note).toBe(n.brand_note ?? null);
@@ -115,6 +116,15 @@ describe("buildJourneyRows", () => {
     expect(byCode.get("n29")!.extra).toEqual({ same_product_as: "n28" });
     expect(byCode.get("p08")!.extra).toEqual({ name_note: "Cách gọi công khai là Du học nghề" });
     expect(byCode.get("e03")!.stage_span).toEqual(["s3", "s4"]);
+  });
+
+  it("tách cam kết đầu ra của IE1 đến IE7 sang commitment_text, không ô nào khác bị tách", () => {
+    const split = rows.nodes.filter((n) => n.commitment_text !== null);
+    expect(split.map((n) => n.code)).toEqual(["n20", "n21", "n22", "n23", "n24", "n25", "n26"]);
+    for (const n of split) {
+      expect(n.duration_text).toBe("3 tháng, 36 giờ");
+      expect(n.commitment_text).toBe("cam kết đầu ra từng cấp");
+    }
   });
 
   it("giữ mốc thời gian chưa xác nhận để view ẩn đi", () => {

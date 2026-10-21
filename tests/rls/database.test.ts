@@ -170,6 +170,39 @@ describe("RLS: hành trình khách hàng", () => {
     });
   });
 
+  it("cam kết đầu ra IE chỉ hiện cho người dùng thường sau khi được xác nhận (N1, Q23)", async () => {
+    await db.exec(
+      `update public.journey_nodes set status = 'effective', effective_from = public.today_vn() - 1 where code in ('n20', 'n23')`,
+    );
+    const viewRow = async (code: string) =>
+      (
+        await db.query<{ duration_text: string; commitment_text: string | null }>(
+          `select duration_text, commitment_text from public.v_usable_journey_nodes where code = '${code}'`,
+        )
+      ).rows[0]!;
+
+    await as(db, USERS.staff, async () => {
+      expect(await viewRow("n20")).toEqual({ duration_text: "3 tháng, 36 giờ", commitment_text: null });
+    });
+    // editor đọc bảng gốc nên vẫn thấy cam kết để rà soát.
+    await as(db, USERS.editor, async () => {
+      const res = await db.query<{ commitment_text: string }>(
+        `select commitment_text from public.journey_nodes where code = 'n20'`,
+      );
+      expect(res.rows[0]!.commitment_text).toBe("cam kết đầu ra từng cấp");
+    });
+
+    await db.exec(`update public.journey_nodes set commitment_confirmed = true where code = 'n20'`);
+    await as(db, USERS.staff, async () => {
+      expect(await viewRow("n20")).toEqual({
+        duration_text: "3 tháng, 36 giờ",
+        commitment_text: "cam kết đầu ra từng cấp",
+      });
+      // Ô khác chưa xác nhận vẫn bị che.
+      expect((await viewRow("n23")).commitment_text).toBeNull();
+    });
+  });
+
   it("chỉ admin ghi được vào journey_*", async () => {
     await as(db, USERS.staff, async () => {
       await expect(
