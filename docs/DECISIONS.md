@@ -56,4 +56,8 @@ Theo spec 8.8. Mỗi dòng: quyết định, lý do, hệ quả.
 
 **D-028. Thanh điều hướng đánh dấu mục đang chọn nằm trong `<Suspense>`.** `usePathname()` trên trang có tham số động bị Cache Components chặn nếu không có Suspense (phát hiện khi chạy thử); có `NavFallback` cùng giao diện.
 
+**D-029. Thiếu cấu hình thì 503 với trang báo lỗi, vẫn đóng cửa.** Dự án Vercel đầu tiên chưa có biến môi trường nên mọi trang trả "Internal Server Error" trần. Giờ proxy chuyển mọi yêu cầu sang `/config-error` (route handler trả HTML tự chứa, mã 503, `Cache-Control: no-store`, `Retry-After: 300`). Dùng route handler vì `page` không đặt được mã trạng thái và `NextResponse.rewrite` bỏ qua `status` (đo thực tế: ra 200). Trang không nêu tên biến hay hạ tầng (có test); chi tiết ghi `console.error` ở máy chủ. Khi đã cấu hình đủ thì `/config-error` chuyển về `/`. Không đổi nguyên tắc: thiếu cấu hình không bao giờ cho vào không cần đăng nhập.
+
+**D-030. `vercel.json` đặt vùng hàm `sin1`.** Mặc định của Vercel là Mỹ; người dùng ở Việt Nam và cơ sở dữ liệu nên ở Singapore (spec 8.1). Nếu gói Vercel không cho chọn vùng thì xóa dòng `regions`.
+
 **D-014. Font Arial theo spec 4.4, không dùng Geist của scaffold.** Font thương hiệu chưa có giấy phép (Q3).

@@ -45,6 +45,22 @@ where id = (select id from auth.users where email = 'email-cua-admin@...');
 
 Spec R12 yêu cầu tối thiểu hai `admin`.
 
+## Triển khai (Vercel và Supabase)
+
+Dự án Vercel kết nối GitHub: mỗi lần push lên `main` tự triển khai. [vercel.json](vercel.json) đặt vùng chạy hàm là `sin1` (Singapore) cho gần người dùng Việt Nam.
+
+1. **Tạo dự án Supabase**, nên chọn vùng Singapore.
+2. **Biến môi trường** (Vercel, Settings, Environment Variables; Production và Preview):
+   - `NEXT_PUBLIC_SUPABASE_URL`
+   - `NEXT_PUBLIC_SUPABASE_ANON_KEY`
+
+   Hai biến này được nhúng lúc build, nên **phải triển khai lại (Redeploy) sau khi thêm hoặc sửa**. Không đặt `BRAND_LAB_DEV_SEED`. `SUPABASE_SERVICE_ROLE_KEY` chưa cần trên Vercel: chỉ script seed dùng, chạy trên máy bạn.
+3. **Migration:** áp dụng ba file trong `supabase/migrations` theo thứ tự (`supabase db push`, hoặc dán lần lượt vào SQL Editor), rồi `npm run seed`, rồi nâng một tài khoản lên `admin` (mục Quản trị đầu tiên ở trên).
+4. **Supabase Auth:** đặt Site URL và Redirect URLs thành tên miền Vercel; tắt tự đăng ký.
+5. **Bảo vệ truy cập:** tên miền production là công khai (các URL preview thì được Vercel Authentication chặn). Trong lúc nội dung chưa được Ban Giám Đốc phê duyệt, nên bật Vercel Authentication cho production.
+
+**Khi thiếu biến môi trường**, mọi trang trả mã **503** với trang "Hệ thống chưa sẵn sàng" (`app/config-error/route.ts`), không bao giờ mở cửa không cần đăng nhập. Trang công khai không nêu tên biến; chi tiết nằm ở Runtime Logs của Vercel.
+
 ## Kiểm thử
 
 ```bash

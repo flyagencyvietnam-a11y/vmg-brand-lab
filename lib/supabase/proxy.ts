@@ -1,14 +1,29 @@
 import { createServerClient } from "@supabase/ssr";
 import { NextResponse, type NextRequest } from "next/server";
 import { isDevSeedMode } from "@/lib/dev-seed";
-import { getSupabasePublicEnv } from "./env";
+import { getSupabasePublicEnv, hasSupabasePublicEnv } from "./env";
 
 const PUBLIC_PATHS = ["/login"];
+export const CONFIG_ERROR_PATH = "/config-error";
 
-/** Làm mới phiên Supabase và chuyển người chưa đăng nhập về /login. Thiếu cấu hình thì lỗi (không mở cửa). */
+/**
+ * Làm mới phiên Supabase và chuyển người chưa đăng nhập về /login.
+ * Thiếu cấu hình thì ĐÓNG cửa: mọi yêu cầu chuyển sang trang báo lỗi (503) (không bao giờ cho vào không cần đăng nhập).
+ */
 export async function updateSession(request: NextRequest): Promise<NextResponse> {
   // Chế độ thử cục bộ (chỉ ngoài production): không đăng nhập, dữ liệu seed.
   if (isDevSeedMode()) return NextResponse.next({ request });
+
+  const { pathname: currentPath } = request.nextUrl;
+  if (!hasSupabasePublicEnv()) {
+    // Chi tiết cho người quản trị nằm ở log máy chủ; trang công khai chỉ báo chung (không nêu tên biến).
+    console.error("Thiếu NEXT_PUBLIC_SUPABASE_URL hoặc NEXT_PUBLIC_SUPABASE_ANON_KEY (xem .env.example và README, mục Triển khai).");
+    if (currentPath === CONFIG_ERROR_PATH) return NextResponse.next({ request });
+    // Mã 503 và tiêu đề do route handler /config-error đặt (rewrite từ proxy bỏ qua status).
+    return NextResponse.rewrite(new URL(CONFIG_ERROR_PATH, request.url));
+  }
+  // Đã cấu hình đủ thì trang báo lỗi không còn ý nghĩa.
+  if (currentPath === CONFIG_ERROR_PATH) return NextResponse.redirect(new URL("/", request.url));
 
   const { url, anonKey } = getSupabasePublicEnv();
   let response = NextResponse.next({ request });

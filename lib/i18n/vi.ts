@@ -33,6 +33,13 @@ export const vi = {
       studio: { title: "Công cụ", text: "Tự làm hình ảnh và nội dung đúng chuẩn thương hiệu trong vài phút." },
     },
   },
+  configError: {
+    eyebrow: "Tạm dừng",
+    title: "Hệ thống chưa sẵn sàng",
+    lead: "VMG Brand Lab chưa được cấu hình xong nên tạm thời chưa dùng được. Vui lòng thử lại sau ít phút.",
+    admin: "Nếu bạn là quản trị viên: xem mục Triển khai trong README, hoàn tất cấu hình rồi triển khai lại.",
+    retry: "Thử lại",
+  },
   nav: {
     home: "Trang chủ",
     brand: "Hiểu về VMG",
