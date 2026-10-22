@@ -14,6 +14,16 @@ npm run dev
 
 Thiếu hai biến `NEXT_PUBLIC_SUPABASE_*` thì ứng dụng báo lỗi thay vì mở cửa không cần đăng nhập.
 
+## Xem thử khi chưa có Supabase (chế độ thử)
+
+Để xem giao diện hành trình ngay trên máy, không cần Supabase và không cần đăng nhập, thêm vào `.env.local`:
+
+```
+BRAND_LAB_DEV_SEED=1
+```
+
+rồi `npm run dev` và mở **http://localhost:3000/brand/journey** (dùng `localhost`, không dùng `127.0.0.1`: Next dev chặn nguồn khác). Trang hiển thị dữ liệu từ `seed/journey.json` ở góc nhìn biên tập, kèm biểu ngữ "Chế độ thử". Chế độ này **tự tắt ở bản build production** (`NODE_ENV=production`), dù biến có được đặt, vì nó bỏ qua đăng nhập, RLS và cổng phát hành.
+
 ## Cơ sở dữ liệu
 
 Migration ở `supabase/migrations/` (áp dụng bằng Supabase CLI: `supabase db push` hoặc `supabase db reset` cục bộ). Sau khi có dự án Supabase, tắt tự đăng ký (đã đặt `enable_signup = false` trong `supabase/config.toml`) và tạo người dùng bằng lời mời.
@@ -44,6 +54,14 @@ npm test
 ```
 
 `npm test` gồm kiểm thử seed so khớp số lượng spec G.1 (61 ô, 51 đường nối, 14 đề xuất) và kiểm thử migration cùng RLS theo vai trò trên Postgres trong tiến trình (PGlite), không cần Docker.
+
+## MVP: Hành trình khách hàng (Giai đoạn 1, mục 6.1.1)
+
+- `/brand/journey`: bản đồ vẽ từ dữ liệu. Máy tính: lưới line theo chặng, ba cột con của Line 1 đặt cạnh nhau. Điện thoại: thẻ chuyển line, chặng là mục gập, ngăn xem nhanh dạng bottom sheet.
+- Ngăn xem nhanh (ô trước, ô sau, liên kết đề xuất, nhảy tới ô khác), tìm không dấu, làm nổi theo thương hiệu, công tắc "Hiện liên kết đề xuất", đường dẫn chia sẻ `?node=mã-ô`.
+- `/brand/journey/stage/[key]`: trang chặng (mục tiêu đầu ra, người quyết định, các ô trong chặng).
+- Editor và admin thấy cả nội dung chưa phát hành và ghi chú chờ xác nhận (đọc bảng gốc). Vai trò khác chỉ thấy bản đã phát hành qua view; khi mọi ô còn `proposed` thì thấy thông báo "chưa được phát hành" (đúng spec 9.1).
+- Chưa có: mũi tên nối vẽ trên bản đồ, thẻ sản phẩm `/brand/products/[code]`, "Đi theo hành trình", xuất PDF, quản trị hành trình (`/admin/journey`), các mục Chuẩn, Thư viện, Kế hoạch, Công cụ.
 
 ## Tiến độ Giai đoạn 0 (spec 9.2, 9.3)
 

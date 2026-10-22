@@ -1,11 +1,15 @@
 import { createServerClient } from "@supabase/ssr";
 import { NextResponse, type NextRequest } from "next/server";
+import { isDevSeedMode } from "@/lib/dev-seed";
 import { getSupabasePublicEnv } from "./env";
 
 const PUBLIC_PATHS = ["/login"];
 
 /** Làm mới phiên Supabase và chuyển người chưa đăng nhập về /login. Thiếu cấu hình thì lỗi (không mở cửa). */
 export async function updateSession(request: NextRequest): Promise<NextResponse> {
+  // Chế độ thử cục bộ (chỉ ngoài production): không đăng nhập, dữ liệu seed.
+  if (isDevSeedMode()) return NextResponse.next({ request });
+
   const { url, anonKey } = getSupabasePublicEnv();
   let response = NextResponse.next({ request });
 

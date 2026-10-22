@@ -16,6 +16,10 @@ Web app nội bộ của Marketing VMG: thư viện, chuẩn, hành trình khác
 - Tệp gốc thư viện nằm ở Google Drive, không lưu vào Supabase Storage; mọi thao tác Drive đi qua `lib/drive/`.
 - Giao diện chỉ tiếng Việt có dấu, chuỗi nằm trong `lib/i18n/vi.ts`. Không đưa nội dung thương hiệu mới ra cho nhân viên trước khi có phê duyệt (spec 9.1).
 
+## Xem thử không cần Supabase
+
+`BRAND_LAB_DEV_SEED=1` trong `.env.local` rồi `npm run dev` và mở `http://localhost:3000/brand/journey` (dùng `localhost`). Chế độ này tự tắt khi `NODE_ENV=production`; đừng nới điều kiện đó.
+
 ## Lệnh
 
 ```bash

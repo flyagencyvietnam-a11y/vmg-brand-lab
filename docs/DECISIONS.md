@@ -36,4 +36,12 @@ Theo spec 8.8. Mỗi dòng: quyết định, lý do, hệ quả.
 
 **D-018. `drift` theo đúng spec: md5 HOẶC modifiedTime khác bản đã ghim.** Hệ quả: chỉ đổi tên tệp trên Drive cũng thành `drift` (Drive cập nhật modifiedTime khi đổi tên). Chấp nhận vì người dùng thường vẫn tải đúng bản đã ghim; quản trị bấm "Xác nhận" là xong. Nếu gây nhiễu thì cân nhắc chỉ so md5 với tệp nhị phân.
 
+**D-019. Chế độ thử cục bộ `BRAND_LAB_DEV_SEED=1`.** Để xem giao diện khi chưa có Supabase. Bỏ qua đăng nhập và đọc `seed/journey.json` ở góc nhìn editor. An toàn: `isDevSeedMode()` đòi `NODE_ENV !== "production"` (có kiểm thử), nên bản build production bỏ qua biến dù được đặt (đã kiểm chứng bằng `next start`: vẫn chuyển về /login, không có biểu ngữ). Có biểu ngữ "Chế độ thử" trên mọi trang. Một kiểm thử so khớp từng trường giữa đường seed (TypeScript) và view SQL của staff (`tests/rls/journey-parity.test.ts`) để chế độ thử không nói sai điều staff thấy.
+
+**D-020. Nguồn dữ liệu theo vai trò.** Editor, admin đọc bảng gốc (thấy ghi chú chờ xác nhận, cam kết chưa xác nhận); vai trò khác đọc view `v_usable_journey_*`. Lựa chọn ở tầng ứng dụng chỉ để chọn nguồn đúng, RLS của cơ sở dữ liệu mới là lớp bảo vệ. Mọi cách hiển thị đi qua `lib/journey/model.ts` (`toNode`) để quy tắc ẩn hiện chỉ có một bản.
+
+**D-021. Ngày hôm nay tính lúc có yêu cầu.** Cache Components cấm `new Date()` khi prerender; `loadJourneyMap` gọi `await connection()` trước khi tính `todayVn()`. Phát hiện khi chạy thử (build production sẽ báo lỗi).
+
+**D-022. Bản đồ MVP không vẽ mũi tên nối.** Thứ tự trong line thể hiện bằng ký hiệu ↓ giữa các ô nối tiếp; ô trước, ô sau và liên kết đề xuất nằm trong ngăn xem nhanh, kèm huy hiệu ⇢ trên ô có liên kết đề xuất. Vẽ mũi tên SVG giữa các cột để sau vì cần đo vị trí ô và vẽ lại khi đổi cỡ màn hình.
+
 **D-014. Font Arial theo spec 4.4, không dùng Geist của scaffold.** Font thương hiệu chưa có giấy phép (Q3).
