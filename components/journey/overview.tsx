@@ -1,62 +1,52 @@
 import Link from "next/link";
+import { Badge } from "@/components/ui/badge";
+import { Card, CardLink } from "@/components/ui/card";
+import { Icon } from "@/components/ui/icon";
+import { SectionHeading } from "@/components/ui/section-heading";
 import { vi } from "@/lib/i18n/vi";
 import type { JourneyMap } from "@/lib/journey/model";
-import { buildOverview, lineShortName, nodeLabel, parallelLines } from "@/lib/journey/views";
-import { Badge } from "./badges";
-import { JourneySearch, type SearchItem } from "./journey-search";
+import { buildOverview, lineShortName, parallelLines } from "@/lib/journey/views";
 
-const SEARCHABLE_KINDS = new Set(["level", "exam", "support_product", "product", "goal_group", "program_header"]);
-
-/** Trang tổng quan: cả hành trình trong một màn hình, chọn chặng của khách để đi vào chi tiết. */
+/** Tổng quan: cả hành trình trong một màn hình, chọn chặng của khách để đi vào chi tiết. */
 export function Overview({ map }: { map: JourneyMap }) {
   const overview = buildOverview(map);
   const parallels = parallelLines(map);
-  const lineName = new Map(map.lines.map((l) => [l.key, lineShortName(l)]));
-  const stageAge = new Map(map.stages.map((s) => [s.key, s.ageLabel]));
-
-  const items: SearchItem[] = map.nodes
-    .filter((n) => SEARCHABLE_KINDS.has(n.kind) && !n.extra.same_product_as)
-    .map((n) => ({
-      code: n.code,
-      label: nodeLabel(n),
-      stageKey: n.stageKey,
-      stageAge: stageAge.get(n.stageKey) ?? "",
-      lineName: lineName.get(n.lineKey) ?? "",
-    }));
 
   return (
-    <div className="flex flex-col gap-12">
-      <JourneySearch items={items} />
-
-      <section className="flex flex-col gap-4" aria-labelledby="stages-heading">
-        <h2 id="stages-heading" className="text-xl font-bold">
-          {vi.journey.chooseStage}
-        </h2>
-        <ol className="flex flex-col xl:flex-row xl:items-stretch">
+    <>
+      <section className="mx-auto w-full max-w-6xl px-4 py-12" aria-labelledby="stages-heading">
+        <SectionHeading id="stages-heading" title={vi.journey.chooseStage} />
+        <ol className="mt-8 flex flex-col xl:flex-row xl:items-stretch">
           {overview.map((o, i) => (
             <li key={o.stage.key} className="contents">
               {i > 0 ? (
-                <span aria-hidden className="flex items-center justify-center py-1 text-2xl text-vmg-faint xl:px-1 xl:py-0">
-                  <span className="xl:hidden">↓</span>
-                  <span className="hidden xl:inline">›</span>
+                <span aria-hidden className="flex items-center justify-center py-2 text-ink-3 xl:px-1.5 xl:py-0">
+                  <Icon name="arrow-down" className="size-6 xl:hidden" />
+                  <Icon name="arrow-right" className="hidden size-6 xl:block" />
                 </span>
               ) : null}
-              <Link
+              <CardLink
                 href={`/brand/journey/stage/${o.stage.key}`}
-                className="group flex min-w-0 flex-1 flex-col gap-4 rounded-xl border border-vmg-faint bg-surface-card p-5 hover:border-vmg-red md:grid md:grid-cols-[11rem_minmax(0,1fr)_minmax(0,1fr)] md:gap-6 xl:flex xl:flex-col xl:gap-4 xl:p-4"
+                className="group flex min-w-0 flex-1 flex-col gap-5 p-5 md:grid md:grid-cols-[11rem_minmax(0,1fr)_minmax(0,1fr)] md:gap-8 xl:flex xl:flex-col xl:gap-5"
               >
                 <div className="flex flex-col items-start gap-3">
+                  <p className="text-small font-bold tracking-caps text-gold">{String(i + 1).padStart(2, "0")}</p>
                   <div>
-                    <p className="whitespace-nowrap text-3xl font-bold leading-none text-vmg-red xl:text-2xl">{o.stage.ageLabel}</p>
-                    <p className="mt-2 text-sm font-bold uppercase leading-snug">{o.stage.title}</p>
+                    <p className="text-h1 leading-none font-bold whitespace-nowrap text-brand xl:text-h2">{o.stage.ageLabel}</p>
+                    <p className="mt-2 text-small font-semibold uppercase leading-snug text-ink-2">{o.stage.title}</p>
                   </div>
-                  {o.stage.decider ? <Badge>{o.stage.decider}</Badge> : null}
+                  {o.stage.decider ? (
+                    <Badge>
+                      <Icon name="user" className="size-4" />
+                      {o.stage.decider}
+                    </Badge>
+                  ) : null}
                 </div>
 
                 <div>
-                  <p className="text-sm text-vmg-muted">{o.goals.length > 0 ? vi.journey.goals : vi.journey.mainProduct}</p>
+                  <p className="text-small text-ink-3">{o.goals.length > 0 ? vi.journey.goals : vi.journey.mainProduct}</p>
                   {o.goals.length > 0 ? (
-                    <ul className="mt-1 flex flex-col gap-0.5 font-medium">
+                    <ul className="mt-1 flex flex-col gap-1 font-semibold">
                       {o.goals.map((g) => (
                         <li key={g} className="first-letter:uppercase">
                           {g.toLowerCase()}
@@ -64,15 +54,15 @@ export function Overview({ map }: { map: JourneyMap }) {
                       ))}
                     </ul>
                   ) : (
-                    <p className="mt-1 font-bold">{o.stage.leadProduct}</p>
+                    <p className="mt-1 text-h3 font-bold">{o.stage.leadProduct}</p>
                   )}
                 </div>
 
-                <div className="flex min-w-0 flex-col gap-3">
+                <div className="flex min-w-0 flex-col gap-4">
                   {o.lines.length > 0 ? (
                     <div>
-                      <p className="text-sm text-vmg-muted">{vi.journey.studyAt}</p>
-                      <ul className="mt-1 flex flex-wrap gap-1.5">
+                      <p className="text-small text-ink-3">{vi.journey.studyAt}</p>
+                      <ul className="mt-1.5 flex flex-wrap gap-1.5">
                         {o.lines.map((l) => (
                           <li key={l.key}>
                             <Badge>{l.name}</Badge>
@@ -83,63 +73,76 @@ export function Overview({ map }: { map: JourneyMap }) {
                   ) : null}
 
                   {o.gaps.length > 0 ? (
-                    <ul className="flex flex-col gap-1 text-sm text-vmg-muted">
+                    <ul className="flex flex-col gap-1.5 text-small text-ink-2">
                       {o.gaps.map((g) => (
-                        <li key={g.line + g.text}>
-                              <span className="font-medium">{g.line}:</span> {g.text}
-                            </li>
+                        <li key={g.line + g.text} className="flex gap-2">
+                          <Icon name="info" className="mt-0.5 size-4 shrink-0 text-ink-3" />
+                          <span>
+                            <span className="font-semibold">{g.line}:</span> {g.text}
+                          </span>
+                        </li>
                       ))}
                     </ul>
                   ) : null}
 
-                  {o.next ? (
-                    <p className="mt-auto border-t border-vmg-faint pt-3 text-sm">
-                      <span className="text-vmg-muted">{vi.journey.then}:</span>{" "}
-                      <span className="font-medium">{o.next.to.productName}</span>
-                    </p>
-                  ) : null}
+                  <div className="mt-auto flex flex-col gap-3 border-t border-line pt-4">
+                    {o.next ? (
+                      <p className="text-small">
+                        <span className="text-ink-3">{vi.journey.then}:</span>{" "}
+                        <span className="font-semibold">{o.next.to.productName}</span>
+                      </p>
+                    ) : null}
+                    <span className="inline-flex items-center gap-1.5 text-small font-semibold text-brand">
+                      {vi.journey.viewDetail}
+                      <Icon name="arrow-right" className="size-4 transition-transform group-hover:translate-x-0.5" />
+                    </span>
+                  </div>
                 </div>
-              </Link>
+              </CardLink>
             </li>
           ))}
         </ol>
-        <p className="text-sm text-vmg-muted">{vi.journey.ageNote}</p>
+        <p className="mt-4 text-small text-ink-3">{vi.journey.ageNote}</p>
       </section>
 
       {parallels.length > 0 ? (
-        <section className="flex flex-col gap-4" aria-labelledby="parallel-heading">
-          <div>
-            <h2 id="parallel-heading" className="text-xl font-bold">
-              {vi.journey.parallelTitle}
-            </h2>
-            <p className="text-vmg-muted">{vi.journey.parallelIntro}</p>
+        <section className="border-y border-line bg-paper" aria-labelledby="parallel-heading">
+          <div className="mx-auto w-full max-w-6xl px-4 py-12">
+            <SectionHeading id="parallel-heading" title={vi.journey.parallelTitle} lead={vi.journey.parallelIntro} />
+            <ul className="mt-8 grid gap-4 md:grid-cols-3">
+              {parallels.map(({ line, stages }) => (
+                <li key={line.key}>
+                  <Card className="flex h-full flex-col gap-4 bg-surface p-5">
+                    <div>
+                      <h3 className="text-h3 font-bold">{lineShortName(line)}</h3>
+                      {line.description ? <p className="mt-1 text-ink-2">{line.description}</p> : null}
+                    </div>
+                    <ul className="mt-auto flex flex-wrap gap-2">
+                      {stages.map((s) => (
+                        <li key={s.key}>
+                          <Link
+                            href={`/brand/journey/stage/${s.key}`}
+                            className="inline-flex min-h-11 items-center rounded-ctl border border-line-strong bg-paper px-3 text-small font-semibold hover:border-brand hover:text-brand"
+                          >
+                            {s.ageLabel}
+                          </Link>
+                        </li>
+                      ))}
+                    </ul>
+                  </Card>
+                </li>
+              ))}
+            </ul>
           </div>
-          <ul className="grid gap-4 md:grid-cols-3">
-            {parallels.map(({ line, stages }) => (
-              <li key={line.key} className="flex flex-col gap-3 rounded-xl border border-vmg-faint bg-surface-card p-4">
-                <div>
-                  <h3 className="text-lg font-bold">{lineShortName(line)}</h3>
-                  {line.description ? <p className="text-vmg-muted">{line.description}</p> : null}
-                </div>
-                <ul className="mt-auto flex flex-wrap gap-2">
-                  {stages.map((s) => (
-                    <li key={s.key}>
-                      <Link
-                        href={`/brand/journey/stage/${s.key}`}
-                        className="inline-flex min-h-11 items-center rounded-full border border-vmg-faint px-3 font-medium hover:border-vmg-red hover:text-vmg-red"
-                      >
-                        {s.ageLabel}
-                      </Link>
-                    </li>
-                  ))}
-                </ul>
-              </li>
-            ))}
-          </ul>
         </section>
       ) : null}
 
-      <p className="text-sm text-vmg-muted">{vi.journey.legend}</p>
-    </div>
+      <section className="mx-auto w-full max-w-6xl px-4 py-8">
+        <p className="flex items-start gap-3 text-small text-ink-2">
+          <Badge tone="pending">{vi.journey.pending}</Badge>
+          <span className="pt-0.5">{vi.journey.legend}</span>
+        </p>
+      </section>
+    </>
   );
 }

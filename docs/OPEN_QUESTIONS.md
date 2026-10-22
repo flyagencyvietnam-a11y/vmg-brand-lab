@@ -8,6 +8,7 @@ Theo spec 0.1 quy tắc 4: gặp `[CẦN XÁC NHẬN]` thì ghi vào đây kèm 
 |---|---|---|---|
 | Q1 | Tên miền email, có đăng nhập Google Workspace không | `ALLOWED_EMAIL_DOMAINS` để trống, chưa kiểm tra tên miền; đăng ký tắt (`enable_signup = false`), chỉ mời | Gđ 0 |
 | Q2 | Nền tảng triển khai | Giả định Vercel, vùng Singapore (CI và build không phụ thuộc Vercel) | Gđ 0 |
+| Q3 | Giấy phép font Brown | **Đang dùng Montserrat tạm thời** (D-027). Khi có giấy phép: đổi `--font-sans`, bỏ gói Montserrat | Gđ 2 |
 | Q4 | Mã màu UpLearn, EduNext; CMYK, Pantone | `color_primary` để trống, ghi `color_note` trong `seed/brands.json` | Gđ 1 |
 | Q5 | Tên gọi thống nhất của VMP | Dùng "VMP - VMG Global Pathways" theo bảng 4.1; `deprecated_names` chưa nạp | Gđ 1 |
 | Q23 | R&D xác nhận IE1 đến IE7, thương hiệu SAT, VSTEP, EPlus, FlexTrack, B2G; thống nhất cam kết đầu ra | Mọi ô `journey_*` ở `proposed` | Gđ 1 |
@@ -43,5 +44,7 @@ Nạp nguyên văn vào `journey_meta` (khóa `meta`). Bản gốc nằm ở `se
 | N9 | Khi thương hiệu còn `draft`, staff không đọc được bảng `brands` (RLS) nên ô không có chip thương hiệu; chỉ xuất hiện sau khi admin đưa thương hiệu sang `effective`. Cùng lúc đó mọi ô cũng còn `proposed` nên staff chưa thấy bản đồ. | Khi phát hành, đưa thương hiệu và ô sang `effective` cùng đợt. Cân nhắc view `v_usable_brands` nếu cần tách. |
 | N10 | Trang chặng với khóa không tồn tại trả mã 200 kèm giao diện "không tìm thấy" (nội dung được truyền theo luồng trong Suspense nên mã trạng thái đã gửi). | Chấp nhận ở MVP vì là công cụ nội bộ; sửa nếu cần theo dõi 404. |
 | N11 | Chưa quản trị được hành trình trên giao diện (`/admin/journey`): chuyển ô sang `effective`, xác nhận cam kết (`commitment_confirmed`), đổi thương hiệu phải làm bằng SQL. | Làm ở Giai đoạn 1 kế tiếp. |
+| N12 | `public/brand` giữ biểu tượng hoa trích từ file logo (D-025) trong khi spec 4.3 yêu cầu logo là dữ liệu có phiên bản. Phần hình logo chờ kết luận nhãn hiệu. | Chủ sản phẩm xác nhận dùng biểu tượng làm dấu giao diện nội bộ; thay bằng `logo_ref` khi M3 có. |
+| N13 | Bộ nhận diện PDF là bản 2021 của VMG English, chưa phải bản cho hệ thống VMG. Token màu đỏ và vàng được dùng chung vì spec 4.4 và Phụ lục A.1 ghi đúng hai mã này cho VMG. | Cập nhật `docs/DESIGN_SYSTEM.md` khi Bộ chuẩn 1.0 ban hành. |
 | N7 | Ô `z05` (Luyện thi HSK) có `description` "cam kết đầu ra theo từng level" và `brand_confirmed = true`. Spec 6.1.1 chỉ gác cam kết của IE1-IE7 nên tôi không che, nhưng R15 nói chung là không hiển thị cam kết chưa thống nhất. | Chủ sản phẩm xác nhận cam kết HSK đã thống nhất; nếu chưa, tách `commitment_text` cho ô này như IE. |
 | N8 | Drive trả 404 cả khi tài khoản dịch vụ không thấy tệp (mất quyền) lẫn khi tệp bị xóa, nên `missing` và `no_access` có thể lẫn nhau. | Quản trị xử lý cả hai cùng cách (ẩn nút tải, báo Marketing), đúng spec 6.4.1. Không cần làm gì thêm. |

@@ -220,3 +220,22 @@ export function parallelLines(map: JourneyMap): { line: JourneyLine; stages: Jou
         .filter((s) => map.nodes.some((n) => n.lineKey === line.key && n.stageKey === s.key && n.kind !== "gap_note")),
     }));
 }
+
+export type SearchItem = { code: string; label: string; stageKey: string; stageAge: string; lineName: string };
+
+const SEARCHABLE_KINDS = new Set(["level", "exam", "support_product", "product", "goal_group", "program_header"]);
+
+/** Danh sách mục tìm kiếm: bỏ ghi chú khoảng trống, nhãn rẽ nhánh và ô vẽ trùng (same_product_as). */
+export function buildSearchItems(map: JourneyMap): SearchItem[] {
+  const lineName = new Map(map.lines.map((l) => [l.key, lineShortName(l)]));
+  const stageAge = new Map(map.stages.map((s) => [s.key, s.ageLabel]));
+  return map.nodes
+    .filter((n) => SEARCHABLE_KINDS.has(n.kind) && !n.extra.same_product_as)
+    .map((n) => ({
+      code: n.code,
+      label: nodeLabel(n),
+      stageKey: n.stageKey,
+      stageAge: stageAge.get(n.stageKey) ?? "",
+      lineName: lineName.get(n.lineKey) ?? "",
+    }));
+}

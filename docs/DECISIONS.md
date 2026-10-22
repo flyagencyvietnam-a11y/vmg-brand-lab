@@ -46,4 +46,14 @@ Theo spec 8.8. Mỗi dòng: quyết định, lý do, hệ quả.
 
 **D-023. Gộp ô thành lộ trình chỉ bằng cấu trúc có sẵn.** `lib/journey/views.ts`: chuỗi ô nối nhau bằng đường nối `sequence` thành một lộ trình (cột mốc thi VMT xen giữa đúng vị trí), ô lẻ thành thẻ, `lane_key` quyết định cột con, `group_code` quyết định nhóm đích, `same_product_as` gộp ô vẽ trùng (IELTS EXAM FOCUS) kèm "đi kèm" lấy từ `attach_to`. Không thêm ô, không đổi thứ tự, không dùng đường nối đề xuất để dựng lộ trình. Có kiểm thử: mỗi trong 61 ô xuất hiện đúng một lần trên các trang chặng.
 
+**D-024. Design system theo bộ nhận diện VMG (PDF 04/2021).** Token ở `app/globals.css` (màu thô ở `:root`, vai trò ở `@theme static`), mô tả ở `lib/design/tokens.ts`, trang sống `/design-system`, thành phần ở `components/ui`. Hai mã chính thức Pantone 200C `#be202f` và 871C `#8b672a`; các sắc nhạt đo từ PDF và file logo, nhãn rõ nguồn (chính thức, đo, suy ra). Test đối chiếu tài liệu với CSS và kiểm tra tương phản; test cũng ghi lại các cặp KHÔNG đạt để không ai dùng nhầm. Chi tiết: `docs/DESIGN_SYSTEM.md`.
+
+**D-025. Biểu tượng hoa trích từ file logo, không dùng logo đầy đủ.** `public/brand/vmg-symbol.svg` là các đường vector nguyên vẹn từ `Logo VMG.pdf`; họa tiết lặp dựng từ chính nó (PDF trang 28 cho phép). Không dùng logo VMG ENGLISH: logo cấp hệ thống không có chữ ENGLISH (spec 4.3) và phần hình chờ kết luận nhãn hiệu (spec 4.2). Header là biểu tượng hoa cùng chữ "VMG Brand Lab". Đây là giải pháp tạm cho đến khi M3 Thư viện có logo dạng dữ liệu có phiên bản (`logo_ref`).
+
+**D-026. Chữ trắng trên nền đỏ, vàng chỉ làm họa tiết.** PDF dùng tiêu đề vàng trên đỏ; đo được 2,1:1, không đạt spec 4.4 (4,5:1). Đồng thời vàng đồng 871C trên nền ấm chỉ 4,36:1 nên không đặt chữ vàng lên `bg-sunken`. Họa tiết độ mờ theo PDF (15% đến 100%, Overlay); biểu tượng cắt góc chỉ đậm từ màn hình xl vì ở màn hình hẹp nó nằm dưới chữ.
+
+**D-027. Montserrat thay Brown tạm thời.** Brown chưa có giấy phép dùng trong ứng dụng (Q3). Montserrat Variable (OFL) là họ hình học gần nhất, đủ dấu tiếng Việt, cài qua `@fontsource-variable/montserrat` (không gọi Google Fonts lúc chạy, build không phụ thuộc mạng). Đổi bằng một dòng `--font-sans`.
+
+**D-028. Thanh điều hướng đánh dấu mục đang chọn nằm trong `<Suspense>`.** `usePathname()` trên trang có tham số động bị Cache Components chặn nếu không có Suspense (phát hiện khi chạy thử); có `NavFallback` cùng giao diện.
+
 **D-014. Font Arial theo spec 4.4, không dùng Geist của scaffold.** Font thương hiệu chưa có giấy phép (Q3).

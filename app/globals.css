@@ -1,38 +1,122 @@
 @import "tailwindcss";
 
-/* Token giao diện của Brand Lab (spec 4.4). Một nơi khai báo, sửa được. */
+/*
+ * Design system VMG Brand Lab. Nguồn: VMG Brand Identity System (bản cuối, 04/2021) và spec 4.4.
+ * Mô tả đầy đủ: /design-system và docs/DESIGN_SYSTEM.md. Test tests/unit/design-tokens.test.ts đọc
+ * các giá trị ở đây để kiểm tra mã màu khớp tài liệu và tương phản chữ >= 4,5:1.
+ *
+ * Quy tắc thương hiệu áp vào giao diện: không bóng đổ, không chữ viền, không hiệu ứng 3D hay phản chiếu,
+ * căn trái, IN HOA tiết chế, nội dung viết hoa kiểu câu, đỏ và vàng đồng là điểm nhấn trên nền trắng và kem.
+ */
+
 :root {
-  --vmg-red: #be202f;
-  --vmg-gold: #8b672a;
-  --vmg-charcoal: #2a2420;
-  --vmg-black-80: rgb(0 0 0 / 0.8);
-  --vmg-black-50: rgb(0 0 0 / 0.5);
-  /* Nền kem ấm: ĐỀ XUẤT theo tông hình tham chiếu VIMI và THE INK, không phải mã chuẩn. */
-  --surface: #fbf7f0;
-  --surface-card: #ffffff;
-  /* Màu thương hiệu thành viên đã có mã chính thức. UpLearn, EduNext chưa có mã (Q4). */
+  /* --- Màu thô --- */
+  /* Đỏ. 600 là Pantone 200C (PDF trang 24: C18 M100 Y89 K8, RGB 190 32 47). Các sắc nhạt: đo từ trang 24, 2. */
+  --vmg-red-700: #921824; /* sắc đậm, suy ra, dùng cho trạng thái hover */
+  --vmg-red-600: #be202f; /* Pantone 200C, chính thức */
+  --vmg-red-500: #d62233;
+  --vmg-red-400: #e03343;
+  --vmg-red-300: #e44959;
+  --vmg-red-200: #e6a8ad;
+  --vmg-red-100: #f7e1e3;
+  --vmg-red-50: #fcf1f2;
+
+  /* Vàng đồng. 700 là Pantone 871C (C40 M55 Y100 K20, RGB 139 103 42). 400 là màu biểu tượng trong file logo. */
+  --vmg-gold-700: #8b672a; /* Pantone 871C, chính thức */
+  --vmg-gold-500: #ac872f;
+  --vmg-gold-400: #b6924d; /* màu biểu tượng hoa trong file logo */
+  --vmg-gold-300: #cda537;
+  --vmg-gold-200: #d1bb96;
+  --vmg-gold-100: #f1ebe4; /* nền ấm, đo từ PDF */
+  --vmg-gold-50: #fbf9f5; /* nền kem, đo từ PDF */
+
+  /* Trung tính ấm. 900 là màu chữ chính theo spec 4.4. */
+  --vmg-ink-900: #2a2420;
+  --vmg-ink-700: #4a433e;
+  --vmg-ink-500: #6b635d;
+  --vmg-ink-300: #cdbfae;
+  --vmg-ink-200: #e3d9cc;
+
+  /* Màu riêng thương hiệu thành viên đã có mã chính thức (spec 4.4). UpLearn, EduNext chưa có mã (Q4). */
   --brand-tesol: #012a9e;
   --brand-vmp-blue: #29338d;
   --brand-vmp-orange: #f69220;
-  /* Font thương hiệu (gốc Brown) chưa có giấy phép dùng cho ứng dụng (Q3). */
-  --font-brand: Arial, system-ui, sans-serif;
 }
 
-@theme inline {
-  --color-vmg-red: var(--vmg-red);
-  --color-vmg-gold: var(--vmg-gold);
-  --color-vmg-charcoal: var(--vmg-charcoal);
-  --color-vmg-muted: var(--vmg-black-80);
-  --color-vmg-faint: var(--vmg-black-50);
-  --color-surface: var(--surface);
-  --color-surface-card: var(--surface-card);
-  --font-sans: var(--font-brand);
+/* Vai trò (dùng các tên này trong giao diện, ví dụ bg-brand, text-ink-2). `static`: luôn xuất biến CSS. */
+@theme static {
+  --color-brand: var(--vmg-red-600);
+  --color-brand-hover: var(--vmg-red-700);
+  --color-brand-soft: var(--vmg-red-50);
+  --color-brand-tint: var(--vmg-red-100);
+  --color-gold: var(--vmg-gold-700); /* chữ vàng đồng trên nền sáng */
+  --color-gold-mark: var(--vmg-gold-400); /* chỉ trang trí: biểu tượng, đường kẻ nhấn */
+  --color-gold-soft: var(--vmg-gold-100);
+  --color-ink: var(--vmg-ink-900);
+  --color-ink-2: var(--vmg-ink-700);
+  --color-ink-3: var(--vmg-ink-500);
+  --color-paper: #ffffff;
+  --color-surface: var(--vmg-gold-50);
+  --color-sunken: var(--vmg-gold-100);
+  --color-line: var(--vmg-ink-200);
+  --color-line-strong: var(--vmg-ink-300);
+  --color-on-brand: #ffffff;
+  --color-on-brand-2: var(--vmg-red-50);
+
+  /* Font thương hiệu Brown chưa có giấy phép dùng cho ứng dụng (Q3). Montserrat (OFL, đủ dấu tiếng Việt)
+     là bản thay thế hình học gần nhất; đổi font chỉ cần sửa dòng này. */
+  --font-sans: "Montserrat Variable", Arial, system-ui, sans-serif;
+
+  --radius-ctl: 0.625rem;
+  --radius-card: 1rem;
+
+  /* Thang chữ. Chữ nội dung >= 16 px (spec 4.4); chữ phụ >= 14 px. */
+  --text-display: clamp(2.25rem, 1.6rem + 2.6vw, 3.75rem);
+  --text-display--line-height: 1.05;
+  --text-h1: clamp(1.75rem, 1.4rem + 1.4vw, 2.5rem);
+  --text-h1--line-height: 1.15;
+  --text-h2: 1.5rem;
+  --text-h2--line-height: 1.25;
+  --text-h3: 1.125rem;
+  --text-h3--line-height: 1.35;
+  --text-body: 1rem;
+  --text-body--line-height: 1.65;
+  --text-small: 0.875rem;
+  --text-small--line-height: 1.5;
+  --text-caption: 0.75rem;
+  --text-caption--line-height: 1.4;
+
+  --tracking-caps: 0.08em;
 }
 
-body {
-  background: var(--surface);
-  color: var(--vmg-charcoal);
-  font-family: var(--font-brand);
-  /* Chữ nội dung tối thiểu 16 px trên điện thoại (spec 4.4). */
-  font-size: 1rem;
+@layer base {
+  html {
+    scroll-padding-top: 1.5rem;
+  }
+  @media (prefers-reduced-motion: no-preference) {
+    html {
+      scroll-behavior: smooth;
+    }
+  }
+  body {
+    background: var(--color-surface);
+    color: var(--color-ink);
+    font-family: var(--font-sans);
+    font-size: 1rem;
+    line-height: 1.65;
+    text-align: left;
+    -webkit-font-smoothing: antialiased;
+  }
+  ::selection {
+    background: var(--vmg-red-100);
+    color: var(--color-ink);
+  }
+  :focus-visible {
+    outline: 2px solid var(--color-brand);
+    outline-offset: 2px;
+  }
+  /* Trên nền đỏ, vòng focus màu trắng. */
+  .on-brand :focus-visible {
+    outline-color: var(--color-on-brand);
+  }
 }

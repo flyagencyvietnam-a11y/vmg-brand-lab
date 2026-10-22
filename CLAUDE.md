@@ -16,6 +16,10 @@ Web app nội bộ của Marketing VMG: thư viện, chuẩn, hành trình khác
 - Tệp gốc thư viện nằm ở Google Drive, không lưu vào Supabase Storage; mọi thao tác Drive đi qua `lib/drive/`.
 - Giao diện chỉ tiếng Việt có dấu, chuỗi nằm trong `lib/i18n/vi.ts`. Không đưa nội dung thương hiệu mới ra cho nhân viên trước khi có phê duyệt (spec 9.1).
 
+## Giao diện
+
+Design system ở [docs/DESIGN_SYSTEM.md](docs/DESIGN_SYSTEM.md) và `/design-system`. Dùng class vai trò (`bg-brand`, `text-ink-2`, `border-line`), không hex trong component; phẳng (không bóng đổ, chữ viền, 3D); chữ trắng trên nền đỏ, không đặt chữ vàng lên đỏ hoặc nền ấm; vùng chạm từ 44 px. Sửa token thì sửa cả `app/globals.css` và `lib/design/tokens.ts` (test đối chiếu).
+
 ## Xem thử không cần Supabase
 
 `BRAND_LAB_DEV_SEED=1` trong `.env.local` rồi `npm run dev` và mở `http://localhost:3000/brand/journey` (dùng `localhost`). Chế độ này tự tắt khi `NODE_ENV=production`; đừng nới điều kiện đó.

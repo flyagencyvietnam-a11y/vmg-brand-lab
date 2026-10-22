@@ -1,0 +1,151 @@
+// Chuỗi của trang /design-system. Nội dung quy tắc lấy từ VMG Brand Identity System (bản cuối, 04/2021);
+// số trang ghi kèm để đối chiếu.
+
+export const ds = {
+  title: "Hệ thống thiết kế",
+  lead: "Bộ nhận diện VMG (bản cuối, 04/2021) chuyển thành token và thành phần giao diện dùng chung cho Brand Lab.",
+  eyebrow: "Hiểu về VMG",
+  toc: "Nội dung trang",
+  sections: {
+    principles: "Nguyên tắc",
+    colour: "Màu sắc",
+    type: "Chữ",
+    art: "Biểu tượng và họa tiết",
+    components: "Thành phần",
+    rules: "Nên và không nên",
+    sources: "Nguồn và điều chưa chốt",
+  },
+  principles: [
+    {
+      title: "Đỏ và vàng đồng là điểm nhấn",
+      text: "Nền trắng và kem để đọc. Dải đỏ dùng để mở trang, vàng đồng làm họa tiết và đường kẻ nhấn.",
+    },
+    {
+      title: "Phẳng",
+      text: "Không bóng đổ, không chữ viền, không phản chiếu, không hiệu ứng 3D. Phân lớp bằng viền và nền. (PDF trang 35)",
+    },
+    {
+      title: "Căn trái",
+      text: "Văn bản căn trái. Chữ IN HOA dùng tiết chế cho tiêu đề và nhãn; nội dung viết hoa kiểu câu. (PDF trang 31)",
+    },
+    {
+      title: "Họa tiết là biểu tượng hoa",
+      text: "Biểu tượng lặp lại hoặc phóng to cắt góc, độ mờ từ 15% đến 100%. Không thêm họa tiết khác. (PDF trang 28)",
+    },
+    {
+      title: "Đọc được",
+      text: "Tương phản chữ tối thiểu 4,5:1, chữ nội dung từ 16 px, vùng chạm từ 44 px, dùng được trên điện thoại.",
+    },
+    {
+      title: "Một nguồn token",
+      text: "Mọi màu, cỡ chữ, bo góc nằm ở app/globals.css. Test đối chiếu tài liệu với CSS và kiểm tra tương phản.",
+    },
+  ],
+  colour: {
+    official: "Hai màu chính thức",
+    officialLead:
+      "Dùng đúng mã, không đổi, ở mọi ứng dụng. Pantone cho in offset, CMYK cho thiết kế đồ họa, RGB cho môi trường số, HEX cho lập trình web. (PDF trang 24)",
+    red: { name: "Đỏ", pantone: "Pantone 200C", cmyk: "C18 M100 Y89 K8", rgb: "RGB 190 32 47", hex: "#be202f" },
+    gold: { name: "Vàng đồng", pantone: "Pantone 871C", cmyk: "C40 M55 Y100 K20", rgb: "RGB 139 103 42", hex: "#8b672a" },
+    scales: "Thang màu",
+    scalesLead: "Các sắc nhạt đo từ trang 24 và từ file logo, thêm vài sắc suy ra. Nhãn nguồn cho biết mức chắc chắn của từng mã.",
+    source: { official: "Chính thức", measured: "Đo từ nguồn", derived: "Suy ra" },
+    roles: "Vai trò màu",
+    rolesLead: "Giao diện dùng tên vai trò (bg-brand, text-ink-2...), không dùng mã màu trực tiếp.",
+    proportion: "Tỷ lệ dùng màu",
+    proportionLead:
+      "Tỷ lệ trong bộ nhận diện cho ấn phẩm và không gian: đỏ 60%, vàng đồng 30%, đen 5%, trắng và xám 5% (PDF trang 25). Giao diện đọc chữ chỉ dùng đỏ ở dải mở trang và điểm nhấn, còn lại là trắng và kem.",
+    proportionItems: [
+      { label: "Đỏ", value: 60, colour: "var(--vmg-red-600)" },
+      { label: "Vàng đồng", value: 30, colour: "var(--vmg-gold-400)" },
+      { label: "Đen", value: 5, colour: "var(--vmg-ink-900)" },
+      { label: "Trắng, xám", value: 5, colour: "var(--vmg-ink-200)" },
+    ],
+    contrast: "Tương phản chữ và nền",
+    contrastLead: "Tính trực tiếp từ token. Cặp không đạt ghi riêng bên dưới và không được dùng cho chữ.",
+    pass: "Đạt",
+    avoid: "Không dùng cho chữ",
+    avoidLead:
+      "Tiêu đề vàng trên nền đỏ trong PDF là chữ trang trí lớn, không đủ tương phản cho giao diện. Trong ứng dụng, tiêu đề trên nền đỏ là chữ trắng; vàng chỉ làm họa tiết.",
+    colText: { pair: "Chữ trên nền", ratio: "Tỷ lệ", use: "Dùng cho" },
+  },
+  type: {
+    face: "Kiểu chữ",
+    faceLead:
+      "Bộ nhận diện dùng họ chữ Brown (VMG Headline, Medium, Regular, Light) và cấm dùng kiểu chữ hay độ đậm khác. Brown chưa có giấy phép dùng trong ứng dụng (Q3), nên tạm dùng Montserrat (giấy phép OFL, đủ dấu tiếng Việt) là họ chữ hình học gần nhất. Đổi font chỉ cần sửa một dòng trong globals.css.",
+    scale: "Thang chữ",
+    sample: "Hành trình khách hàng của VMG",
+    weights: "Độ đậm",
+    weightItems: [
+      { name: "Bold 700", use: "Tiêu đề, nhấn mạnh" },
+      { name: "SemiBold 600", use: "Nhãn, nút, tiêu đề nhỏ" },
+      { name: "Medium 500", use: "Chữ nhấn trong đoạn" },
+      { name: "Regular 400", use: "Nội dung" },
+    ],
+    rules: [
+      "Chữ nội dung từ 16 px; chữ phụ từ 14 px; chú thích không nhỏ hơn 12 px và chỉ cho thông tin không quan trọng.",
+      "Tiêu đề trang IN HOA, tiêu đề mục viết hoa kiểu câu, nội dung viết hoa kiểu câu.",
+      "Căn trái. Không dùng bóng đổ, chữ viền, phản chiếu, hiệu ứng 3D.",
+    ],
+  },
+  art: {
+    symbol: "Biểu tượng hoa",
+    symbolText: "Lấy nguyên vẹn từ file logo Marketing cung cấp, không vẽ lại. Màu vàng đồng của file gốc.",
+    ornament: "Cắt góc trên nền đỏ",
+    ornamentText: "Dùng ở dải mở trang như các trang mở chương của bộ nhận diện.",
+    pattern: "Họa tiết lặp",
+    patternText: "Biểu tượng xen kẽ phủ vùng lớn, chế độ hòa trộn Overlay, độ mờ từ 15% đến 100% (PDF trang 28).",
+    logoNote:
+      "Logo VMG English trong file chưa dùng trong giao diện: logo cấp hệ thống không có chữ ENGLISH, và phần hình logo đang chờ kết luận nhãn hiệu (spec 4.2, 4.3). Header dùng biểu tượng hoa cùng chữ VMG Brand Lab.",
+  },
+  components: {
+    buttons: "Nút",
+    buttonLabels: { primary: "Nút chính", secondary: "Nút phụ", ghost: "Nút chữ", inverse: "Nút trên nền đỏ", disabled: "Không khả dụng" },
+    badges: "Nhãn",
+    badgeLabels: { neutral: "Mặc định", pending: "Chờ xác nhận", gold: "Vàng đồng", brand: "Đỏ nhạt", onBrand: "Trên nền đỏ" },
+    cards: "Thẻ",
+    cardSample: { title: "Thẻ phẳng", text: "Viền mảnh, nền trắng, bo góc 16 px, không bóng đổ." },
+    cardLinkSample: { title: "Thẻ liên kết", text: "Đổi màu viền sang đỏ khi di chuột hoặc tập trung bàn phím." },
+    steps: "Lộ trình theo bước",
+    stepSample: ["Cấp học thứ nhất", "Cấp học thứ hai", "Cột mốc thi", "Cấp học thứ ba"],
+    icons: "Bộ icon",
+    iconsText: "Nét đều 1,75, đầu nét bo tròn, lưới 24. Màu theo chữ xung quanh.",
+    fields: "Ô nhập",
+    fieldLabel: "Thư điện tử",
+    fieldPlaceholder: "ten@vmg.edu.vn",
+    touch: "Vùng chạm tối thiểu 44 px; vòng tập trung bàn phím luôn hiện.",
+  },
+  rules: {
+    doTitle: "Nên",
+    dontTitle: "Không",
+    dos: [
+      "Dùng đúng mã màu Pantone 200C và 871C, không đổi sắc.",
+      "Đặt chữ trắng trên nền đỏ, chữ mực trên nền trắng hoặc kem.",
+      "Giữ vùng trống quanh biểu tượng và logo; dùng ảnh chất lượng cao, có quyền sử dụng.",
+      "Dùng logo bản reversed trên nền tối, bản positive trên nền sáng.",
+    ],
+    donts: [
+      "Không bóp méo, kéo giãn, đổi màu, làm méo hay thêm hiệu ứng vát, nổi, bộ lọc cho logo.",
+      "Không dùng gradient hoặc kiểu chỉ có đường viền cho logo.",
+      "Không đặt logo trên nền tương phản thấp hoặc ảnh quá rối.",
+      "Không dùng bóng đổ, chữ viền, phản chiếu, hiệu ứng 3D cho chữ.",
+      "Không dùng kiểu chữ hay độ đậm ngoài quy định, trừ trường hợp đặc biệt được Marketing duyệt.",
+      "Không dùng ảnh chất lượng thấp hoặc ảnh không có quyền sử dụng.",
+    ],
+    cobranding: "Logo đối tác đặt cạnh logo VMG phải bằng hoặc nhỏ hơn chiều cao logo VMG. (PDF trang 20)",
+  },
+  sources: {
+    items: [
+      "VMG Brand Identity System, bản cuối 04/2021: màu (tr. 22 đến 26), họa tiết (tr. 28), kiểu chữ (tr. 29 đến 35), ảnh (tr. 36 đến 38), logo (tr. 8 đến 20).",
+      "File logo VMG (PDF vector) Marketing cung cấp: nguồn của biểu tượng hoa trong public/brand.",
+      "Spec VMG Brand Lab v0.4, mục 4.4: token giao diện, chữ tối thiểu 16 px, tương phản 4,5:1.",
+    ],
+    openTitle: "Chưa chốt",
+    open: [
+      "Giấy phép font Brown (Q3): đang dùng Montserrat tạm thời.",
+      "Mã màu UpLearn, EduNext và các thương hiệu thành viên khác (Q4): chưa có, giao diện không tự đặt màu.",
+      "Bố cục dấu bảo chứng VMG đặt cạnh logo thương hiệu thành viên (Q6): chờ Bộ chuẩn 1.0.",
+      "Bộ nhận diện này là bản 2021 của VMG English; bản kế thừa sang hệ thống VMG sẽ cập nhật khi Bộ chuẩn 1.0 ban hành.",
+    ],
+  },
+} as const;

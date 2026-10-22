@@ -2,18 +2,12 @@
 
 import Link from "next/link";
 import { useMemo, useState } from "react";
+import { Icon } from "@/components/ui/icon";
 import { vi } from "@/lib/i18n/vi";
 import { normalizeVi } from "@/lib/journey/model";
+import type { SearchItem } from "@/lib/journey/views";
 
-export type SearchItem = {
-  code: string;
-  label: string;
-  stageKey: string;
-  stageAge: string;
-  lineName: string;
-};
-
-/** Tìm không phân biệt dấu ("du hoc" ra "DU HỌC"); kết quả dẫn thẳng tới ô trên trang chặng. */
+/** Tìm không phân biệt dấu ("du hoc" ra "DU HỌC"); kết quả dẫn thẳng tới ô trên trang chặng. Đặt trên nền đỏ. */
 export function JourneySearch({ items }: { items: SearchItem[] }) {
   const [query, setQuery] = useState("");
   const q = normalizeVi(query.trim());
@@ -24,38 +18,44 @@ export function JourneySearch({ items }: { items: SearchItem[] }) {
   }, [items, q]);
 
   return (
-    <div className="flex flex-col gap-2">
-      <label htmlFor="journey-search" className="font-medium">
+    <div className="mt-2 flex max-w-xl flex-col gap-2">
+      <label htmlFor="journey-search" className="text-small font-semibold text-on-brand-2">
         {vi.journey.searchLabel}
       </label>
-      <input
-        id="journey-search"
-        type="search"
-        value={query}
-        onChange={(e) => setQuery(e.target.value)}
-        placeholder={vi.journey.searchPlaceholder}
-        autoComplete="off"
-        className="min-h-12 w-full max-w-xl rounded-lg border border-vmg-faint bg-surface-card px-4 text-base focus:outline-2 focus:outline-vmg-red"
-      />
+      <div className="relative">
+        <Icon name="search" className="pointer-events-none absolute left-4 top-1/2 size-5 -translate-y-1/2 text-ink-3" />
+        <input
+          id="journey-search"
+          type="search"
+          value={query}
+          onChange={(e) => setQuery(e.target.value)}
+          placeholder={vi.journey.searchPlaceholder}
+          autoComplete="off"
+          className="min-h-14 w-full rounded-ctl border border-transparent bg-paper pr-4 pl-12 text-body text-ink placeholder:text-ink-3"
+        />
+      </div>
       {q !== "" ? (
         results.length > 0 ? (
-          <ul className="flex max-w-xl flex-col overflow-hidden rounded-lg border border-vmg-faint bg-surface-card">
+          <ul className="flex flex-col overflow-hidden rounded-ctl bg-paper text-ink">
             {results.map((r) => (
-              <li key={r.code} className="border-b border-vmg-faint last:border-b-0">
+              <li key={r.code} className="border-b border-line last:border-b-0">
                 <Link
                   href={`/brand/journey/stage/${r.stageKey}#${r.code}`}
-                  className="flex min-h-12 flex-col justify-center px-4 py-2 hover:bg-surface"
+                  className="flex min-h-14 items-center justify-between gap-3 px-4 py-2 hover:bg-brand-soft"
                 >
-                  <span className="font-medium">{r.label}</span>
-                  <span className="text-sm text-vmg-muted">
-                    {r.stageAge} · {r.lineName}
+                  <span className="min-w-0">
+                    <span className="block font-semibold">{r.label}</span>
+                    <span className="block text-small text-ink-2">
+                      {r.stageAge} · {r.lineName}
+                    </span>
                   </span>
+                  <Icon name="arrow-right" className="size-5 shrink-0 text-brand" />
                 </Link>
               </li>
             ))}
           </ul>
         ) : (
-          <p className="text-vmg-muted">{vi.journey.searchNone}</p>
+          <p className="rounded-ctl bg-paper px-4 py-3 text-ink-2">{vi.journey.searchNone}</p>
         )
       ) : null}
     </div>

@@ -55,6 +55,10 @@ npm test
 
 `npm test` gồm kiểm thử seed so khớp số lượng spec G.1 (61 ô, 51 đường nối, 14 đề xuất) và kiểm thử migration cùng RLS theo vai trò trên Postgres trong tiến trình (PGlite), không cần Docker.
 
+## Design system
+
+Theo bộ nhận diện VMG (PDF 04/2021). Trang sống `/design-system`; hướng dẫn cho người viết mã ở [docs/DESIGN_SYSTEM.md](docs/DESIGN_SYSTEM.md). Token ở `app/globals.css`, thành phần ở `components/ui`. Dùng class theo vai trò (`bg-brand`, `text-ink-2`), không dùng mã hex trong component.
+
 ## MVP: Hành trình khách hàng (Giai đoạn 1, mục 6.1.1)
 
 Trình bày theo câu hỏi của nhân viên tư vấn ("khách này ở đâu, có những đường học nào, học xong đi tiếp đâu"), không sao chép sơ đồ gốc:

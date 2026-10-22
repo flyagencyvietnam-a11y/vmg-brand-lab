@@ -3,9 +3,13 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { Suspense } from "react";
 import { AppHeader } from "@/components/app-header";
-import { Badge } from "@/components/journey/badges";
 import { LineSectionView, makeCtx } from "@/components/journey/blocks";
 import { StageNav } from "@/components/journey/stage-nav";
+import { Badge } from "@/components/ui/badge";
+import { Card, CardLink } from "@/components/ui/card";
+import { Hero } from "@/components/ui/hero";
+import { Icon } from "@/components/ui/icon";
+import { SectionHeading } from "@/components/ui/section-heading";
 import { vi } from "@/lib/i18n/vi";
 import { loadJourneyMap } from "@/lib/journey/load";
 import { buildStageSections, lineShortName, nodeLabel, stageTransitions } from "@/lib/journey/views";
@@ -16,8 +20,8 @@ export default function StagePage(props: PageProps<"/brand/journey/stage/[key]">
   return (
     <>
       <AppHeader />
-      <main className="mx-auto w-full max-w-7xl flex-1 px-4 py-6">
-        <Suspense fallback={<p className="text-vmg-muted">{vi.home.loading}</p>}>
+      <main className="flex-1">
+        <Suspense fallback={<p className="mx-auto max-w-6xl px-4 py-10 text-ink-2">{vi.home.loading}</p>}>
           <Stage params={props.params} />
         </Suspense>
       </main>
@@ -40,41 +44,45 @@ async function Stage({ params }: { params: Promise<{ key: string }> }) {
   const transitions = stageTransitions(map).filter((t) => t.fromStage === stage.key);
 
   return (
-    <div className="flex flex-col gap-6 md:grid md:grid-cols-[13rem_minmax(0,1fr)] md:gap-10">
-      <StageNav stages={stages} current={stage.key} />
-
-      <div className="flex min-w-0 flex-col gap-10">
-        <nav aria-label="Đường dẫn" className="flex flex-wrap items-center gap-x-3 gap-y-2 text-sm text-vmg-muted">
-          <span>
-            <Link href="/brand/journey" className="text-vmg-red underline">
-              {vi.journey.title}
-            </Link>{" "}
-            / {stage.ageLabel}
+    <>
+      <Hero
+        eyebrow={
+          <span className="flex flex-wrap items-center gap-3">
+            <Link href="/brand/journey" className="inline-flex min-h-11 items-center gap-2 underline-offset-4 hover:underline">
+              <Icon name="arrow-left" className="size-4" />
+              {vi.journey.backToOverview}
+            </Link>
+            <span aria-hidden>·</span>
+            <span>{`${vi.journey.stageOf} ${index + 1}/${stages.length}`}</span>
+            {map.audience === "editor" ? <Badge tone="on-brand">{vi.journey.editorBadge}</Badge> : null}
           </span>
-          {map.audience === "editor" ? <Badge tone="gold">{vi.journey.editorBadge}</Badge> : null}
-        </nav>
+        }
+        title={stage.ageLabel}
+        lead={<span className="font-semibold uppercase">{stage.title}</span>}
+      >
+        {stage.decider ? (
+          <p>
+            <Badge tone="on-brand">
+              <Icon name="user" className="size-4" />
+              {stage.decider}
+            </Badge>
+          </p>
+        ) : null}
+        {stage.note ? <p className="max-w-2xl text-small text-on-brand-2">{stage.note}</p> : null}
+      </Hero>
 
-        <header className="flex flex-col gap-4">
-          <div>
-            <h1 className="text-4xl font-bold leading-none text-vmg-red">{stage.ageLabel}</h1>
-            <p className="mt-2 text-xl font-bold uppercase">{stage.title}</p>
-          </div>
-          {stage.decider ? (
-            <p>
-              <Badge>{stage.decider}</Badge>
-            </p>
-          ) : null}
-          {stage.note ? <p className="text-vmg-muted">{stage.note}</p> : null}
+      <div className="mx-auto flex w-full max-w-6xl flex-col gap-8 px-4 py-10 md:grid md:grid-cols-[13.5rem_minmax(0,1fr)] md:gap-12">
+        <StageNav stages={stages} current={stage.key} />
+
+        <div className="flex min-w-0 flex-col gap-14">
           {stage.outcomes.length > 0 ? (
-            <section className="rounded-xl border border-vmg-faint bg-surface-card p-5" aria-labelledby="outcomes-heading">
-              <h2 id="outcomes-heading" className="font-bold">
-                {vi.journey.outcomes}
-              </h2>
-              <ul className="mt-3 grid gap-x-8 gap-y-2 md:grid-cols-2">
+            <section aria-labelledby="outcomes-heading" className="flex flex-col gap-5">
+              <SectionHeading id="outcomes-heading" title={vi.journey.outcomes} />
+              <ul className="grid gap-x-8 gap-y-3 md:grid-cols-2">
                 {stage.outcomes.map((o) => (
-                  <li key={o} className="flex gap-2">
-                    <span aria-hidden className="text-vmg-red">
-                      ✓
+                  <li key={o} className="flex gap-3">
+                    <span className="mt-0.5 flex size-6 shrink-0 items-center justify-center rounded-full bg-brand-soft text-brand">
+                      <Icon name="check" className="size-4" />
                     </span>
                     <span>{o}</span>
                   </li>
@@ -82,55 +90,60 @@ async function Stage({ params }: { params: Promise<{ key: string }> }) {
               </ul>
             </section>
           ) : null}
-        </header>
 
-        {sections.map((s) => (
-          <LineSectionView key={s.line.key} section={s} ctx={ctx} />
-        ))}
+          {sections.map((s) => (
+            <LineSectionView key={s.line.key} section={s} ctx={ctx} />
+          ))}
 
-        {transitions.length > 0 ? (
-          <section className="flex flex-col gap-3 rounded-xl bg-surface-card p-5" aria-labelledby="next-heading">
-            <h2 id="next-heading" className="text-xl font-bold">
-              {vi.journey.nextSteps}
-            </h2>
-            <ul className="flex flex-col gap-3">
-              {transitions.map((t) => (
-                <li key={`${t.from.code}>${t.to.code}`}>
-                  <Link
-                    href={`/brand/journey/stage/${t.toStage}#${t.to.code}`}
-                    className="flex min-h-12 flex-col justify-center rounded-lg border border-vmg-faint px-4 py-2 hover:border-vmg-red"
-                  >
-                    <span className="text-sm text-vmg-muted">{lineShortName(t.line)}</span>
-                    <span>
-                      <span className="font-medium">{nodeLabel(t.from)}</span> <span aria-hidden>→</span>{" "}
-                      <span className="font-bold">{nodeLabel(t.to)}</span>
-                    </span>
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </section>
-        ) : null}
-
-        <p className="text-sm text-vmg-muted">{vi.journey.legend}</p>
-
-        <nav className="flex justify-between gap-3 border-t border-vmg-faint pt-5" aria-label="Chuyển chặng">
-          {previous ? (
-            <Link href={`/brand/journey/stage/${previous.key}`} className="inline-flex min-h-12 flex-col justify-center">
-              <span className="text-sm text-vmg-muted">← {vi.journey.previousStage}</span>
-              <span className="font-bold text-vmg-red">{previous.ageLabel}</span>
-            </Link>
-          ) : (
-            <span />
-          )}
-          {next ? (
-            <Link href={`/brand/journey/stage/${next.key}`} className="inline-flex min-h-12 flex-col items-end justify-center">
-              <span className="text-sm text-vmg-muted">{vi.journey.nextStage} →</span>
-              <span className="font-bold text-vmg-red">{next.ageLabel}</span>
-            </Link>
+          {transitions.length > 0 ? (
+            <section aria-labelledby="next-heading" className="flex flex-col gap-5">
+              <SectionHeading id="next-heading" title={vi.journey.nextSteps} />
+              <ul className="flex flex-col gap-3">
+                {transitions.map((t) => (
+                  <li key={`${t.from.code}>${t.to.code}`}>
+                    <CardLink
+                      href={`/brand/journey/stage/${t.toStage}#${t.to.code}`}
+                      className="flex items-center justify-between gap-4 p-4"
+                    >
+                      <span className="flex flex-col">
+                        <span className="text-small text-ink-3">{lineShortName(t.line)}</span>
+                        <span>
+                          <span className="font-medium">{nodeLabel(t.from)}</span>{" "}
+                          <Icon name="arrow-right" className="mx-1 inline size-4 text-brand" />{" "}
+                          <span className="font-bold">{nodeLabel(t.to)}</span>
+                        </span>
+                      </span>
+                      <Icon name="arrow-right" className="size-5 shrink-0 text-brand" />
+                    </CardLink>
+                  </li>
+                ))}
+              </ul>
+            </section>
           ) : null}
-        </nav>
+
+          <Card className="flex items-start gap-3 bg-sunken p-4 text-small text-ink-2">
+            <Badge tone="pending">{vi.journey.pending}</Badge>
+            <span className="pt-0.5">{vi.journey.legend}</span>
+          </Card>
+
+          <nav className="flex items-stretch justify-between gap-3 border-t border-line pt-6" aria-label="Chuyển chặng">
+            {previous ? (
+              <CardLink href={`/brand/journey/stage/${previous.key}`} className="flex min-h-14 flex-col justify-center px-4 py-2">
+                <span className="text-small text-ink-3">← {vi.journey.previousStage}</span>
+                <span className="font-bold text-brand">{previous.ageLabel}</span>
+              </CardLink>
+            ) : (
+              <span />
+            )}
+            {next ? (
+              <CardLink href={`/brand/journey/stage/${next.key}`} className="flex min-h-14 flex-col items-end justify-center px-4 py-2">
+                <span className="text-small text-ink-3">{vi.journey.nextStage} →</span>
+                <span className="font-bold text-brand">{next.ageLabel}</span>
+              </CardLink>
+            ) : null}
+          </nav>
+        </div>
       </div>
-    </div>
+    </>
   );
 }
