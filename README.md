@@ -57,11 +57,13 @@ npm test
 
 ## MVP: Hành trình khách hàng (Giai đoạn 1, mục 6.1.1)
 
-- `/brand/journey`: bản đồ vẽ từ dữ liệu. Máy tính: lưới line theo chặng, ba cột con của Line 1 đặt cạnh nhau. Điện thoại: thẻ chuyển line, chặng là mục gập, ngăn xem nhanh dạng bottom sheet.
-- Ngăn xem nhanh (ô trước, ô sau, liên kết đề xuất, nhảy tới ô khác), tìm không dấu, làm nổi theo thương hiệu, công tắc "Hiện liên kết đề xuất", đường dẫn chia sẻ `?node=mã-ô`.
-- `/brand/journey/stage/[key]`: trang chặng (mục tiêu đầu ra, người quyết định, các ô trong chặng).
+Trình bày theo câu hỏi của nhân viên tư vấn ("khách này ở đâu, có những đường học nào, học xong đi tiếp đâu"), không sao chép sơ đồ gốc:
+
+- `/brand/journey`: tổng quan 5 chặng tuổi trong một màn hình (ai quyết định, sản phẩm chính, học ở đâu, học xong đi tiếp đâu), các hướng học song song (online, trường học, tiếng Trung), và tìm nhanh không dấu.
+- `/brand/journey/stage/[key]`: trang chặng là nơi học. Mục tiêu đầu ra, rồi từng hướng học với lộ trình theo bước (cấp học đánh số, cột mốc thi xen giữa), sản phẩm bổ trợ, và "học xong chặng này thì đi tiếp đâu". Thanh chuyển chặng bên trái (máy tính) hoặc hàng cuộn ngang (điện thoại).
+- 61 ô được gộp thành lộ trình dựa trên đường nối thứ tự có sẵn trong dữ liệu; ô cùng một sản phẩm bị vẽ nhiều lần ở nguồn được gộp thành một thẻ.
 - Editor và admin thấy cả nội dung chưa phát hành và ghi chú chờ xác nhận (đọc bảng gốc). Vai trò khác chỉ thấy bản đã phát hành qua view; khi mọi ô còn `proposed` thì thấy thông báo "chưa được phát hành" (đúng spec 9.1).
-- Chưa có: mũi tên nối vẽ trên bản đồ, thẻ sản phẩm `/brand/products/[code]`, "Đi theo hành trình", xuất PDF, quản trị hành trình (`/admin/journey`), các mục Chuẩn, Thư viện, Kế hoạch, Công cụ.
+- Chưa có: thẻ sản phẩm `/brand/products/[code]`, "Đi theo hành trình" theo mục tiêu, xuất PDF, quản trị hành trình (`/admin/journey`), các mục Chuẩn, Thư viện, Kế hoạch, Công cụ.
 
 ## Tiến độ Giai đoạn 0 (spec 9.2, 9.3)
 
