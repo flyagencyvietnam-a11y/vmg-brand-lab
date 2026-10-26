@@ -1,0 +1,58 @@
+/*
+ * Thử nghiệm: áp design system "ResortLux" (resortlux-DESIGN.md) lên Brand Lab. Chỉ bật khi đặt BRAND_LAB_THEME=resortlux
+ * (app/layout.tsx đặt data-theme trên <html>); không đặt biến thì giao diện VMG như cũ. Không đụng tới app/globals.css.
+ *
+ * Nguồn nói: vàng Gold #B8860B cho hành động chính và đường nhấn; navy #0F172A cho tiêu đề, chữ đậm; ngà #FFFFF0 cho nền
+ * trang; trắng #FFFFFF cho thẻ; "mọi CTA đặt chỗ phải màu vàng". Nguồn không nêu chữ, bo góc, màu chữ phụ, cỡ, nên giữ
+ * Montserrat và hình khối hiện có; các màu phụ dưới đây là suy ra (nhãn "suy ra").
+ *
+ * Tương phản: chữ trắng không đạt trên Gold #B8860B (khoảng 3,3:1) nên chữ trên nền vàng là navy (5,6:1). Gold #B8860B
+ * cũng không đủ làm chữ nhỏ trên nền ngà, nên chữ vàng dùng sắc đậm hơn (--rl-gold-text, suy ra).
+ */
+html[data-theme="resortlux"] {
+  --rl-gold: #b8860b;
+  --rl-gold-text: #8a6407; /* suy ra: Gold đậm hơn để làm chữ trên nền sáng, >= 4,5:1 */
+  --rl-navy: #0f172a;
+  --rl-ivory: #fffff0;
+
+  /* Hành động chính: Gold, chữ navy. */
+  --color-brand: var(--rl-gold);
+  --color-brand-hover: #c99a1c; /* suy ra: sáng hơn một bậc để chữ navy vẫn đủ tương phản khi hover */
+  --color-brand-soft: #faf4d8; /* suy ra: nền vàng nhạt cho mục đang chọn, thẻ nhấn */
+  --color-brand-tint: #f7eecb; /* suy ra */
+  --color-on-brand: var(--rl-navy);
+  --color-on-brand-2: var(--rl-navy);
+
+  /* Vàng trang trí và chữ vàng. */
+  --color-gold: var(--rl-gold-text);
+  --color-gold-mark: var(--rl-gold);
+  --color-gold-soft: #f5f1d6; /* suy ra */
+
+  /* Nền: ngà cho trang, trắng cho thẻ. */
+  --color-surface: var(--rl-ivory);
+  --color-paper: #ffffff;
+  --color-sunken: #f5f1d6; /* suy ra */
+
+  /* Chữ: navy; chữ phụ suy ra từ navy. */
+  --color-ink: var(--rl-navy);
+  --color-ink-2: #334155; /* suy ra */
+  --color-ink-3: #566275; /* suy ra */
+
+  /* Đường kẻ ngả ngà, mảnh. */
+  --color-line: #e6e3cc; /* suy ra */
+  --color-line-strong: #c4c0a4; /* suy ra */
+}
+
+/* Chữ "brand" là chữ vàng: dùng sắc đậm để đọc được trên nền sáng (Gold #B8860B chỉ đạt khoảng 3,3:1). */
+html[data-theme="resortlux"] [class~="text-brand"],
+html[data-theme="resortlux"] [class~="hover:text-brand"]:hover,
+html[data-theme="resortlux"] [class~="text-brand-hover"],
+html[data-theme="resortlux"] [class~="hover:text-brand-hover"]:hover {
+  color: var(--rl-gold-text);
+}
+
+/* Nút và khối vàng: chữ navy, không viền đậm. */
+html[data-theme="resortlux"] ::selection {
+  background: var(--color-brand-tint);
+  color: var(--color-ink);
+}

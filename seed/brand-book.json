@@ -1,0 +1,835 @@
+{
+  "_source": "docs/source/VMG_Brand_Book_2026_v0.2_final.docx (bản dự thảo v0.2, Marketing soạn, trình Ban Giám Đốc). Sinh bằng `npm run seed:brandbook`, không sửa tay.",
+  "_note": "Nội dung ở trạng thái dự thảo: nạp ở draft, chưa phát hành cho nhân viên cho đến khi Ban Giám Đốc phê duyệt (spec 9.1).",
+  "meta": {
+    "organisation": "VMG - VIET MY GROUP",
+    "title": "VMG Brand Book 2026",
+    "subtitle": "Nền tảng, nhân cách và định vị thương hiệu",
+    "tagline": "VMG - Dẫn Lối Tương Lai",
+    "version_line": "Bản dự thảo v0.2 | 26/10/2026",
+    "author": "Đơn vị soạn thảo: Marketing",
+    "submitted_to": "Trình: Ban Giám Đốc"
+  },
+  "brands": {
+    "vmg-english": {
+      "name": "VMG English",
+      "profile": [
+        {
+          "label": "Định vị",
+          "value": [
+            "Hệ thống tiếng Anh nền tảng của VMG, giúp người học bắt đầu đúng ngay từ nhỏ và đi tiếp theo lộ trình rõ ràng qua từng độ tuổi."
+          ]
+        },
+        {
+          "label": "Người học và người quyết định",
+          "value": [
+            "Trẻ 4-11 tuổi, phụ huynh quyết định. Người lớn đi làm tự quyết định."
+          ]
+        },
+        {
+          "label": "Vấn đề của người học",
+          "value": [
+            "Phụ huynh muốn con học tiếng Anh nhưng khó biết con đang ở đâu và bước tiếp theo là gì. Người lớn đi làm khó giữ lịch học đều đặn."
+          ]
+        },
+        {
+          "label": "Lời hứa",
+          "value": [
+            "Mỗi độ tuổi có một lộ trình rõ ràng; mỗi chặng có đích đến và người đồng hành."
+          ]
+        },
+        {
+          "label": "Lý do tin",
+          "value": [
+            "23 năm hoạt động; hệ thống 10 trung tâm.",
+            "E-CONTENDER & E-GENIUS có đầu ra theo chuẩn Starters, Movers, Flyers.",
+            "Có dịch vụ khảo thí của VMG cho kỳ thi Cambridge."
+          ]
+        },
+        {
+          "label": "Sản phẩm",
+          "value": [
+            "E-PIONEER (4-6 tuổi); E-CONTENDER & E-GENIUS (6-11 tuổi); EPLUS; ESL FlexTrack; Bán trú hè."
+          ]
+        },
+        {
+          "label": "Thông điệp chính",
+          "value": [
+            "Bắt đầu tiếng Anh đúng cách ngay từ nhỏ, với lộ trình nối tiếp theo từng độ tuổi."
+          ]
+        },
+        {
+          "label": "Vai trong hành trình",
+          "value": [
+            "Chặng đầu của hành trình. Nối tiếp sang NEXTGEN IELTS, thi Cambridge và du học hè."
+          ]
+        },
+        {
+          "label": "Vai nhân cách",
+          "value": [
+            "Người khai lối: người bạn vui và an toàn với trẻ nhỏ; người huấn luyện khích lệ với tiểu học; người đồng hành thực tế với người lớn."
+          ]
+        },
+        {
+          "label": "Cách viết tên",
+          "value": [
+            "Viết \"VMG English\". Tên sản phẩm viết đúng bảng tên chuẩn."
+          ]
+        },
+        {
+          "label": "Nhận diện thị giác",
+          "value": [
+            "Dùng bộ nhận diện chung của VMG: đỏ #BE202F và vàng đồng #8B672A."
+          ]
+        },
+        {
+          "label": "Cần lưu ý khi nói",
+          "value": [
+            "Chỉ nêu mục tiêu đầu ra đã công bố trong danh mục sản phẩm."
+          ]
+        },
+        {
+          "label": "Giới thiệu chuẩn (khoảng 25 từ)",
+          "value": [
+            "VMG English là hệ thống trung tâm tiếng Anh của VMG, đồng hành người học từ mầm non đến người lớn với lộ trình rõ ràng theo từng độ tuổi."
+          ]
+        }
+      ],
+      "architecture_role": "Tiếng Anh tại trung tâm cho trẻ mầm non, tiểu học và người lớn",
+      "spelling": "VMG English",
+      "persona_role": "Người khai lối",
+      "persona_voice": "Với trẻ nhỏ là người bạn vui và an toàn; với tiểu học là người huấn luyện khích lệ; với người lớn là người đồng hành thực tế.",
+      "one_liner": "Bắt đầu tiếng Anh đúng cách ngay từ nhỏ, với lộ trình nối tiếp theo từng độ tuổi.",
+      "card_colour": "Dùng màu chủ đạo của VMG"
+    },
+    "vmg-ielts": {
+      "name": "VMG IELTS",
+      "profile": [
+        {
+          "label": "Định vị",
+          "value": [
+            "Thương hiệu luyện thi và phát triển IELTS của VMG, đi cùng người học từ nền tảng đến band mục tiêu."
+          ]
+        },
+        {
+          "label": "Người học và người quyết định",
+          "value": [
+            "Học sinh 11-16 tuổi, phụ huynh và học sinh cùng quyết định. Người học từ 16 tuổi trở lên tự quyết định."
+          ]
+        },
+        {
+          "label": "Vấn đề của người học",
+          "value": [
+            "Không biết nên bắt đầu IELTS khi nào, theo lộ trình nào, và cần luyện kỹ năng nào cho đúng mục tiêu."
+          ]
+        },
+        {
+          "label": "Lời hứa",
+          "value": [
+            "Lộ trình theo mục tiêu band; luyện đúng kỹ năng cần cải thiện."
+          ]
+        },
+        {
+          "label": "Lý do tin",
+          "value": [
+            "NEXTGEN IELTS đi từ lớp 6 đến lớp 11, với mục tiêu đầu ra IELTS 5.5 và 6.5 theo chặng.",
+            "IELTS Speaking Booster 1.5: 100% giáo viên nước ngoài, mục tiêu tăng 1.0 band Speaking.",
+            "Cùng hệ sinh thái với dịch vụ khảo thí cho thi thật và thi thử."
+          ]
+        },
+        {
+          "label": "Sản phẩm",
+          "value": [
+            "NEXTGEN IELTS; IELTS Express (bắt đầu từ band 4.0); IELTS Exam Focus; IELTS Speaking Booster 1.5."
+          ]
+        },
+        {
+          "label": "Thông điệp chính",
+          "value": [
+            "Học IELTS có lộ trình, luyện đúng kỹ năng cần luyện. Từ 03/2027, lộ trình được tái cấu trúc thành CORE (lộ trình chính) và THE IELTS LAB (luyện tập linh hoạt theo kỹ năng); THE IELTS LAB là trục thông điệp chính, trình bày ngay trên trang sản phẩm VMG IELTS."
+          ]
+        },
+        {
+          "label": "Vai trong hành trình",
+          "value": [
+            "Nối từ VMG English. Đi tiếp đến thi IELTS tại dịch vụ khảo thí và đến du học."
+          ]
+        },
+        {
+          "label": "Vai nhân cách",
+          "value": [
+            "Huấn luyện viên có lộ trình: thẳng, cụ thể, nói rõ mục tiêu band, điều cần luyện và tiến độ."
+          ]
+        },
+        {
+          "label": "Cách viết tên",
+          "value": [
+            "Viết \"VMG IELTS\". Tên sản phẩm viết hoa như NEXTGEN IELTS; khóa nhỏ viết sau dấu gạch nối."
+          ]
+        },
+        {
+          "label": "Nhận diện thị giác",
+          "value": [
+            "Dùng bộ nhận diện chung của VMG: đỏ #BE202F và vàng đồng #8B672A."
+          ]
+        },
+        {
+          "label": "Cần lưu ý khi nói",
+          "value": [
+            "Chỉ nêu cam kết band cho sản phẩm có cam kết trong danh mục."
+          ]
+        },
+        {
+          "label": "Giới thiệu chuẩn (khoảng 25 từ)",
+          "value": [
+            "VMG IELTS là thương hiệu luyện thi và phát triển IELTS của VMG, dành cho thanh thiếu niên và người lớn, với lộ trình theo từng mục tiêu band."
+          ]
+        }
+      ],
+      "architecture_role": "Luyện thi và phát triển IELTS cho thanh thiếu niên và người lớn",
+      "spelling": "VMG IELTS",
+      "persona_role": "Huấn luyện viên có lộ trình",
+      "persona_voice": "Thẳng, cụ thể: nói rõ mục tiêu band, điều cần luyện và tiến độ.",
+      "one_liner": "Học IELTS có lộ trình, luyện đúng kỹ năng cần luyện.",
+      "card_colour": "Dùng màu chủ đạo của VMG"
+    },
+    "vmg-tesol": {
+      "name": "VMG TESOL",
+      "profile": [
+        {
+          "label": "Định vị",
+          "value": [
+            "Chương trình chứng chỉ giảng dạy tiếng Anh của VMG dành cho giáo viên và người bắt đầu nghề giáo."
+          ]
+        },
+        {
+          "label": "Người học và người quyết định",
+          "value": [
+            "Giáo viên đang dạy và người muốn vào nghề giáo; tự quyết định."
+          ]
+        },
+        {
+          "label": "Vấn đề của người học",
+          "value": [
+            "Cần chứng chỉ giảng dạy nhưng khó sắp xếp thời gian học và thiếu cơ hội thực hành có người nhận xét."
+          ]
+        },
+        {
+          "label": "Lời hứa",
+          "value": [
+            "Học chứng chỉ theo cách phù hợp với lịch của mình, có thực hành và nhận xét từ giảng viên."
+          ]
+        },
+        {
+          "label": "Lý do tin",
+          "value": [
+            "TESOL 140H có thực hành giảng dạy kèm nhận xét của giảng viên.",
+            "TESOL E-PATH học tự chủ qua nền tảng, có hướng dẫn định kỳ hằng tháng.",
+            "Ba hình thức học: trực tiếp, trực tuyến, tự học."
+          ]
+        },
+        {
+          "label": "Sản phẩm",
+          "value": [
+            "TESOL 120H; TESOL 140H; TESOL E-PATH."
+          ]
+        },
+        {
+          "label": "Thông điệp chính",
+          "value": [
+            "Chứng chỉ giảng dạy, học theo cách phù hợp với bạn."
+          ]
+        },
+        {
+          "label": "Vai trong hành trình",
+          "value": [
+            "Điểm tiếp theo của người làm nghề giáo; nối với EduNext và UpLearn by VMG."
+          ]
+        },
+        {
+          "label": "Vai nhân cách",
+          "value": [
+            "Người thầy của các thầy cô: tôn trọng nghề, chuyên nghiệp, chú trọng thực hành."
+          ]
+        },
+        {
+          "label": "Cách viết tên",
+          "value": [
+            "Viết \"VMG TESOL\". Tên khóa: TESOL 120H, TESOL 140H, TESOL E-PATH."
+          ]
+        },
+        {
+          "label": "Nhận diện thị giác",
+          "value": [
+            "Màu thẻ xanh dương #012A9E, đặt cạnh logo VMG."
+          ]
+        },
+        {
+          "label": "Cần lưu ý khi nói",
+          "value": [
+            "Không nói về cơ hội việc làm hay mức thu nhập sau khóa học."
+          ]
+        },
+        {
+          "label": "Giới thiệu chuẩn (khoảng 25 từ)",
+          "value": [
+            "VMG TESOL đào tạo chứng chỉ giảng dạy tiếng Anh cho giáo viên, học trực tiếp, trực tuyến hoặc tự học với hướng dẫn định kỳ."
+          ]
+        }
+      ],
+      "architecture_role": "Chứng chỉ giảng dạy tiếng Anh cho giáo viên",
+      "spelling": "VMG TESOL",
+      "persona_role": "Người thầy của các thầy cô",
+      "persona_voice": "Tôn trọng nghề, chuyên nghiệp, chú trọng thực hành.",
+      "one_liner": "Chứng chỉ giảng dạy, học theo cách phù hợp với bạn.",
+      "card_colour": "Xanh dương #012A9E"
+    },
+    "vmg-chinese": {
+      "name": "VMG Tiếng Trung",
+      "profile": [
+        {
+          "label": "Định vị",
+          "value": [
+            "Chương trình tiếng Trung của VMG dành cho người học từ 16 tuổi: học để dùng được trong công việc và thi HSK."
+          ]
+        },
+        {
+          "label": "Người học và người quyết định",
+          "value": [
+            "Thanh thiếu niên từ 16 tuổi và người lớn; tự quyết định."
+          ]
+        },
+        {
+          "label": "Vấn đề của người học",
+          "value": [
+            "Học tiếng Trung nhưng khó dùng được trong công việc; chưa rõ lộ trình thi HSK."
+          ]
+        },
+        {
+          "label": "Lời hứa",
+          "value": [
+            "Học để dùng được; lộ trình HSK rõ ràng đến HSK 4."
+          ]
+        },
+        {
+          "label": "Lý do tin",
+          "value": [
+            "Luyện thi HSK đủ bốn kỹ năng, đến HSK 4.",
+            "Chương trình giao tiếp tập trung vào môi trường làm việc."
+          ]
+        },
+        {
+          "label": "Sản phẩm",
+          "value": [
+            "Tiếng Trung giao tiếp; Luyện thi HSK."
+          ]
+        },
+        {
+          "label": "Thông điệp chính",
+          "value": [
+            "Học tiếng Trung để dùng được trong công việc."
+          ]
+        },
+        {
+          "label": "Vai trong hành trình",
+          "value": [
+            "Chạy song song với hành trình tiếng Anh; bổ sung ngoại ngữ thứ hai cho người học."
+          ]
+        },
+        {
+          "label": "Vai nhân cách",
+          "value": [
+            "Người bạn đường thực dụng: học để dùng, gọn và thực tế."
+          ]
+        },
+        {
+          "label": "Cách viết tên",
+          "value": [
+            "Viết \"VMG Tiếng Trung\"."
+          ]
+        },
+        {
+          "label": "Nhận diện thị giác",
+          "value": [
+            "Dùng bộ nhận diện chung của VMG: đỏ #BE202F và vàng đồng #8B672A."
+          ]
+        },
+        {
+          "label": "Cần lưu ý khi nói",
+          "value": [
+            "Không nêu mục tiêu vượt HSK 4."
+          ]
+        },
+        {
+          "label": "Giới thiệu chuẩn (khoảng 25 từ)",
+          "value": [
+            "VMG Tiếng Trung là chương trình tiếng Trung của VMG cho người học từ 16 tuổi: giao tiếp phục vụ công việc và luyện thi HSK."
+          ]
+        }
+      ],
+      "architecture_role": "Tiếng Trung giao tiếp và luyện thi HSK từ 16 tuổi",
+      "spelling": "VMG Tiếng Trung",
+      "persona_role": "Người bạn đường thực dụng",
+      "persona_voice": "Học để dùng được; gọn, thực tế, ít lý thuyết.",
+      "one_liner": "Học tiếng Trung để dùng được trong công việc.",
+      "card_colour": "Dùng màu chủ đạo của VMG"
+    },
+    "vmp": {
+      "name": "VMP by VMG",
+      "profile": [
+        {
+          "label": "Định vị",
+          "value": [
+            "Thương hiệu du học và Du học nghề của VMG, đồng hành gia đình từ chọn chương trình đến nhập học."
+          ]
+        },
+        {
+          "label": "Người học và người quyết định",
+          "value": [
+            "Học sinh, sinh viên và phụ huynh, quyết định cùng nhau. Người học Du học nghề. Phân khúc Standard, Premium, Ivy Plus."
+          ]
+        },
+        {
+          "label": "Vấn đề của người học",
+          "value": [
+            "Nhiều lựa chọn, thông tin khó kiểm chứng, lo lắng về hồ sơ và thủ tục."
+          ]
+        },
+        {
+          "label": "Lời hứa",
+          "value": [
+            "Một đầu mối đồng hành suốt hành trình; thông tin rõ ràng ở từng bước."
+          ]
+        },
+        {
+          "label": "Lý do tin",
+          "value": [
+            "Đối tác IDP Platinum Partner.",
+            "Dịch vụ trọn gói: tư vấn ngành và trường, hồ sơ, visa, luyện phỏng vấn, chương trình chuyển tiếp.",
+            "Du học hè dẫn sang du học dài hạn."
+          ]
+        },
+        {
+          "label": "Sản phẩm",
+          "value": [
+            "Du học hè (Mỹ, Úc, Canada, Singapore, Philippines); Du học dài hạn; Du học nghề (Hàn Quốc, Nhật Bản, Đài Loan)."
+          ]
+        },
+        {
+          "label": "Thông điệp chính",
+          "value": [
+            "Đồng hành từ chọn trường đến nhập học."
+          ]
+        },
+        {
+          "label": "Vai trong hành trình",
+          "value": [
+            "Đích tiếp theo của người học từ VMG English và VMG IELTS muốn du học."
+          ]
+        },
+        {
+          "label": "Vai nhân cách",
+          "value": [
+            "Người cùng gia đình cân nhắc: kỹ lưỡng, minh bạch, điềm tĩnh."
+          ]
+        },
+        {
+          "label": "Cách viết tên",
+          "value": [
+            "Viết \"VMP by VMG\". Dùng \"Du học nghề\" thay cho \"xuất khẩu lao động\"."
+          ]
+        },
+        {
+          "label": "Nhận diện thị giác",
+          "value": [
+            "Màu thẻ xanh #29338D kèm cam #F69220, đặt cạnh logo VMG."
+          ]
+        },
+        {
+          "label": "Cần lưu ý khi nói",
+          "value": [
+            "Không cam kết kết quả visa, học bổng hay hồ sơ."
+          ]
+        },
+        {
+          "label": "Giới thiệu chuẩn (khoảng 25 từ)",
+          "value": [
+            "VMP by VMG là thương hiệu du học và Du học nghề của VMG, đồng hành gia đình từ chọn chương trình, hồ sơ đến nhập học."
+          ]
+        }
+      ],
+      "architecture_role": "Du học và Du học nghề",
+      "spelling": "VMP by VMG",
+      "persona_role": "Người cùng gia đình cân nhắc",
+      "persona_voice": "Kỹ lưỡng, minh bạch, điềm tĩnh; đưa thông tin đầy đủ để gia đình tự quyết định.",
+      "one_liner": "Đồng hành từ chọn trường đến nhập học.",
+      "card_colour": "Xanh #29338D kèm cam #F69220"
+    },
+    "vmt": {
+      "name": "VMT",
+      "profile": [
+        {
+          "label": "Định vị",
+          "value": [
+            "Thương hiệu dịch vụ khảo thí của VMG (Test & Training), nơi người học thi chuẩn quốc tế và thi thử để biết mình đang ở đâu."
+          ]
+        },
+        {
+          "label": "Người học và người quyết định",
+          "value": [
+            "Học viên VMG và thí sinh bên ngoài; học sinh và người lớn."
+          ]
+        },
+        {
+          "label": "Vấn đề của người học",
+          "value": [
+            "Cần nơi thi chính thức và thi thử đáng tin, gần nơi ở, có kết quả và nhận xét rõ ràng."
+          ]
+        },
+        {
+          "label": "Lời hứa",
+          "value": [
+            "Kỳ thi nghiêm túc, kết quả rõ ràng, nhận xét giúp chọn bước tiếp theo."
+          ]
+        },
+        {
+          "label": "Lý do tin",
+          "value": [
+            "Tổ chức thi Cambridge và thi IELTS.",
+            "Thi thử IELTS có chấm chữa chi tiết và nhận xét."
+          ]
+        },
+        {
+          "label": "Sản phẩm",
+          "value": [
+            "Thi Cambridge; Thi IELTS; IELTS Mock Test."
+          ]
+        },
+        {
+          "label": "Thông điệp chính",
+          "value": [
+            "Đăng ký lịch thi và thi thử để biết mình đang ở đâu."
+          ]
+        },
+        {
+          "label": "Vai trong hành trình",
+          "value": [
+            "Điểm kiểm tra cuối chặng, gắn với VMG English (thi Cambridge) và VMG IELTS."
+          ]
+        },
+        {
+          "label": "Vai nhân cách",
+          "value": [
+            "Người giám khảo công bằng: chuẩn mực, khách quan, điềm tĩnh."
+          ]
+        },
+        {
+          "label": "Cách viết tên",
+          "value": [
+            "Viết \"VMT\". Trước khi thương hiệu được công bố chính thức, truyền thông ra ngoài viết \"dịch vụ khảo thí của VMG\"."
+          ]
+        },
+        {
+          "label": "Nhận diện thị giác",
+          "value": [
+            "Nền trắng, viền vàng đồng, đặt cạnh logo VMG."
+          ]
+        },
+        {
+          "label": "Cần lưu ý khi nói",
+          "value": [
+            "Không nêu kết quả thi như một cam kết."
+          ]
+        },
+        {
+          "label": "Giới thiệu chuẩn (khoảng 25 từ)",
+          "value": [
+            "Dịch vụ khảo thí của VMG tổ chức thi Cambridge, thi IELTS và thi thử IELTS theo chuẩn quốc tế, kèm nhận xét để người học chọn lộ trình phù hợp."
+          ]
+        }
+      ],
+      "architecture_role": "Dịch vụ khảo thí: thi Cambridge, thi IELTS, thi thử IELTS",
+      "spelling": "VMT; khi chưa công bố chính thức ra ngoài, viết \"dịch vụ khảo thí của VMG\"",
+      "persona_role": "Người giám khảo công bằng",
+      "persona_voice": "Chuẩn mực, khách quan, điềm tĩnh; thông tin kỳ thi chính xác.",
+      "one_liner": "Thi chuẩn quốc tế và thi thử để biết mình đang ở đâu.",
+      "card_colour": "Nền trắng, viền vàng đồng"
+    },
+    "uplearn": {
+      "name": "UpLearn by VMG",
+      "profile": [
+        {
+          "label": "Định vị",
+          "value": [
+            "Nền tảng học ngoại ngữ trực tuyến chuyên ngành của VMG, học linh hoạt theo nhu cầu thực tế."
+          ]
+        },
+        {
+          "label": "Người học và người quyết định",
+          "value": [
+            "Người đi làm, giáo viên và người học tự chủ; tự quyết định."
+          ]
+        },
+        {
+          "label": "Vấn đề của người học",
+          "value": [
+            "Cần học đúng nội dung dùng cho công việc nhưng khó sắp xếp lớp học cố định."
+          ]
+        },
+        {
+          "label": "Lời hứa",
+          "value": [
+            "Học đúng nội dung mình cần, vào thời điểm mình chọn."
+          ]
+        },
+        {
+          "label": "Lý do tin",
+          "value": [
+            "Danh mục chuyên ngành: TESOL, tiếng Anh văn phòng, VSTEP và các khóa theo ngành nghề.",
+            "Thuộc hệ sinh thái VMG, nối với các chương trình tại trung tâm."
+          ]
+        },
+        {
+          "label": "Sản phẩm",
+          "value": [
+            "TESOL; EPLUS; khóa chuyên ngành. VSTEP E-PATH và Corporate English dùng làm quà tặng học miễn phí. Bắt đầu ra mắt từ 28/10/2026."
+          ]
+        },
+        {
+          "label": "Thông điệp chính",
+          "value": [
+            "Học đúng thứ bạn cần cho công việc."
+          ]
+        },
+        {
+          "label": "Vai trong hành trình",
+          "value": [
+            "Hướng học tự chủ của người đi làm và giáo viên; nối với VMG TESOL và VMG English (EPLUS)."
+          ]
+        },
+        {
+          "label": "Vai nhân cách",
+          "value": [
+            "Người trợ lý học tập: gọn, linh hoạt, theo sát nhu cầu."
+          ]
+        },
+        {
+          "label": "Cách viết tên",
+          "value": [
+            "Viết \"UpLearn by VMG\" lần đầu trong mỗi tài liệu; sau đó có thể viết \"UpLearn\". Không viết \"Up Learn\" hay \"UPLEARN\"."
+          ]
+        },
+        {
+          "label": "Nhận diện thị giác",
+          "value": [
+            "Màu thẻ tím, đặt cạnh logo VMG."
+          ]
+        },
+        {
+          "label": "Cần lưu ý khi nói",
+          "value": [
+            "Phân biệt với VMG e-Academy: UpLearn là học tự chủ chuyên ngành; e-Academy là lớp có giáo viên."
+          ]
+        },
+        {
+          "label": "Giới thiệu chuẩn (khoảng 25 từ)",
+          "value": [
+            "UpLearn by VMG là nền tảng học ngoại ngữ trực tuyến chuyên ngành, học linh hoạt theo nhu cầu thực tế của người đi làm và giáo viên."
+          ]
+        }
+      ],
+      "architecture_role": "Nền tảng học ngoại ngữ trực tuyến chuyên ngành",
+      "spelling": "UpLearn by VMG",
+      "persona_role": "Người trợ lý học tập",
+      "persona_voice": "Gọn, linh hoạt, theo sát nhu cầu; chỉ đưa điều người học cần.",
+      "one_liner": "Học đúng thứ bạn cần cho công việc, vào lúc bạn chọn.",
+      "card_colour": "Tím"
+    },
+    "edunext": {
+      "name": "EduNext",
+      "profile": [
+        {
+          "label": "Định vị",
+          "value": [
+            "Nền tảng ứng dụng AI giúp giáo viên nâng năng lực tiếng Anh của chính mình."
+          ]
+        },
+        {
+          "label": "Người học và người quyết định",
+          "value": [
+            "Giáo viên của trường đối tác và giáo viên bộ môn; tự quyết định."
+          ]
+        },
+        {
+          "label": "Vấn đề của người học",
+          "value": [
+            "Cần nâng năng lực tiếng Anh nhưng thiếu thời gian và lộ trình phù hợp với chuyên môn."
+          ]
+        },
+        {
+          "label": "Lời hứa",
+          "value": [
+            "Hỗ trợ giáo viên học tiếng Anh theo nhu cầu chuyên môn, bằng công nghệ AI."
+          ]
+        },
+        {
+          "label": "Lý do tin",
+          "value": [
+            "Gắn với chương trình tiếng Anh tại trường học của VMG.",
+            "Nằm trong hệ sinh thái VMG cùng VMG TESOL."
+          ]
+        },
+        {
+          "label": "Sản phẩm",
+          "value": [
+            "Nền tảng EduNext. Từ tháng 9 đến tháng 11/2026, giáo viên của trường đối tác được trải nghiệm miễn phí."
+          ]
+        },
+        {
+          "label": "Thông điệp chính",
+          "value": [
+            "Nâng năng lực tiếng Anh của chính bạn. Trải nghiệm miễn phí dành cho giáo viên."
+          ]
+        },
+        {
+          "label": "Vai trong hành trình",
+          "value": [
+            "Nối chương trình tại trường học (B2G) với con đường phát triển nghề giáo cùng VMG TESOL."
+          ]
+        },
+        {
+          "label": "Vai nhân cách",
+          "value": [
+            "Người cố vấn đồng nghiệp: tôn trọng chuyên môn, công nghệ là công cụ hỗ trợ."
+          ]
+        },
+        {
+          "label": "Cách viết tên",
+          "value": [
+            "Viết \"EduNext\"."
+          ]
+        },
+        {
+          "label": "Nhận diện thị giác",
+          "value": [
+            "Dùng bộ nhận diện chung của VMG: đỏ #BE202F và vàng đồng #8B672A."
+          ]
+        },
+        {
+          "label": "Cần lưu ý khi nói",
+          "value": [
+            "Dùng \"trải nghiệm miễn phí\" hoặc \"triển khai đợt đầu\", không dùng \"thí điểm\"."
+          ]
+        },
+        {
+          "label": "Giới thiệu chuẩn (khoảng 25 từ)",
+          "value": [
+            "EduNext là nền tảng ứng dụng AI giúp giáo viên phát triển năng lực tiếng Anh của mình, theo nhu cầu chuyên môn."
+          ]
+        }
+      ],
+      "architecture_role": "Nền tảng ứng dụng AI phát triển năng lực tiếng Anh cho giáo viên",
+      "spelling": "EduNext",
+      "persona_role": "Người cố vấn đồng nghiệp",
+      "persona_voice": "Tôn trọng chuyên môn của giáo viên; công nghệ là công cụ hỗ trợ.",
+      "one_liner": "Nâng năng lực tiếng Anh của chính giáo viên, với sự hỗ trợ của AI.",
+      "card_colour": "Dùng màu chủ đạo của VMG"
+    },
+    "vmg-e-academy": {
+      "name": "VMG e-Academy",
+      "profile": [
+        {
+          "label": "Định vị",
+          "value": [
+            "Hệ thống lớp học trực tuyến có giáo viên của VMG: lớp nhỏ, tương tác cao."
+          ]
+        },
+        {
+          "label": "Người học và người quyết định",
+          "value": [
+            "Nhóm Juniors: học sinh, phụ huynh quyết định. Nhóm Prep: thanh thiếu niên và người lớn, tự quyết định."
+          ]
+        },
+        {
+          "label": "Vấn đề của người học",
+          "value": [
+            "Muốn học trực tuyến nhưng lo thiếu tương tác và thiếu người theo sát."
+          ]
+        },
+        {
+          "label": "Lời hứa",
+          "value": [
+            "Lớp trực tuyến nhỏ, giáo viên theo sát từng học viên."
+          ]
+        },
+        {
+          "label": "Lý do tin",
+          "value": [
+            "Lớp từ 1 đến 6 học viên tùy khóa, mỗi buổi 55 phút.",
+            "Tiếng Anh Phản Xạ có 100% giáo viên nước ngoài; Cambridge ESL có giáo viên Việt Nam và nước ngoài."
+          ]
+        },
+        {
+          "label": "Sản phẩm",
+          "value": [
+            "Juniors: Tiếng Anh Phản Xạ, Cambridge ESL. Prep: NextGen IELTS, IELTS Lab, e-Plus Pro."
+          ]
+        },
+        {
+          "label": "Thông điệp chính",
+          "value": [
+            "Lớp trực tuyến có giáo viên, nhóm nhỏ, tương tác cao."
+          ]
+        },
+        {
+          "label": "Vai trong hành trình",
+          "value": [
+            "Hướng học trực tuyến của hành trình VMG; nối với VMG English, thi Cambridge và VMG IELTS."
+          ]
+        },
+        {
+          "label": "Vai nhân cách",
+          "value": [
+            "Người thầy lớp nhỏ: sát sao, tương tác, nhắc đến từng học viên cụ thể."
+          ]
+        },
+        {
+          "label": "Cách viết tên",
+          "value": [
+            "Viết \"VMG e-Academy\" (e thường, A hoa)."
+          ]
+        },
+        {
+          "label": "Nhận diện thị giác",
+          "value": [
+            "Màu thẻ xanh ngọc #0E7C86, đặt cạnh logo VMG."
+          ]
+        },
+        {
+          "label": "Cần lưu ý khi nói",
+          "value": [
+            "Không nói e-Academy thay thế lớp học tại trung tâm."
+          ]
+        },
+        {
+          "label": "Giới thiệu chuẩn (khoảng 25 từ)",
+          "value": [
+            "VMG e-Academy là lớp trực tuyến có giáo viên của VMG, quy mô nhỏ, tương tác cao, dành cho học sinh, thanh thiếu niên và người lớn."
+          ]
+        }
+      ],
+      "architecture_role": "Lớp học trực tuyến có giáo viên, nhóm Juniors và nhóm Prep",
+      "spelling": "VMG e-Academy",
+      "persona_role": "Người thầy lớp nhỏ",
+      "persona_voice": "Sát sao, tương tác; nhắc đến từng học viên cụ thể.",
+      "one_liner": "Lớp trực tuyến có giáo viên, nhóm nhỏ, tương tác cao.",
+      "card_colour": "Xanh ngọc #0E7C86"
+    },
+    "vmg": {
+      "name": "VMG",
+      "profile": [],
+      "architecture_role": "Thương hiệu mẹ, thương hiệu của hệ thống trung tâm",
+      "spelling": "VMG"
+    }
+  }
+}

@@ -22,15 +22,17 @@ Thiếu hai biến `NEXT_PUBLIC_SUPABASE_*` thì ứng dụng báo lỗi thay v�
 BRAND_LAB_DEV_SEED=1
 ```
 
-rồi `npm run dev` và mở **http://localhost:3000/brand/journey** (dùng `localhost`, không dùng `127.0.0.1`: Next dev chặn nguồn khác). Trang hiển thị dữ liệu từ `seed/journey.json` ở góc nhìn biên tập, kèm biểu ngữ "Chế độ thử". Chế độ này **tự tắt ở bản build production** (`NODE_ENV=production`), dù biến có được đặt, vì nó bỏ qua đăng nhập, RLS và cổng phát hành.
+rồi `npm run dev` và mở **http://localhost:3000/brand/journey** (cũng có /brand/brands và /brand/products) (dùng `localhost`, không dùng `127.0.0.1`: Next dev chặn nguồn khác). Trang hiển thị dữ liệu từ `seed/journey.json`, `seed/brands.json`, `seed/products.json` ở góc nhìn biên tập, kèm biểu ngữ "Chế độ thử". Chế độ này **tự tắt ở bản build production** (`NODE_ENV=production`), dù biến có được đặt, vì nó bỏ qua đăng nhập, RLS và cổng phát hành.
 
 ## Cơ sở dữ liệu
 
 Migration ở `supabase/migrations/` (áp dụng bằng Supabase CLI: `supabase db push` hoặc `supabase db reset` cục bộ). Sau khi có dự án Supabase, tắt tự đăng ký (đã đặt `enable_signup = false` trong `supabase/config.toml`) và tạo người dùng bằng lời mời.
 
 ```bash
-npm run seed -- --dry-run   # kiểm tra seed/journey.json và seed/brands.json, không cần Supabase
-npm run seed                # nạp feature_flags, brands, journey_* (trạng thái proposed)
+npm run seed -- --dry-run   # kiểm tra seed/journey.json, brands.json, products.json, không cần Supabase
+npm run seed                # nạp feature_flags, brands, products, brand_book (draft), journey_* (proposed)
+npm run seed:products        # sinh lại seed/products.json từ docs/source/VMG_Product_Portfolio_2026.md
+npm run seed:brandbook       # sinh lại hồ sơ thương hiệu seed/brand-book.json từ docs/source/VMG_Brand_Book_2026_v0.2_final.docx (cần uv)
 npm run seed -- --force     # nạp lại trường nguồn; không đổi trạng thái đã xác nhận
 ```
 
@@ -55,7 +57,7 @@ Dự án Vercel kết nối GitHub: mỗi lần push lên `main` tự triển kh
    - `NEXT_PUBLIC_SUPABASE_ANON_KEY`
 
    Hai biến này được nhúng lúc build, nên **phải triển khai lại (Redeploy) sau khi thêm hoặc sửa**. Không đặt `BRAND_LAB_DEV_SEED`. `SUPABASE_SERVICE_ROLE_KEY` chưa cần trên Vercel: chỉ script seed dùng, chạy trên máy bạn.
-3. **Migration:** áp dụng ba file trong `supabase/migrations` theo thứ tự (`supabase db push`, hoặc dán lần lượt vào SQL Editor), rồi `npm run seed`, rồi nâng một tài khoản lên `admin` (mục Quản trị đầu tiên ở trên).
+3. **Migration:** áp dụng năm file trong `supabase/migrations` theo thứ tự (`supabase db push`, hoặc dán lần lượt vào SQL Editor), rồi `npm run seed`, rồi nâng một tài khoản lên `admin` (mục Quản trị đầu tiên ở trên).
 4. **Supabase Auth:** đặt Site URL và Redirect URLs thành tên miền Vercel; tắt tự đăng ký.
 5. **Bảo vệ truy cập:** tên miền production là công khai (các URL preview thì được Vercel Authentication chặn). Trong lúc nội dung chưa được Ban Giám Đốc phê duyệt, nên bật Vercel Authentication cho production.
 

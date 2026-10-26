@@ -5,6 +5,7 @@ const PATHS = {
   "arrow-right": <path d="M5 12h14M13 6l6 6-6 6" />,
   "arrow-left": <path d="M19 12H5M11 18l-6-6 6-6" />,
   "arrow-down": <path d="M12 5v14M6 13l6 6 6-6" />,
+  "arrow-up-right": <path d="M7 17L17 7M8 7h9v9" />,
   check: <path d="M5 13l4 4L19 7" />,
   search: (
     <>

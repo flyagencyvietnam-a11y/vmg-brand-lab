@@ -2,7 +2,7 @@ import { readFileSync } from "node:fs";
 import { resolve } from "node:path";
 import { describe, expect, it } from "vitest";
 import { contrastRatio } from "@/lib/design/contrast";
-import { avoidPairs, contrastPairs, goldScale, inkScale, redScale, roleHex as documentedRoleHex, roles } from "@/lib/design/tokens";
+import { avoidPairs, contrastPairs, goldScale, inkScale, redScale, roleHex as documentedRoleHex, roles, stageScale } from "@/lib/design/tokens";
 
 const css = readFileSync(resolve(import.meta.dirname, "../../app/globals.css"), "utf8");
 
@@ -18,12 +18,12 @@ for (const m of css.matchAll(/--color-([a-z0-9-]+):\s*(var\((--vmg-[a-z0-9-]+)\)
 }
 
 describe("token màu khớp tài liệu", () => {
-  it.each([...redScale, ...goldScale, ...inkScale])("$token = $hex", ({ token, hex }) => {
+  it.each([...redScale, ...goldScale, ...inkScale, ...stageScale])("$token = $hex", ({ token, hex }) => {
     expect(raw.get(token)).toBe(hex);
   });
 
   it("không có màu thô nào trong CSS mà trang tài liệu không liệt kê", () => {
-    const documented = new Set([...redScale, ...goldScale, ...inkScale].map((s) => s.token));
+    const documented = new Set([...redScale, ...goldScale, ...inkScale, ...stageScale].map((s) => s.token));
     const undocumented = [...raw.keys()].filter((t) => !documented.has(t));
     expect(undocumented).toEqual([]);
   });

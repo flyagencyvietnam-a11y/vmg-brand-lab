@@ -2,7 +2,7 @@ import { connection } from "next/server";
 import { isDevSeedMode } from "@/lib/dev-seed";
 import { getViewer } from "@/lib/auth/viewer";
 import { createClient } from "@/lib/supabase/server";
-import { toNode, todayVn, type JourneyMap, type NodeSourceRow } from "./model";
+import { toNode, todayVn, withProductHints, type JourneyMap, type NodeSourceRow } from "./model";
 import { loadSeedJourneyMap } from "./seed-source";
 
 type Row = Record<string, unknown>;
@@ -35,7 +35,7 @@ export async function loadJourneyMap(): Promise<JourneyMap> {
     return asEditor ? query.is("deleted_at", null) : query;
   };
 
-  const [stages, lines, nodes, edges, brands] = await Promise.all([
+  const [stages, lines, nodes, edges, brands, hintRows] = await Promise.all([
     from("journey_stages", "v_usable_journey_stages").order("sort"),
     from("journey_lines", "v_usable_journey_lines").order("sort"),
     from("journey_nodes", "v_usable_journey_nodes").order("sort"),
@@ -44,6 +44,10 @@ export async function loadJourneyMap(): Promise<JourneyMap> {
       : supabase.from("v_usable_journey_edges").select("*"),
     // RLS của brands: staff chỉ thấy thương hiệu đã phát hành.
     supabase.from("brands").select("id, slug, name_public, color_primary, confirmed").order("sort"),
+    // Mã sản phẩm gợi ý của ô: editor đọc bảng gốc, người dùng thường đọc view (chỉ ô đã phát hành).
+    asEditor
+      ? supabase.from("journey_node_products").select("node_id, product_code_hint")
+      : supabase.from("v_usable_journey_node_products").select("node_id, product_code_hint"),
   ]);
 
   const stageRows = must(stages, "chặng") as Row[];
@@ -51,11 +55,12 @@ export async function loadJourneyMap(): Promise<JourneyMap> {
   const nodeRows = must(nodes, "ô hành trình") as Row[];
   const edgeRows = must(edges, "đường nối") as Row[];
   const brandRows = must(brands, "thương hiệu") as Row[];
+  const hintData = must(hintRows, "mã sản phẩm gợi ý") as Row[];
 
   const slugById = new Map(brandRows.map((b) => [b.id as string, b.slug as string]));
   const codeById = new Map(nodeRows.map((n) => [n.id as string, n.code as string]));
 
-  return {
+  const map: JourneyMap = {
     audience,
     stages: stageRows.map((s) => ({
       key: s.key as string,
@@ -107,4 +112,11 @@ export async function loadJourneyMap(): Promise<JourneyMap> {
       confirmed: (b.confirmed as boolean) ?? true,
     })),
   };
+  return withProductHints(
+    map,
+    hintData.flatMap((h) => {
+      const code = codeById.get(h.node_id as string);
+      return code ? [{ node_code: code, product_code_hint: h.product_code_hint as string }] : [];
+    }),
+  );
 }

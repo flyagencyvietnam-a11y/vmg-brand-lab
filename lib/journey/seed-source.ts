@@ -3,7 +3,7 @@ import { resolve } from "node:path";
 import { brandsSeedSchema } from "@/lib/brands/schema";
 import { buildJourneyRows } from "./rows";
 import { parseJourneySeed } from "./schema";
-import { toNode, type Audience, type JourneyMap } from "./model";
+import { toNode, withProductHints, type Audience, type JourneyMap } from "./model";
 
 const root = process.cwd();
 
@@ -15,7 +15,7 @@ function readJson(file: string): unknown {
 export function loadSeedJourneyMap(audience: Audience, today: string): JourneyMap {
   const rows = buildJourneyRows(parseJourneySeed(readJson("seed/journey.json")));
   const brands = brandsSeedSchema.parse(readJson("seed/brands.json")).brands;
-  return buildSeedJourneyMap(rows, brands, audience, today);
+  return withProductHints(buildSeedJourneyMap(rows, brands, audience, today), rows.nodeProducts);
 }
 
 export function buildSeedJourneyMap(

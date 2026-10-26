@@ -7,8 +7,8 @@ import { vi } from "@/lib/i18n/vi";
 import { normalizeVi } from "@/lib/journey/model";
 import type { SearchItem } from "@/lib/journey/views";
 
-/** Tìm không phân biệt dấu ("du hoc" ra "DU HỌC"); kết quả dẫn thẳng tới ô trên trang chặng. Đặt trên nền đỏ. */
-export function JourneySearch({ items }: { items: SearchItem[] }) {
+/** Tìm không phân biệt dấu ("du hoc" ra "DU HỌC"); kết quả dẫn thẳng tới ô trên trang chặng. Mặc định trên nền sáng; `onBrand` khi đặt trên nền đỏ. */
+export function JourneySearch({ items, onBrand = false }: { items: SearchItem[]; onBrand?: boolean }) {
   const [query, setQuery] = useState("");
   const q = normalizeVi(query.trim());
 
@@ -19,7 +19,7 @@ export function JourneySearch({ items }: { items: SearchItem[] }) {
 
   return (
     <div className="mt-1 flex max-w-xl flex-col gap-2">
-      <label htmlFor="journey-search" className="pl-2 text-small font-medium text-on-brand-2">
+      <label htmlFor="journey-search" className={`pl-2 text-small font-medium ${onBrand ? "text-on-brand-2" : "text-ink-2"}`}>
         {vi.journey.searchLabel}
       </label>
       <div className="relative">
@@ -31,16 +31,18 @@ export function JourneySearch({ items }: { items: SearchItem[] }) {
           onChange={(e) => setQuery(e.target.value)}
           placeholder={vi.journey.searchPlaceholder}
           autoComplete="off"
-          className="min-h-12 w-full rounded-full border border-transparent bg-paper pr-5 pl-12 text-body text-ink placeholder:text-ink-3"
+          className={`min-h-12 w-full rounded-full border bg-paper pr-5 pl-12 text-body text-ink placeholder:text-ink-3 ${
+            onBrand ? "border-transparent" : "border-line-strong hover:border-ink-3 focus:border-brand"
+          }`}
         />
       </div>
       {q !== "" ? (
         results.length > 0 ? (
-          <ul className="flex flex-col overflow-hidden rounded-2xl bg-paper text-ink">
+          <ul className="flex flex-col overflow-hidden rounded-2xl border border-line bg-paper text-ink">
             {results.map((r) => (
               <li key={r.code} className="border-b border-line last:border-b-0">
                 <Link
-                  href={`/brand/journey/stage/${r.stageKey}#${r.code}`}
+                  href={`/brand/journey?chon=${r.code}`}
                   className="flex min-h-14 items-center justify-between gap-3 px-5 py-2 transition-colors hover:bg-brand-soft"
                 >
                   <span className="min-w-0">
@@ -55,7 +57,7 @@ export function JourneySearch({ items }: { items: SearchItem[] }) {
             ))}
           </ul>
         ) : (
-          <p className="rounded-2xl bg-paper px-5 py-3 text-ink-2">{vi.journey.searchNone}</p>
+          <p className="rounded-2xl border border-line bg-paper px-5 py-3 text-ink-2">{vi.journey.searchNone}</p>
         )
       ) : null}
     </div>

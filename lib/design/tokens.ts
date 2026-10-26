@@ -42,6 +42,14 @@ export const inkScale: Swatch[] = [
   { token: "--vmg-ink-200", hex: "#e3d9cc", label: "Đường kẻ", source: "derived" },
 ];
 
+/** Màu theo chặng: từ bộ màu website VMG (vàng chanh, tím), chưa có trong Brand Identity PDF. Xem OPEN_QUESTIONS. */
+export const stageScale: Swatch[] = [
+  { token: "--vmg-lemon-400", hex: "#e9e24a", label: "Vàng chanh", source: "derived", note: "Từ bộ màu website. Chỉ trang trí" },
+  { token: "--vmg-lemon-100", hex: "#fbf9d6", label: "Vàng chanh nhạt", source: "derived", note: "Nền dải chặng" },
+  { token: "--vmg-plum-700", hex: "#3d2a6d", label: "Tím", source: "derived", note: "Từ bộ màu website" },
+  { token: "--vmg-plum-100", hex: "#e7e0f5", label: "Tím nhạt", source: "derived", note: "Nền dải chặng" },
+];
+
 export type Role = { name: string; cssVar: string; usage: string };
 
 /** Vai trò màu dùng trong giao diện (class Tailwind dạng bg-brand, text-ink-2...). */
@@ -53,6 +61,10 @@ export const roles: Role[] = [
   { name: "gold", cssVar: "--color-gold", usage: "Chữ vàng đồng trên nền sáng (nhãn, tiêu đề nhỏ)" },
   { name: "gold-mark", cssVar: "--color-gold-mark", usage: "Chỉ trang trí: biểu tượng, đường kẻ nhấn. Không dùng cho chữ" },
   { name: "gold-soft", cssVar: "--color-gold-soft", usage: "Nền ấm (vàng nhạt) của thẻ" },
+  { name: "lemon", cssVar: "--color-lemon", usage: "Chỉ trang trí: đường dọc và cột mốc của chặng. Không dùng cho chữ trên nền trắng" },
+  { name: "lemon-soft", cssVar: "--color-lemon-soft", usage: "Nền dải của chặng đầu (4 đến 6 tuổi)" },
+  { name: "plum", cssVar: "--color-plum", usage: "Nền dải chặng 16+, đường dọc chặng 6 đến 11 tuổi" },
+  { name: "plum-soft", cssVar: "--color-plum-soft", usage: "Nền dải chặng 6 đến 11 tuổi; chữ phụ trên nền tím" },
   { name: "ink", cssVar: "--color-ink", usage: "Chữ chính" },
   { name: "ink-2", cssVar: "--color-ink-2", usage: "Chữ phụ" },
   { name: "ink-3", cssVar: "--color-ink-3", usage: "Chú thích, chữ mờ" },
@@ -74,6 +86,10 @@ export const roleHex: Record<string, string> = {
   gold: "#8b672a",
   "gold-mark": "#b6924d",
   "gold-soft": "#f1ebe4",
+  lemon: "#e9e24a",
+  "lemon-soft": "#fbf9d6",
+  plum: "#3d2a6d",
+  "plum-soft": "#e7e0f5",
   ink: "#2a2420",
   "ink-2": "#4a433e",
   "ink-3": "#6b635d",
@@ -93,6 +109,7 @@ export type ContrastPair = { fg: string; bg: string; min: number; use: string };
 export const avoidPairs: { fg: string; bg: string; why: string }[] = [
   { fg: "gold", bg: "sunken", why: "Vàng đồng 871C trên nền ấm chỉ đạt khoảng 4,4:1; dùng chữ mực (ink) trên nền lõm" },
   { fg: "gold", bg: "brand-tint", why: "Vàng đồng 871C trên nền hồng đậm chỉ đạt khoảng 4,1:1; dùng chữ mực hoặc chữ đỏ" },
+  { fg: "lemon", bg: "paper", why: "Vàng chanh trên nền trắng gần như không đọc được; chỉ làm đường dọc, cột mốc" },
   { fg: "gold-mark", bg: "paper", why: "Vàng biểu tượng chỉ để trang trí, không đủ tương phản cho chữ" },
   { fg: "gold-mark", bg: "brand", why: "Vàng trên đỏ (tiêu đề vàng trong PDF) không đủ tương phản; dùng chữ trắng, vàng chỉ làm họa tiết" },
 ];
@@ -124,4 +141,20 @@ export const contrastPairs: ContrastPair[] = [
   { fg: "on-brand", bg: "brand-hover", min: 4.5, use: "Chữ trắng trên nút chính khi hover" },
   { fg: "on-brand-2", bg: "brand", min: 4.5, use: "Chữ phụ trên nền đỏ" },
   { fg: "brand", bg: "on-brand", min: 4.5, use: "Nút nghịch (chữ đỏ trên nền trắng)" },
+  { fg: "ink", bg: "lemon-soft", min: 4.5, use: "Chữ chính trên dải chặng vàng chanh" },
+  { fg: "ink-2", bg: "lemon-soft", min: 4.5, use: "Chữ phụ trên dải chặng vàng chanh" },
+  { fg: "ink-3", bg: "lemon-soft", min: 4.5, use: "Chú thích trên dải chặng vàng chanh" },
+  { fg: "ink", bg: "plum-soft", min: 4.5, use: "Chữ chính trên dải chặng tím nhạt" },
+  { fg: "ink-2", bg: "plum-soft", min: 4.5, use: "Chữ phụ trên dải chặng tím nhạt" },
+  { fg: "ink-3", bg: "plum-soft", min: 4.5, use: "Chú thích trên dải chặng tím nhạt" },
+  { fg: "plum", bg: "plum-soft", min: 4.5, use: "Số chặng tím trên dải tím nhạt" },
+  { fg: "plum", bg: "paper", min: 4.5, use: "Chữ tím trên thẻ trắng" },
+  { fg: "ink-2", bg: "gold-soft", min: 4.5, use: "Chữ phụ trên dải chặng cuối" },
+  { fg: "on-brand", bg: "plum", min: 4.5, use: "Chữ trắng trên dải chặng 16+" },
+  { fg: "plum-soft", bg: "plum", min: 4.5, use: "Chữ phụ trên dải chặng 16+" },
+  { fg: "ink", bg: "lemon", min: 4.5, use: "Số chặng trên cột mốc vàng chanh" },
+  { fg: "ink-2", bg: "lemon", min: 4.5, use: "Chữ phụ trên khối vàng chanh" },
+  { fg: "on-brand", bg: "gold", min: 4.5, use: "Chữ trắng trên khối vàng đồng" },
+  { fg: "on-brand-2", bg: "gold", min: 4.5, use: "Chữ phụ trên khối vàng đồng" },
+  { fg: "lemon", bg: "plum", min: 4.5, use: "Tuổi của chặng 16+ (chữ vàng chanh trên nền tím)" },
 ];

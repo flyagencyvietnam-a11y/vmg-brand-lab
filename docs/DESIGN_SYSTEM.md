@@ -16,7 +16,7 @@ Bộ nhận diện này là bản 2021 của VMG English. Bản cho hệ thống
 
 - **Màu thô** ở `:root` (`--vmg-red-600`...). **Vai trò** ở `@theme static` (`--color-brand`...). Giao diện chỉ dùng vai trò: `bg-brand`, `text-ink-2`, `border-line`, `bg-paper`, `bg-surface`... **Không dùng mã hex trong component.**
 - Hai mã chính thức: đỏ Pantone 200C `#be202f`, vàng đồng Pantone 871C `#8b672a`. Các sắc nhạt đo từ PDF trang 24 và 2; vàng biểu tượng `#b6924d` đo từ file logo. Sắc đậm `#921824` (hover) và thang mực là suy ra, nhãn "Suy ra" trên trang tài liệu.
-- Chữ: Montserrat Variable (xem "Điều chưa chốt"). Thang: `text-display`, `text-h1`, `text-h2`, `text-h3`, `text-lead`, `text-body`, `text-small`, `text-caption`; tiêu đề đã gắn độ đậm (700 cho Display và H1, 600 cho H2 và H3) và khoảng cách chữ âm nhẹ trong token; lớn nhất khoảng 44 px. Bo góc: `rounded-ctl` (10 px), `rounded-card` (16 px), `rounded-hero` (24 px), `rounded-full` (viên thuốc).
+- Chữ: Montserrat Variable (xem "Điều chưa chốt"). Thang: `text-display`, `text-h1`, `text-h2`, `text-h3`, `text-lead`, `text-body`, `text-small`, `text-caption`; tiêu đề đã gắn độ đậm (700 cho Display và H1, 600 cho H2 và H3) và khoảng cách chữ âm nhẹ trong token; lớn nhất khoảng 44 px. Bo góc: `rounded-ctl` (16 px), `rounded-card` (28 px), `rounded-hero` (40 px), `rounded-full` (viên thuốc). Cỡ `text-mega` (tối đa 80 px) chỉ cho tiêu đề đầu trang và con số nổi bật.
 - Nền thẻ mặc định là `paper` (trắng). Tông nhạt (`brand-soft` hồng nhạt, `sunken`, `surface` kem) chỉ làm điểm nhấn hiếm hoặc nền trạng thái.
 - Muốn thêm hoặc sửa token: sửa `app/globals.css` **và** `lib/design/tokens.ts`. `tests/unit/design-tokens.test.ts` báo lỗi nếu hai nơi lệch nhau, hoặc nếu một cặp chữ và nền dưới 4,5:1.
 
@@ -32,6 +32,10 @@ Bản trước (thân thiện: bo 24 px, thẻ tông xen kẽ, hình tròn mờ,
 | Khối mở trang bo 32 px, trang chặng cũng khối đỏ | Khối đỏ gọn bo 24 px ở trang chủ hành trình và đăng nhập; trang chặng dùng đầu trang không nền |
 | Mục đang chọn là viên đỏ đặc | Mục đang chọn là viên hồng nhạt chữ đỏ |
 | Ô nhập cao 56 px, viền 2 px; điểm đánh số lớn có viền | Ô nhập cao 48 px, viền 1 px; điểm đánh số 28 px không viền, đường nối 1 px |
+
+**Ngoại lệ có chủ đích: màu theo chặng** (D-034). Hành trình dùng dải nền phẳng theo chặng (`lib/design/stage-theme.ts`): vàng chanh, tím nhạt, hồng nhạt, tím đậm, kem; đường dọc và cột mốc cùng tông. Vẫn không họa tiết và không ảnh trang trí. Hai màu mới (`lemon`, `plum`) từ bộ màu website, ghi N14; vàng chanh chỉ làm đường dọc và cột mốc, không làm chữ trên nền trắng.
+
+**Bản đồ toàn cảnh** (D-035) dùng màu thẻ theo poster (`lib/design/journey-palette.ts`, ghi N15): chữ trên mọi nền thẻ đạt 4,5:1 (test), nhãn trong thẻ 12 đến 14 px ở cỡ thật và co theo mức phóng; vì vậy luôn có chế độ "Theo độ tuổi" cỡ chữ đầy đủ cho người đọc trên màn hình nhỏ.
 
 **Vẫn không bóng đổ** (spec 4.4, PDF trang 35). Khoảng trắng, cỡ chữ và đường kẻ mảnh tạo nhịp thay cho trang trí.
 

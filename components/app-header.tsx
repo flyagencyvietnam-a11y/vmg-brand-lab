@@ -7,7 +7,9 @@ import { NavFallback, NavLinks, type NavItem } from "./nav-links";
 
 const ITEMS: NavItem[] = [
   { href: "/", label: vi.nav.home, match: "/" },
-  { href: "/brand/journey", label: vi.nav.brand, match: "/brand" },
+  { href: "/brand/journey", label: vi.nav.journey, match: "/brand/journey" },
+  { href: "/brand/brands", label: vi.nav.brands, match: "/brand/", exclude: ["/brand/journey", "/brand/products"] },
+  { href: "/brand/products", label: vi.nav.products, match: "/brand/products" },
   { href: "/design-system", label: vi.nav.designSystem, match: "/design-system" },
 ];
 

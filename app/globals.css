@@ -5,7 +5,8 @@
  * Mô tả đầy đủ: /design-system và docs/DESIGN_SYSTEM.md. Test tests/unit/design-tokens.test.ts đọc
  * các giá trị ở đây để kiểm tra mã màu khớp tài liệu và tương phản chữ >= 4,5:1.
  *
- * Ngôn ngữ: đúng nhận diện (đỏ và vàng đồng, chữ hình học) nhưng nhẹ, gọn và tinh. Nền trơn, không họa tiết.
+ * Ngôn ngữ: đúng nhận diện (đỏ, vàng đồng, chữ hình học), hiện đại và đậm: khối màu bo lớn xếp kiểu bento, chữ tiêu đề
+ * cực lớn, nút mũi tên tròn. Không họa tiết, không ảnh trang trí giả.
  * Không bóng đổ, chữ viền, 3D hay phản chiếu (spec 4.4): chiều sâu đến từ tông nền xen kẽ và viền mảnh.
  * Chữ cỡ vừa, độ đậm vừa phải. Căn trái. IN HOA chỉ cho nhãn nhỏ; tiêu đề viết hoa kiểu câu.
  */
@@ -31,6 +32,13 @@
   --vmg-gold-100: #f1ebe4; /* nền ấm, đo từ PDF */
   --vmg-gold-50: #fbf9f5; /* nền kem, đo từ PDF */
 
+  /* Màu theo chặng của hành trình (dải nền, cột mốc). Lấy từ bộ màu website VMG (vàng chanh, tím); chưa có trong
+     Brand Identity PDF, nên chỉ dùng để phân chặng, không dùng làm màu thương hiệu. Sắc nhạt là suy ra. */
+  --vmg-lemon-400: #e9e24a;
+  --vmg-lemon-100: #fbf9d6;
+  --vmg-plum-700: #3d2a6d;
+  --vmg-plum-100: #e7e0f5;
+
   /* Trung tính ấm. 900 là màu chữ chính theo spec 4.4. */
   --vmg-ink-900: #2a2420;
   --vmg-ink-700: #4a433e;
@@ -55,6 +63,10 @@
   --color-gold: var(--vmg-gold-700); /* chữ vàng đồng trên nền sáng */
   --color-gold-mark: var(--vmg-gold-400); /* chỉ trang trí: biểu tượng, đường kẻ nhấn */
   --color-gold-soft: var(--vmg-gold-100);
+  --color-lemon: var(--vmg-lemon-400); /* chỉ trang trí: đường dọc, cột mốc. Không dùng cho chữ trên nền trắng */
+  --color-lemon-soft: var(--vmg-lemon-100);
+  --color-plum: var(--vmg-plum-700);
+  --color-plum-soft: var(--vmg-plum-100);
   --color-ink: var(--vmg-ink-900);
   --color-ink-2: var(--vmg-ink-700);
   --color-ink-3: var(--vmg-ink-500);
@@ -70,16 +82,21 @@
      là bản thay thế hình học gần nhất; đổi font chỉ cần sửa dòng này. */
   --font-sans: "Montserrat Variable", Arial, system-ui, sans-serif;
 
-  /* Hình khối gọn: bo góc vừa, nút và nhãn dạng viên thuốc. */
-  --radius-ctl: 0.625rem;
-  --radius-card: 1rem;
-  --radius-hero: 1.5rem;
+  /* Hình khối đậm: bo góc lớn, thẻ thành khối màu (bento), nút và nhãn dạng viên thuốc, nút mũi tên tròn. */
+  --radius-ctl: 1rem;
+  --radius-card: 1.75rem;
+  --radius-hero: 2.5rem;
 
   /* Thang chữ. Chữ nội dung >= 16 px (spec 4.4); chữ phụ >= 14 px. Cỡ vừa, độ đậm 600 đến 700, chữ chặt nhẹ. */
   --text-display: clamp(1.875rem, 1.4rem + 1.9vw, 2.75rem);
   --text-display--line-height: 1.12;
   --text-display--letter-spacing: -0.02em;
   --text-display--font-weight: 700;
+  /* Cỡ cực lớn, chỉ cho tiêu đề đầu trang và con số nổi bật (IN HOA, chặt). */
+  --text-mega: clamp(2.25rem, 1rem + 5.4vw, 5rem);
+  --text-mega--line-height: 1;
+  --text-mega--letter-spacing: -0.035em;
+  --text-mega--font-weight: 800;
   --text-h1: clamp(1.5rem, 1.25rem + 1vw, 2rem);
   --text-h1--line-height: 1.2;
   --text-h1--letter-spacing: -0.02em;

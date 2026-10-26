@@ -1,7 +1,7 @@
 /* Seed Giai đoạn 0 (spec 7.4 bước 1 và 8, Phụ lục G.5).
  *
  *   npm run seed -- --dry-run   kiểm tra file seed, không cần Supabase
- *   npm run seed                nạp feature_flags, brands, journey_*
+ *   npm run seed                nạp feature_flags, brands (kèm hồ sơ Brand Book), products, journey_*
  *   npm run seed -- --force     nạp lại (ghi đè trường nguồn của brands, journey_*)
  *
  * Idempotent: chạy lại không nhân đôi dữ liệu. Mặc định bỏ qua phần đã nạp để không ghi đè
@@ -15,6 +15,9 @@ import { brandsSeedSchema, buildBrandRows } from "../../lib/brands/schema";
 import { parseJourneySeed } from "../../lib/journey/schema";
 import { buildJourneyRows, withBrandIds, withNodeIds } from "../../lib/journey/rows";
 import { validateJourney } from "../../lib/journey/validate";
+import { brandBookSeedSchema, buildBrandProfileUpdates } from "../../lib/brandbook/schema";
+import { matchesHint } from "../../lib/products/parse-portfolio";
+import { buildProductRows, productsSeedSchema } from "../../lib/products/seed";
 
 const root = resolve(__dirname, "../..");
 const args = new Set(process.argv.slice(2));
@@ -66,6 +69,37 @@ async function seedBrands(db: SupabaseClient, brandsRaw: unknown) {
   }
   console.log(`brands: thêm ${fresh.length}, đã có ${brands.length - fresh.length}${force ? " (đã cập nhật)" : ""}`);
   return idBySlug;
+}
+
+async function seedProducts(db: SupabaseClient, productsRaw: unknown, brandIdBySlug: Map<string, string>) {
+  const rows = buildProductRows(productsSeedSchema.parse(productsRaw), brandIdBySlug);
+  const existing = must(await db.from("products").select("code"), "products (đọc)") as { code: string }[];
+  const have = new Set(existing.map((p) => p.code));
+
+  // Sản phẩm mới vào ở trạng thái draft (mặc định của cột). Sản phẩm đã có chỉ cập nhật khi --force
+  // và chỉ trường nguồn: không đụng status, effective_*, owner (spec 9.1).
+  const fresh = rows.filter((r) => !have.has(r.code));
+  if (fresh.length > 0) must(await db.from("products").insert(fresh), "products (thêm)");
+  if (force) {
+    const current = rows.filter((r) => have.has(r.code));
+    if (current.length > 0) must(await db.from("products").upsert(current, { onConflict: "code" }), "products (cập nhật)");
+  }
+  console.log(`products: thêm ${fresh.length}, đã có ${rows.length - fresh.length}${force ? " (đã cập nhật)" : ""}`);
+}
+
+async function seedBrandProfiles(db: SupabaseClient, raw: unknown) {
+  const seed = brandBookSeedSchema.parse(raw);
+  // Hồ sơ thương hiệu: chỉ điền thương hiệu chưa có hồ sơ, trừ khi --force (không ghi đè chỉnh sửa của quản trị).
+  const brands = must(await db.from("brands").select("slug, profile"), "brands (đọc hồ sơ)") as { slug: string; profile: Record<string, unknown> }[];
+  const hasProfile = new Map(brands.map((b) => [b.slug, Object.keys(b.profile ?? {}).length > 0]));
+  let updated = 0;
+  for (const u of buildBrandProfileUpdates(seed)) {
+    if (!hasProfile.has(u.slug)) throw new Error(`brand_book: thương hiệu '${u.slug}' không có trong brands`);
+    if (hasProfile.get(u.slug) && !force) continue;
+    must(await db.from("brands").update({ role_summary: u.role_summary, voice_profile: u.voice_profile, profile: u.profile }).eq("slug", u.slug), `brands.profile (${u.slug})`);
+    updated += 1;
+  }
+  console.log(`brand_book: cập nhật hồ sơ ${updated} thương hiệu`);
 }
 
 async function seedJourney(db: SupabaseClient, journeyRaw: unknown, brandIdBySlug: Map<string, string>) {
@@ -138,6 +172,8 @@ async function seedJourney(db: SupabaseClient, journeyRaw: unknown, brandIdBySlu
 async function main() {
   const brandsRaw = readJson("seed/brands.json");
   const journeyRaw = readJson("seed/journey.json");
+  const productsRaw = readJson("seed/products.json");
+  const brandBookRaw = readJson("seed/brand-book.json");
 
   const brandsSeed = brandsSeedSchema.parse(brandsRaw);
   const brandSlugs = new Set(brandsSeed.brands.map((b) => b.slug));
@@ -146,7 +182,27 @@ async function main() {
     console.error(`seed/journey.json không hợp lệ:\n- ${errors.join("\n- ")}`);
     process.exit(1);
   }
-  console.log("seed/journey.json và seed/brands.json hợp lệ");
+  // Kiểm tra seed sản phẩm: đúng cấu trúc, thương hiệu có thật, và mọi mã gợi ý của ô hành trình trỏ tới ít nhất một sản phẩm.
+  const productsSeed = productsSeedSchema.parse(productsRaw);
+  const productErrors = [
+    ...productsSeed.products.flatMap((p) => (p.brand_slug && !brandSlugs.has(p.brand_slug) ? [`${p.code}: thương hiệu '${p.brand_slug}' không có`] : [])),
+    ...parseJourneySeed(journeyRaw).nodes.flatMap((n) =>
+      n.product_code_hints.flatMap((hint) =>
+        productsSeed.products.some((p) => matchesHint(p.code, hint)) ? [] : [`ô ${n.code}: mã gợi ý '${hint}' không có trong danh mục sản phẩm`],
+      ),
+    ),
+  ];
+  if (productErrors.length > 0) {
+    console.error(`seed/products.json không hợp lệ:\n- ${productErrors.join("\n- ")}`);
+    process.exit(1);
+  }
+  const brandBookSeed = brandBookSeedSchema.parse(brandBookRaw);
+  const bookErrors = Object.keys(brandBookSeed.brands).filter((s) => !brandSlugs.has(s)).map((s) => `brand-book: thương hiệu '${s}' không có trong seed/brands.json`);
+  if (bookErrors.length > 0) {
+    console.error(`seed/brand-book.json không hợp lệ:\n- ${bookErrors.join("\n- ")}`);
+    process.exit(1);
+  }
+  console.log(`seed/journey.json, brands.json, products.json (${productsSeed.products.length} sản phẩm), brand-book.json (${Object.keys(brandBookSeed.brands).length} hồ sơ thương hiệu) hợp lệ`);
   if (dryRun) return;
 
   const url = process.env.NEXT_PUBLIC_SUPABASE_URL;
@@ -159,6 +215,8 @@ async function main() {
 
   await seedFlags(db, brandsSeed.feature_flags);
   const brandIdBySlug = await seedBrands(db, brandsRaw);
+  await seedProducts(db, productsRaw, brandIdBySlug);
+  await seedBrandProfiles(db, brandBookRaw);
   await seedJourney(db, journeyRaw, brandIdBySlug);
 }
 

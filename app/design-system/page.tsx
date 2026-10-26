@@ -17,6 +17,7 @@ import {
   redScale,
   roleHex,
   roles,
+  stageScale,
   type Provenance,
   type Swatch,
 } from "@/lib/design/tokens";
@@ -162,6 +163,7 @@ export default function DesignSystemPage() {
               <SwatchRow title="Đỏ" items={redScale} />
               <SwatchRow title="Vàng đồng và nền" items={goldScale} />
               <SwatchRow title="Mực và đường kẻ" items={inkScale} />
+              <SwatchRow title="Màu theo chặng (hành trình)" items={stageScale} />
             </div>
 
             <div className="flex flex-col gap-6">

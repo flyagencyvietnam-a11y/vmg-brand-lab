@@ -4,6 +4,8 @@ import { PGlite } from "@electric-sql/pglite";
 import { brandsSeedSchema, buildBrandRows } from "@/lib/brands/schema";
 import { parseJourneySeed } from "@/lib/journey/schema";
 import { buildJourneyRows, withBrandIds, withNodeIds } from "@/lib/journey/rows";
+import { brandBookSeedSchema, buildBrandProfileUpdates } from "@/lib/brandbook/schema";
+import { buildProductRows, productsSeedSchema } from "@/lib/products/seed";
 
 const root = resolve(import.meta.dirname, "../..");
 const readJson = (file: string): unknown => JSON.parse(readFileSync(resolve(root, file), "utf8"));
@@ -39,7 +41,7 @@ export const USERS = {
   owner: "00000000-0000-4000-8000-000000000007",
 } as const;
 
-const JSONB_COLUMNS = new Set(["outcomes", "sublanes", "timed_notes", "extra", "value", "voice_profile"]);
+const JSONB_COLUMNS = new Set(["outcomes", "sublanes", "timed_notes", "extra", "value", "voice_profile", "data", "profile"]);
 
 function toParam(column: string, value: unknown): unknown {
   if (value === null || value === undefined) return null;
@@ -79,6 +81,18 @@ export async function seedAll(db: PGlite): Promise<void> {
   const brandIds = new Map(
     (await db.query<{ id: string; slug: string }>(`select id, slug from public.brands`)).rows.map((b) => [b.slug, b.id]),
   );
+
+  await insertRows(db, "products", buildProductRows(productsSeedSchema.parse(readJson("seed/products.json")), brandIds));
+
+  const book = brandBookSeedSchema.parse(readJson("seed/brand-book.json"));
+  for (const u of buildBrandProfileUpdates(book)) {
+    await db.query(`update public.brands set role_summary = $2, voice_profile = $3, profile = $4 where slug = $1`, [
+      u.slug,
+      u.role_summary,
+      JSON.stringify(u.voice_profile),
+      JSON.stringify(u.profile),
+    ]);
+  }
 
   const rows = buildJourneyRows(parseJourneySeed(readJson("seed/journey.json")));
   await insertRows(db, "journey_stages", rows.stages);

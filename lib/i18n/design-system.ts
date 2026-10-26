@@ -18,7 +18,7 @@ export const ds = {
   principles: [
     {
       title: "Đỏ và vàng đồng là điểm nhấn",
-      text: "Nền trắng và kem để đọc. Khối đỏ gọn mở trang; vàng đồng chỉ cho nhãn nhỏ và biểu tượng, không đặt chữ vàng lên đỏ.",
+      text: "Nền trắng và kem để đọc. Khối đỏ gọn mở trang; vàng đồng chỉ cho nhãn nhỏ và biểu tượng, không đặt chữ vàng lên đỏ. Riêng hành trình có dải màu theo chặng.",
     },
     {
       title: "Nền trơn, phẳng",
@@ -26,11 +26,11 @@ export const ds = {
     },
     {
       title: "Chữ nhẹ, vừa phải",
-      text: "Tiêu đề lớn nhất khoảng 44 px: Bold cho tiêu đề trang, SemiBold cho phần còn lại. Không IN HOA tên sản phẩm; chỉ nhãn rất nhỏ mới in hoa. Nội dung 16 px, Regular.",
+      text: "Tiêu đề đầu trang IN HOA cỡ lớn (tối đa 80 px, ExtraBold, chặt); các tiêu đề khác Bold hoặc SemiBold, viết hoa kiểu câu. Không IN HOA tên sản phẩm. Nội dung 16 px, Regular.",
     },
     {
       title: "Thành phần mảnh",
-      text: "Viền 1 px, bo góc vừa (10 px thành phần, 16 px thẻ, 24 px khối mở trang), nút và ô nhập dạng viên thuốc cao 44 đến 48 px. Thẻ chỉ đổi viền khi di chuột.",
+      text: "Khối màu bo lớn (16 px thành phần, 28 px thẻ, 40 px khối mở trang) xếp kiểu bento; nút, nhãn, ô nhập dạng viên thuốc; nút mũi tên tròn. Khối chỉ nâng nhẹ và xoay mũi tên khi di chuột.",
     },
     {
       title: "Căn trái, tiêu đề viết hoa kiểu câu",
@@ -104,14 +104,14 @@ export const ds = {
     badges: "Nhãn",
     badgeLabels: { neutral: "Mặc định", pending: "Chờ xác nhận", gold: "Vàng đồng", brand: "Hồng", soft: "Vàng nhạt", onBrand: "Trên nền đỏ" },
     cards: "Thẻ",
-    cardsText: "Bo góc 16 px, viền 1 px, không bóng đổ. Mặc định nền trắng; tông hồng nhạt chỉ làm điểm nhấn hiếm, thẻ đỏ gần như không dùng.",
+    cardsText: "Bo góc 28 px, không bóng đổ. Thẻ là khối màu một sắc (Tile): đỏ, tím, vàng chanh, vàng đồng cho điểm nhấn; hồng nhạt, tím nhạt, kem, cát, trắng cho khối nền.",
     toneLabels: { paper: "Trắng", blush: "Hồng nhạt", champagne: "Vàng nhạt", cream: "Kem", brand: "Đỏ" },
     cardSample: { title: "Thẻ phẳng", text: "Viền mảnh, bo góc lớn, không bóng đổ." },
     cardLinkSample: { title: "Thẻ liên kết", text: "Nâng 2 px và đổi viền sang đỏ khi di chuột hoặc tập trung bàn phím." },
     bubbles: "Icon trong khối tròn",
     shapes: "Hình khối",
-    shapesText: "Ba mức bo góc: thành phần (10 px), thẻ (16 px), khối mở trang (24 px); nút và ô nhập dạng viên thuốc.",
-    shapeLabels: { ctl: "Thành phần 10 px", card: "Thẻ 16 px", hero: "Khối mở trang 24 px", pill: "Viên thuốc" },
+    shapesText: "Ba mức bo góc: thành phần (16 px), thẻ (28 px), khối mở trang (40 px); nút và ô nhập dạng viên thuốc.",
+    shapeLabels: { ctl: "Thành phần 16 px", card: "Thẻ 28 px", hero: "Khối mở trang 40 px", pill: "Viên thuốc" },
     motion: "Chuyển động",
     motionText: "Hiện dần khi vào trang (0,5 giây, trễ lần lượt), thẻ liên kết nâng 2 px, mũi tên trên nút trượt. Tất cả tắt khi người dùng chọn giảm chuyển động.",
     motionSample: "Di chuột vào thẻ này",

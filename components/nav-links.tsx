@@ -4,7 +4,14 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import type { ReactNode } from "react";
 
-export type NavItem = { href: string; label: string; /** Đang chọn khi đường dẫn bắt đầu bằng tiền tố này. */ match: string };
+export type NavItem = {
+  href: string;
+  label: string;
+  /** Đang chọn khi đường dẫn bắt đầu bằng tiền tố này. */
+  match: string;
+  /** ...trừ khi cũng bắt đầu bằng một trong các tiền tố này (ví dụ /brand/<slug> là thương hiệu, không phải hành trình). */
+  exclude?: string[];
+};
 
 const LINK =
   "inline-flex min-h-11 items-center rounded-full px-3.5 text-small font-medium whitespace-nowrap transition-colors duration-200";
@@ -19,7 +26,7 @@ function NavList({
   isActive: (item: NavItem) => boolean;
 }): ReactNode {
   return (
-    <nav aria-label={label} className="min-w-0 overflow-x-auto">
+    <nav aria-label={label} className="min-w-0 overflow-x-auto [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
       <ul className="flex gap-0.5">
         {items.map((item) => {
           const active = isActive(item);
@@ -44,7 +51,11 @@ function NavList({
 export function NavLinks({ items, label }: { items: NavItem[]; label: string }) {
   const pathname = usePathname();
   return (
-    <NavList items={items} label={label} isActive={(item) => (item.match === "/" ? pathname === "/" : pathname.startsWith(item.match))} />
+    <NavList items={items} label={label} isActive={(item) =>
+        item.match === "/"
+          ? pathname === "/"
+          : pathname.startsWith(item.match) && !(item.exclude ?? []).some((x) => pathname.startsWith(x))
+      } />
   );
 }
 

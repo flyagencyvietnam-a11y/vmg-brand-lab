@@ -58,6 +58,8 @@ export type JourneyNode = {
   decisionPending: boolean;
   extra: Record<string, string>;
   sort: number;
+  /** Mã sản phẩm gợi ý trong danh mục (có thể kết thúc bằng "*"). Điền sau bởi withProductHints; chưa xác nhận là mã chính thức. */
+  productHints: string[];
   /** Chỉ audience "editor" mới có hai trường dưới (spec 6.1.1, 7.3). */
   verifyNote: string | null;
   brandNote: string | null;
@@ -160,6 +162,7 @@ export function toNode(row: NodeSourceRow, audience: Audience, today: string): J
     decisionPending: row.decision_pending,
     extra: (row.extra ?? {}) as Record<string, string>,
     sort: row.sort,
+    productHints: [],
     verifyNote: audience === "editor" ? (row.verify_note ?? null) : null,
     brandNote: audience === "editor" ? (row.brand_note ?? null) : null,
   };
@@ -208,4 +211,11 @@ export function nodeMatches(node: JourneyNode, query: string): boolean {
   const q = normalizeVi(query.trim());
   if (q === "") return false;
   return normalizeVi([node.code, node.productName, node.itemName ?? ""].join(" ")).includes(q);
+}
+
+/** Gắn mã sản phẩm gợi ý vào các ô (hai nguồn: bảng journey_node_products hoặc seed). */
+export function withProductHints(map: JourneyMap, hints: { node_code: string; product_code_hint: string }[]): JourneyMap {
+  const byNode = new Map<string, string[]>();
+  for (const h of hints) byNode.set(h.node_code, [...(byNode.get(h.node_code) ?? []), h.product_code_hint]);
+  return { ...map, nodes: map.nodes.map((n) => ({ ...n, productHints: byNode.get(n.code) ?? [] })) };
 }

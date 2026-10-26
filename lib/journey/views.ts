@@ -239,3 +239,28 @@ export function buildSearchItems(map: JourneyMap): SearchItem[] {
       lineName: lineName.get(n.lineKey) ?? "",
     }));
 }
+
+export type LadderStep = { code: string; label: string; exam: boolean };
+export type Ladder = { title: string; brandSlug: string | null; steps: LadderStep[] };
+
+/**
+ * Các lộ trình theo bước của một line trong một chặng, rút gọn cho bản tổng quan: tên sản phẩm và tên từng cấp.
+ * Chỉ lấy lộ trình đã có trong dữ liệu (chuỗi `sequence`); thẻ đơn và ghi chú không vào đây.
+ */
+export function lineLadders(map: JourneyMap, line: JourneyLine, stageKey: string): Ladder[] {
+  const section = buildLineSection(map, line, stageKey);
+  if (!section) return [];
+  return section.lanes.flatMap((lane) =>
+    lane.blocks
+      .filter((b): b is PathBlock => b.kind === "path")
+      .map((b) => ({
+        title: b.title,
+        brandSlug: b.brandSlug,
+        steps: b.nodes.map((n) => ({
+          code: n.code,
+          label: n.itemName ?? n.productName,
+          exam: n.kind === "exam",
+        })),
+      })),
+  );
+}

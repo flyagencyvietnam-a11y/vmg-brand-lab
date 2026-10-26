@@ -169,15 +169,17 @@ describe("seed/brands.json", () => {
     expect(rows.filter((b) => !b.row.confirmed).map((b) => b.row.slug)).toEqual(["vmg-e-academy"]);
   });
 
-  it("chỉ dùng mã màu chính thức đã nêu ở spec (TESOL, VMP, VMG)", () => {
+  it("màu thương hiệu theo spec và Brand Book v0.2 mục 4.2 (TESOL, VMP, e-Academy; VMG English, IELTS, Tiếng Trung, EduNext dùng đỏ VMG)", () => {
     const colors = Object.fromEntries(
       rows.filter((b) => b.row.color_primary).map((b) => [b.row.slug, [b.row.color_primary, b.row.color_secondary]]),
     );
     expect(colors["vmg-tesol"]).toEqual(["#012A9E", null]);
     expect(colors["vmp"]).toEqual(["#29338D", "#F69220"]);
+    expect(colors["vmg-e-academy"]).toEqual(["#0E7C86", null]);
+    for (const slug of ["vmg-english", "vmg-ielts", "vmg-chinese", "edunext"]) expect(colors[slug], slug).toEqual(["#BE202F", null]);
+    // UpLearn: "Tím" nhưng chưa có mã (Q4); VMT: nền trắng viền vàng đồng, không có màu riêng.
     expect(colors["uplearn"]).toBeUndefined();
-    expect(colors["edunext"]).toBeUndefined();
-    expect(colors["vmg-e-academy"]).toBeUndefined();
+    expect(colors["vmt"]).toBeUndefined();
   });
 
   it("thương hiệu thành viên có thương hiệu mẹ là vmg", () => {
