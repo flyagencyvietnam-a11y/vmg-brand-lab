@@ -46,6 +46,7 @@ async function Stage({ params }: { params: Promise<{ key: string }> }) {
   return (
     <>
       <Hero
+        tone="plain"
         eyebrow={
           <span className="flex flex-wrap items-center gap-3">
             <Link href="/brand/journey" className="inline-flex min-h-11 items-center gap-2 underline-offset-4 hover:underline">
@@ -54,37 +55,39 @@ async function Stage({ params }: { params: Promise<{ key: string }> }) {
             </Link>
             <span aria-hidden>·</span>
             <span>{`${vi.journey.stageOf} ${index + 1}/${stages.length}`}</span>
-            {map.audience === "editor" ? <Badge tone="on-brand">{vi.journey.editorBadge}</Badge> : null}
+            {map.audience === "editor" ? <Badge tone="gold">{vi.journey.editorBadge}</Badge> : null}
           </span>
         }
         title={stage.ageLabel}
-        lead={<span className="font-semibold uppercase">{stage.title}</span>}
+        lead={stage.title}
       >
         {stage.decider ? (
           <p>
-            <Badge tone="on-brand">
-              <Icon name="user" className="size-4" />
+            <Badge tone="neutral">
+              <Icon name="user" className="mt-0.5 size-4 shrink-0" />
               {stage.decider}
             </Badge>
           </p>
         ) : null}
-        {stage.note ? <p className="max-w-2xl text-small text-on-brand-2">{stage.note}</p> : null}
+        {stage.note ? <p className="max-w-2xl text-small text-ink-2">{stage.note}</p> : null}
       </Hero>
 
-      <div className="mx-auto flex w-full max-w-6xl flex-col gap-8 px-4 py-10 md:grid md:grid-cols-[13.5rem_minmax(0,1fr)] md:gap-12">
+      <div className="mx-auto flex w-full max-w-6xl flex-col gap-8 px-4 py-8 md:grid md:grid-cols-[14rem_minmax(0,1fr)] md:gap-10">
         <StageNav stages={stages} current={stage.key} />
 
         <div className="flex min-w-0 flex-col gap-14">
           {stage.outcomes.length > 0 ? (
             <section aria-labelledby="outcomes-heading" className="flex flex-col gap-5">
               <SectionHeading id="outcomes-heading" title={vi.journey.outcomes} />
-              <ul className="grid gap-x-8 gap-y-3 md:grid-cols-2">
-                {stage.outcomes.map((o) => (
-                  <li key={o} className="flex gap-3">
-                    <span className="mt-0.5 flex size-6 shrink-0 items-center justify-center rounded-full bg-brand-soft text-brand">
-                      <Icon name="check" className="size-4" />
-                    </span>
-                    <span>{o}</span>
+              <ul className="grid gap-3 md:grid-cols-2">
+                {stage.outcomes.map((o, i) => (
+                  <li key={o} className="animate-rise" style={{ animationDelay: `${i * 60}ms` }}>
+                    <Card tone="blush" className="flex h-full gap-3 p-4">
+                      <span className="flex size-7 shrink-0 items-center justify-center rounded-full bg-brand text-on-brand">
+                        <Icon name="check" className="size-4" />
+                      </span>
+                      <span>{o}</span>
+                    </Card>
                   </li>
                 ))}
               </ul>
@@ -103,7 +106,7 @@ async function Stage({ params }: { params: Promise<{ key: string }> }) {
                   <li key={`${t.from.code}>${t.to.code}`}>
                     <CardLink
                       href={`/brand/journey/stage/${t.toStage}#${t.to.code}`}
-                      className="flex items-center justify-between gap-4 p-4"
+                      className="flex items-center justify-between gap-4 p-5"
                     >
                       <span className="flex flex-col">
                         <span className="text-small text-ink-3">{lineShortName(t.line)}</span>
@@ -121,7 +124,7 @@ async function Stage({ params }: { params: Promise<{ key: string }> }) {
             </section>
           ) : null}
 
-          <Card className="flex items-start gap-3 bg-sunken p-4 text-small text-ink-2">
+          <Card tone="champagne" className="flex items-start gap-3 p-4 text-small text-ink-2">
             <Badge tone="pending">{vi.journey.pending}</Badge>
             <span className="pt-0.5">{vi.journey.legend}</span>
           </Card>

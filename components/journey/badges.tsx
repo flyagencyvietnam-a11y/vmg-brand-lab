@@ -7,7 +7,7 @@ export function BrandBadge({ brand }: { brand: JourneyBrand }) {
     <Badge>
       <span
         aria-hidden
-        className="inline-block size-2.5 rounded-full border border-line-strong"
+        className="mt-1.5 inline-block size-2.5 shrink-0 rounded-full border border-line-strong"
         style={brand.colorPrimary ? { backgroundColor: brand.colorPrimary } : undefined}
       />
       {brand.name}

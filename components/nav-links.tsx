@@ -2,17 +2,25 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-
 import type { ReactNode } from "react";
 
 export type NavItem = { href: string; label: string; /** Đang chọn khi đường dẫn bắt đầu bằng tiền tố này. */ match: string };
 
-const LINK = "relative inline-flex min-h-16 items-center px-3 text-small font-semibold transition-colors after:absolute after:inset-x-3 after:bottom-0 after:h-0.5";
+const LINK =
+  "inline-flex min-h-11 items-center rounded-full px-3.5 text-small font-medium whitespace-nowrap transition-colors duration-200";
 
-function NavList({ items, label, isActive }: { items: NavItem[]; label: string; isActive: (item: NavItem) => boolean }): ReactNode {
+function NavList({
+  items,
+  label,
+  isActive,
+}: {
+  items: NavItem[];
+  label: string;
+  isActive: (item: NavItem) => boolean;
+}): ReactNode {
   return (
-    <nav aria-label={label} className="-mx-1 overflow-x-auto">
-      <ul className="flex">
+    <nav aria-label={label} className="min-w-0 overflow-x-auto">
+      <ul className="flex gap-0.5">
         {items.map((item) => {
           const active = isActive(item);
           return (
@@ -20,7 +28,7 @@ function NavList({ items, label, isActive }: { items: NavItem[]; label: string; 
               <Link
                 href={item.href}
                 aria-current={active ? "page" : undefined}
-                className={`${LINK} ${active ? "text-brand after:bg-brand" : "text-ink-2 hover:text-brand after:bg-transparent"}`}
+                className={`${LINK} ${active ? "bg-brand-soft text-brand" : "text-ink-2 hover:bg-sunken hover:text-ink"}`}
               >
                 {item.label}
               </Link>
@@ -35,7 +43,9 @@ function NavList({ items, label, isActive }: { items: NavItem[]; label: string; 
 /** Đánh dấu mục đang chọn theo đường dẫn. Phải đặt trong Suspense (Cache Components); xem NavFallback. */
 export function NavLinks({ items, label }: { items: NavItem[]; label: string }) {
   const pathname = usePathname();
-  return <NavList items={items} label={label} isActive={(item) => (item.match === "/" ? pathname === "/" : pathname.startsWith(item.match))} />;
+  return (
+    <NavList items={items} label={label} isActive={(item) => (item.match === "/" ? pathname === "/" : pathname.startsWith(item.match))} />
+  );
 }
 
 /** Hiển thị trong lúc chờ đường dẫn: cùng giao diện, chưa đánh dấu mục đang chọn. */

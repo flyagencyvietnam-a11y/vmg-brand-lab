@@ -82,9 +82,9 @@ describe("trang báo lỗi /config-error", () => {
     expect(body).not.toMatch(/NEXT_PUBLIC|SUPABASE|Supabase|Vercel|\.env/);
   });
 
-  it("chỉ dùng hai tệp tĩnh có sẵn trong public/brand, không gọi tài nguyên nào khác", async () => {
+  it("chỉ dùng một tệp tĩnh có sẵn trong public/brand, không gọi tài nguyên nào khác", async () => {
     const body = await GET().text();
     const urls = new Set([...body.matchAll(/(?:src="|url\()(\/[\w./-]+)/g)].map((m) => m[1]));
-    expect(urls).toEqual(new Set(["/brand/vmg-pattern.svg", "/brand/vmg-symbol.svg"]));
+    expect(urls).toEqual(new Set(["/brand/vmg-symbol.svg"]));
   });
 });

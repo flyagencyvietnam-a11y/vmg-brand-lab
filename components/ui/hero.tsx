@@ -1,30 +1,60 @@
 import type { ReactNode } from "react";
-import { Ornament, PatternLayer } from "./brand-art";
 
 /**
- * Dải mở trang trên nền đỏ VMG (mô phỏng trang mở chương của bộ nhận diện).
- * Tiêu đề trắng: chữ vàng trên nền đỏ không đủ tương phản, vàng chỉ làm họa tiết.
+ * Đầu trang, nền trơn (không họa tiết). Hai kiểu:
+ * - `brand`: khối đỏ VMG gọn, chữ trắng (chữ vàng trên đỏ không đủ tương phản).
+ * - `plain`: không khối nền, tiêu đề mực trên nền trang; đỏ chỉ ở nhãn và điểm nhấn.
  */
 export function Hero({
+  tone = "brand",
   eyebrow,
   title,
   lead,
   children,
 }: {
+  tone?: "brand" | "plain";
   eyebrow?: ReactNode;
   title: ReactNode;
   lead?: ReactNode;
   children?: ReactNode;
 }) {
+  const brand = tone === "brand";
   return (
-    <section className="on-brand relative isolate overflow-hidden bg-brand text-on-brand">
-      <PatternLayer />
-      <Ornament />
-      <div className="relative mx-auto flex w-full max-w-6xl flex-col gap-4 px-4 py-10 md:py-14">
-        {eyebrow ? <div className="text-small font-semibold uppercase tracking-caps text-on-brand-2">{eyebrow}</div> : null}
-        <h1 className="max-w-3xl text-display font-bold uppercase">{title}</h1>
-        {lead ? <p className="max-w-2xl text-body text-on-brand-2 md:text-h3">{lead}</p> : null}
-        {children}
+    <section className="mx-auto w-full max-w-6xl px-4 pt-4">
+      <div
+        className={
+          brand
+            ? "on-brand rounded-hero bg-brand px-6 py-9 text-on-brand md:px-10 md:py-11"
+            : "px-1 py-6 md:py-8"
+        }
+      >
+        <div className="flex max-w-3xl flex-col items-start gap-3">
+          {eyebrow ? (
+            <div
+              className={`animate-rise flex flex-wrap items-center gap-x-3 gap-y-2 text-small font-medium ${
+                brand ? "text-on-brand-2" : "text-gold"
+              }`}
+            >
+              {eyebrow}
+            </div>
+          ) : null}
+          <h1 className="animate-rise text-display" style={{ animationDelay: "60ms" }}>
+            {title}
+          </h1>
+          {lead ? (
+            <p
+              className={`animate-rise text-lead ${brand ? "text-on-brand-2" : "text-ink-2"}`}
+              style={{ animationDelay: "120ms" }}
+            >
+              {lead}
+            </p>
+          ) : null}
+        </div>
+        {children ? (
+          <div className="animate-rise mt-5 w-full" style={{ animationDelay: "180ms" }}>
+            {children}
+          </div>
+        ) : null}
       </div>
     </section>
   );

@@ -3,8 +3,8 @@ import { BrandSymbol } from "./ui/brand-art";
 
 export function AppFooter() {
   return (
-    <footer className="border-t border-line bg-paper">
-      <div className="mx-auto flex w-full max-w-6xl items-center gap-3 px-4 py-5 text-small text-ink-3">
+    <footer className="mx-auto mt-16 w-full max-w-6xl px-4 pb-8">
+      <div className="flex items-center gap-2.5 border-t border-line pt-5 text-small text-ink-3">
         <BrandSymbol className="size-5 shrink-0" />
         <p>{vi.app.footer}</p>
       </div>

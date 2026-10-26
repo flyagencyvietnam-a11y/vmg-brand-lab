@@ -48,11 +48,11 @@ export type Role = { name: string; cssVar: string; usage: string };
 export const roles: Role[] = [
   { name: "brand", cssVar: "--color-brand", usage: "Hành động chính, tiêu đề nhấn, dải hero" },
   { name: "brand-hover", cssVar: "--color-brand-hover", usage: "Hover của nút chính" },
-  { name: "brand-soft", cssVar: "--color-brand-soft", usage: "Nền nhấn nhẹ, chữ phụ trên nền đỏ" },
-  { name: "brand-tint", cssVar: "--color-brand-tint", usage: "Viền và nền nhấn đỏ nhạt" },
+  { name: "brand-soft", cssVar: "--color-brand-soft", usage: "Nền hồng nhạt của thẻ, chữ phụ trên nền đỏ" },
+  { name: "brand-tint", cssVar: "--color-brand-tint", usage: "Nền hồng đậm hơn, viền hồng" },
   { name: "gold", cssVar: "--color-gold", usage: "Chữ vàng đồng trên nền sáng (nhãn, tiêu đề nhỏ)" },
   { name: "gold-mark", cssVar: "--color-gold-mark", usage: "Chỉ trang trí: biểu tượng, đường kẻ nhấn. Không dùng cho chữ" },
-  { name: "gold-soft", cssVar: "--color-gold-soft", usage: "Nền ấm" },
+  { name: "gold-soft", cssVar: "--color-gold-soft", usage: "Nền ấm (vàng nhạt) của thẻ" },
   { name: "ink", cssVar: "--color-ink", usage: "Chữ chính" },
   { name: "ink-2", cssVar: "--color-ink-2", usage: "Chữ phụ" },
   { name: "ink-3", cssVar: "--color-ink-3", usage: "Chú thích, chữ mờ" },
@@ -92,6 +92,7 @@ export type ContrastPair = { fg: string; bg: string; min: number; use: string };
 /** Cặp KHÔNG đạt 4,5:1, không được dùng cho chữ. Ghi ở đây để trang tài liệu và test cùng nói một điều. */
 export const avoidPairs: { fg: string; bg: string; why: string }[] = [
   { fg: "gold", bg: "sunken", why: "Vàng đồng 871C trên nền ấm chỉ đạt khoảng 4,4:1; dùng chữ mực (ink) trên nền lõm" },
+  { fg: "gold", bg: "brand-tint", why: "Vàng đồng 871C trên nền hồng đậm chỉ đạt khoảng 4,1:1; dùng chữ mực hoặc chữ đỏ" },
   { fg: "gold-mark", bg: "paper", why: "Vàng biểu tượng chỉ để trang trí, không đủ tương phản cho chữ" },
   { fg: "gold-mark", bg: "brand", why: "Vàng trên đỏ (tiêu đề vàng trong PDF) không đủ tương phản; dùng chữ trắng, vàng chỉ làm họa tiết" },
 ];
@@ -110,6 +111,15 @@ export const contrastPairs: ContrastPair[] = [
   { fg: "brand-hover", bg: "paper", min: 4.5, use: "Hover của liên kết" },
   { fg: "gold", bg: "paper", min: 4.5, use: "Nhãn vàng đồng trên thẻ" },
   { fg: "gold", bg: "surface", min: 4.5, use: "Nhãn vàng đồng trên nền trang" },
+  { fg: "ink", bg: "brand-soft", min: 4.5, use: "Chữ chính trên thẻ hồng nhạt" },
+  { fg: "ink", bg: "brand-tint", min: 4.5, use: "Chữ chính trên thẻ hồng đậm" },
+  { fg: "ink-2", bg: "brand-soft", min: 4.5, use: "Chữ phụ trên thẻ hồng nhạt" },
+  { fg: "ink-2", bg: "brand-tint", min: 4.5, use: "Chữ phụ trên thẻ hồng đậm" },
+  { fg: "ink-3", bg: "brand-tint", min: 4.5, use: "Chú thích trên thẻ hồng đậm" },
+  { fg: "ink-2", bg: "sunken", min: 4.5, use: "Chữ phụ trên thẻ vàng nhạt" },
+  { fg: "brand", bg: "brand-tint", min: 4.5, use: "Chữ đỏ trên thẻ hồng đậm" },
+  { fg: "brand", bg: "sunken", min: 4.5, use: "Chữ đỏ trên thẻ vàng nhạt" },
+  { fg: "gold", bg: "brand-soft", min: 4.5, use: "Nhãn vàng đồng trên thẻ hồng nhạt" },
   { fg: "on-brand", bg: "brand", min: 4.5, use: "Chữ trắng trên nền đỏ" },
   { fg: "on-brand", bg: "brand-hover", min: 4.5, use: "Chữ trắng trên nút chính khi hover" },
   { fg: "on-brand-2", bg: "brand", min: 4.5, use: "Chữ phụ trên nền đỏ" },

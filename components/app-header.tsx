@@ -11,26 +11,28 @@ const ITEMS: NavItem[] = [
   { href: "/design-system", label: vi.nav.designSystem, match: "/design-system" },
 ];
 
+/** Thanh điều hướng mảnh, nền trắng, viền mảnh; dính đầu trang. */
 export function AppHeader() {
   return (
-    <header className="sticky top-0 z-30 border-b border-line bg-paper">
+    <>
       {isDevSeedMode() ? (
         <p role="status" className="bg-ink px-4 py-1 text-center text-small text-on-brand">
           {vi.nav.devSeed}
         </p>
       ) : null}
-      <div className="mx-auto flex w-full max-w-6xl flex-wrap items-center gap-x-8 px-4">
-        <Link href="/" className="flex items-center gap-3 py-2" aria-label={vi.app.name}>
-          <BrandSymbol className="size-9" />
-          <span className="text-h3 leading-none font-bold tracking-caps text-brand uppercase">
-            VMG
-            <span className="mt-1 block text-caption font-semibold tracking-caps text-gold">Brand Lab</span>
-          </span>
-        </Link>
-        <Suspense fallback={<NavFallback items={ITEMS} label={vi.nav.label} />}>
-          <NavLinks items={ITEMS} label={vi.nav.label} />
-        </Suspense>
-      </div>
-    </header>
+      <header className="pointer-events-none sticky top-0 z-30 px-3 pt-3 md:px-5">
+        <div className="pointer-events-auto mx-auto flex w-full max-w-6xl items-center justify-between gap-3 rounded-full border border-line bg-paper py-1.5 pr-1.5 pl-4">
+          <Link href="/" className="flex min-h-11 shrink-0 items-center gap-2.5" aria-label={vi.app.name}>
+            <BrandSymbol className="size-7" />
+            <span className="hidden text-small leading-tight font-semibold text-ink sm:block">
+              VMG <span className="font-normal text-ink-3">Brand Lab</span>
+            </span>
+          </Link>
+          <Suspense fallback={<NavFallback items={ITEMS} label={vi.nav.label} />}>
+            <NavLinks items={ITEMS} label={vi.nav.label} />
+          </Suspense>
+        </div>
+      </header>
+    </>
   );
 }

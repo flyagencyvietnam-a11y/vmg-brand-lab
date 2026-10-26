@@ -124,24 +124,31 @@ function Step({
   const showProduct = !isExam && node.productName !== title && node.itemName !== null;
 
   return (
-    <li id={node.code} className="relative scroll-mt-24 pb-7 pl-12 last:pb-0 target:rounded-ctl target:bg-brand-soft">
-      {last ? null : <span aria-hidden className="absolute bottom-0 left-[13px] top-8 w-0.5 bg-line-strong" />}
+    <li id={node.code} className="relative scroll-mt-28 pb-7 pl-11 last:pb-0 target:rounded-card target:bg-brand-soft">
+      {last ? null : <span aria-hidden className="absolute bottom-0 left-[13px] top-9 w-px bg-line-strong" />}
       {isExam ? (
-        <span aria-hidden className="absolute left-[5px] top-1 size-[18px] rotate-45 rounded-[3px] border-2 border-gold-mark bg-paper" />
+        <span
+          aria-hidden
+          className="absolute left-0 top-0 flex size-7 items-center justify-center rounded-full border border-gold-mark bg-paper text-gold-mark"
+        >
+          <Icon name="diamond" className="size-3.5" />
+        </span>
       ) : (
         <span
           aria-hidden
-          className="absolute left-0 top-0.5 flex size-7 items-center justify-center rounded-full bg-brand text-small font-bold text-on-brand"
+          className="absolute left-0 top-0 flex size-7 items-center justify-center rounded-full bg-brand-soft text-small font-semibold text-brand"
         >
           {number}
         </span>
       )}
       <div className="flex flex-wrap items-center gap-x-2 gap-y-1">
         {isExam ? <Badge tone="gold">{vi.journey.examTag}</Badge> : null}
-        <h5 className="text-body font-bold">{heading}</h5>
-        {node.durationText ? <span className="text-small text-ink-2">· {node.durationText}</span> : null}
+        <h5 className="text-body font-semibold leading-7">{heading}</h5>
+        {node.durationText ? (
+          <span className="rounded-full bg-sunken px-2.5 py-0.5 text-small leading-snug text-ink-2">{node.durationText}</span>
+        ) : null}
       </div>
-      {showProduct ? <p className="text-small uppercase text-ink-2">{node.productName}</p> : null}
+      {showProduct ? <p className="text-small text-ink-3">{node.productName}</p> : null}
       {node.description ? <p className="mt-1 text-ink-2">{node.description}</p> : null}
       <NodeExtras node={node} ctx={ctx} />
     </li>
@@ -155,7 +162,7 @@ function PathCard({ block, ctx }: { block: PathBlock; ctx: JourneyCtx }) {
   return (
     <Card className="p-5 md:p-6">
       <header className="flex flex-wrap items-center gap-2">
-        <h4 className="text-h3 leading-tight font-bold uppercase">{block.title}</h4>
+        <h4 className="text-h3 leading-tight">{block.title}</h4>
         {brand ? <BrandBadge brand={brand} /> : null}
         <PendingBadges node={first} />
       </header>
@@ -189,9 +196,9 @@ function SingleCard({
 }) {
   const brand = node.brandSlug ? ctx.brandBySlug.get(node.brandSlug) : undefined;
   return (
-    <Card id={node.code} className="scroll-mt-24 p-5 target:border-brand">
+    <Card id={node.code} className="scroll-mt-28 p-5 target:border-brand">
       <div className="flex flex-wrap items-center gap-2">
-        <h4 className="text-h3 leading-tight font-bold uppercase">{node.productName}</h4>
+        <h4 className="text-h3 leading-tight">{node.productName}</h4>
         {brand ? <BrandBadge brand={brand} /> : null}
         <PendingBadges node={node} />
       </div>
@@ -204,7 +211,7 @@ function SingleCard({
           <ul className="flex flex-wrap gap-x-5">
             {attachedTo.map((a) => (
               <li key={a.code}>
-                <Link href={anchor(a)} className="inline-flex min-h-11 items-center font-semibold text-brand underline hover:text-brand-hover">
+                <Link href={anchor(a)} className="inline-flex min-h-11 items-center font-medium text-brand underline hover:text-brand-hover">
                   {nodeLabel(a)}
                 </Link>
               </li>
@@ -225,7 +232,7 @@ function GoalGroup({ block, ctx }: { block: GoalBlock; ctx: JourneyCtx }) {
   return (
     <div id={block.header.code} className="flex scroll-mt-24 flex-col gap-3">
       <div>
-        <h3 className="text-small font-bold uppercase tracking-caps text-gold">{block.header.productName}</h3>
+        <h3 className="text-small font-semibold tracking-caps text-gold uppercase">{block.header.productName}</h3>
         {block.header.itemName ? <p className="text-ink-2">{block.header.itemName}</p> : null}
       </div>
       <div className="grid gap-3 md:grid-cols-2">
@@ -247,11 +254,11 @@ function BlockView({ block, ctx }: { block: Block; ctx: JourneyCtx }) {
       return <GoalGroup block={block} ctx={ctx} />;
     case "intro":
       return (
-        <div id={block.node.code} className="rounded-card border border-brand-tint bg-brand-soft p-5">
-          <p className="font-bold uppercase">{block.node.productName}</p>
+        <Card id={block.node.code} tone="blush" className="p-5">
+          <p className="font-semibold">{block.node.productName}</p>
           {block.node.itemName ? <p className="font-medium">{block.node.itemName}</p> : null}
           {block.node.description ? <p className="mt-1 text-ink-2">{block.node.description}</p> : null}
-        </div>
+        </Card>
       );
     case "note":
       return (
@@ -262,7 +269,7 @@ function BlockView({ block, ctx }: { block: Block; ctx: JourneyCtx }) {
       );
     case "banner":
       return (
-        <p className="on-brand rounded-card bg-brand px-5 py-4 font-bold uppercase tracking-caps text-on-brand">
+        <p className="on-brand rounded-card bg-brand px-5 py-3.5 font-semibold text-on-brand">
           {block.node.productName}
         </p>
       );
@@ -275,7 +282,7 @@ function Lane({ lane, showLabel, ctx }: { lane: LaneSection; showLabel: boolean;
   return (
     <div className={`flex flex-col gap-3 ${hasPath ? "" : "lg:col-span-2"}`}>
       {showLabel && lane.lane ? (
-        <h3 className="text-small font-bold uppercase tracking-caps text-gold">{lane.lane.label}</h3>
+        <h3 className="text-small font-semibold tracking-caps text-gold uppercase">{lane.lane.label}</h3>
       ) : null}
       <div className={hasPath || special ? "flex flex-col gap-4" : "grid gap-4 md:grid-cols-2"}>
         {lane.blocks.map((b, i) => (
@@ -291,11 +298,11 @@ export function LineSectionView({ section, ctx }: { section: LineSection; ctx: J
   return (
     <section className="flex flex-col gap-5">
       <header>
-        <span aria-hidden className="mb-3 block h-0.5 w-10 bg-gold-mark" />
-        <h2 className="text-h2 font-bold">{lineShortName(section.line)}</h2>
+        <h2 className="text-h2">{lineShortName(section.line)}</h2>
         {section.line.description ? <p className="mt-1 max-w-3xl text-ink-2">{section.line.description}</p> : null}
       </header>
-      <div className="grid items-start gap-x-6 gap-y-6 lg:grid-cols-2">
+      {/* Hai cột chỉ khi có nhiều cột con (Line 1 ở chặng 16+); một lộ trình thì chiếm trọn chiều rộng. */}
+      <div className={`grid items-start gap-x-6 gap-y-6 ${labelled ? "lg:grid-cols-2" : ""}`}>
         {section.lanes.map((lane, i) => (
           <Lane key={lane.lane?.key ?? `special-${i}`} lane={lane} showLabel={labelled} ctx={ctx} />
         ))}

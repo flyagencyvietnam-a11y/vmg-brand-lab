@@ -60,4 +60,10 @@ Theo spec 8.8. Mỗi dòng: quyết định, lý do, hệ quả.
 
 **D-030. `vercel.json` đặt vùng hàm `sin1`.** Mặc định của Vercel là Mỹ; người dùng ở Việt Nam và cơ sở dữ liệu nên ở Singapore (spec 8.1). Nếu gói Vercel không cho chọn vùng thì xóa dòng `regions`.
 
+**D-031. Làm lại ngôn ngữ hình khối cho thân thiện và hiện đại, vẫn đúng nhận diện.** Phản hồi: giao diện "thô". Nguyên nhân là hình khối (thẻ trắng vuông giống nhau, tiêu đề IN HOA cứng), không phải màu. Giữ nguyên màu, chữ hình học, họa tiết hoa; đổi: bo góc 24 px, nút và nhãn dạng viên thuốc, thẻ tông màu xen kẽ (dùng vai trò sẵn có, không thêm màu mới ngoài `brand-glow`), khối mở trang bo 32 px có hình tròn tông-trên-tông, header nổi, tiêu đề viết hoa kiểu câu ExtraBold (PDF trang 31 cho phép), điểm đánh số lớn và dấu mốc thi bằng biểu tượng hoa, chuyển động nhẹ. **Giữ nguyên "không bóng đổ"** (spec 4.4): chiều sâu bằng tông màu. Muốn bóng mềm thì phải sửa spec.
+
+**D-032. Chuyển động nhẹ, luôn tôn trọng giảm chuyển động.** `animate-rise` (hiện dần, trễ lần lượt) và `lift` (nâng 4 px chỉ trên thiết bị có hover). Một khối `prefers-reduced-motion: reduce` tắt mọi hoạt ảnh và chuyển tiếp; cuộn mượt chỉ bật khi không giảm chuyển động.
+
+**D-033. Làm nhẹ giao diện, bỏ họa tiết, nền trơn (điều chỉnh D-031, D-032).** Phản hồi: chữ to thô, thành phần thô, họa tiết logo xấu, "thà để nền trơn". Bỏ `Ornament`, `PatternLayer`, `Glow`, `Watermark`, vai trò `brand-glow` và tệp `vmg-pattern.svg`; biểu tượng hoa chỉ ở header, đăng nhập, trang báo lỗi. Chữ: Display tối đa khoảng 44 px, Bold cho tiêu đề trang, SemiBold cho phần còn lại, tên sản phẩm viết hoa kiểu câu. Thành phần: viền 1 px, bo 10/16/24 px, nút cao 44 hoặc 48 px, thẻ nền trắng, mục đang chọn là viên hồng nhạt. Hoạt ảnh nhẹ hơn (0,5 giây, nâng 2 px). Giữ nguyên "không bóng đổ" và các cặp tương phản.
+
 **D-014. Font Arial theo spec 4.4, không dùng Geist của scaffold.** Font thương hiệu chưa có giấy phép (Q3).

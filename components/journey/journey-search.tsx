@@ -18,12 +18,12 @@ export function JourneySearch({ items }: { items: SearchItem[] }) {
   }, [items, q]);
 
   return (
-    <div className="mt-2 flex max-w-xl flex-col gap-2">
-      <label htmlFor="journey-search" className="text-small font-semibold text-on-brand-2">
+    <div className="mt-1 flex max-w-xl flex-col gap-2">
+      <label htmlFor="journey-search" className="pl-2 text-small font-medium text-on-brand-2">
         {vi.journey.searchLabel}
       </label>
       <div className="relative">
-        <Icon name="search" className="pointer-events-none absolute left-4 top-1/2 size-5 -translate-y-1/2 text-ink-3" />
+        <Icon name="search" className="pointer-events-none absolute top-1/2 left-5 size-5 -translate-y-1/2 text-ink-3" />
         <input
           id="journey-search"
           type="search"
@@ -31,20 +31,20 @@ export function JourneySearch({ items }: { items: SearchItem[] }) {
           onChange={(e) => setQuery(e.target.value)}
           placeholder={vi.journey.searchPlaceholder}
           autoComplete="off"
-          className="min-h-14 w-full rounded-ctl border border-transparent bg-paper pr-4 pl-12 text-body text-ink placeholder:text-ink-3"
+          className="min-h-12 w-full rounded-full border border-transparent bg-paper pr-5 pl-12 text-body text-ink placeholder:text-ink-3"
         />
       </div>
       {q !== "" ? (
         results.length > 0 ? (
-          <ul className="flex flex-col overflow-hidden rounded-ctl bg-paper text-ink">
+          <ul className="flex flex-col overflow-hidden rounded-2xl bg-paper text-ink">
             {results.map((r) => (
               <li key={r.code} className="border-b border-line last:border-b-0">
                 <Link
                   href={`/brand/journey/stage/${r.stageKey}#${r.code}`}
-                  className="flex min-h-14 items-center justify-between gap-3 px-4 py-2 hover:bg-brand-soft"
+                  className="flex min-h-14 items-center justify-between gap-3 px-5 py-2 transition-colors hover:bg-brand-soft"
                 >
                   <span className="min-w-0">
-                    <span className="block font-semibold">{r.label}</span>
+                    <span className="block font-medium">{r.label}</span>
                     <span className="block text-small text-ink-2">
                       {r.stageAge} · {r.lineName}
                     </span>
@@ -55,7 +55,7 @@ export function JourneySearch({ items }: { items: SearchItem[] }) {
             ))}
           </ul>
         ) : (
-          <p className="rounded-ctl bg-paper px-4 py-3 text-ink-2">{vi.journey.searchNone}</p>
+          <p className="rounded-2xl bg-paper px-5 py-3 text-ink-2">{vi.journey.searchNone}</p>
         )
       ) : null}
     </div>

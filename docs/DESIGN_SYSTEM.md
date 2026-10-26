@@ -16,27 +16,42 @@ Bộ nhận diện này là bản 2021 của VMG English. Bản cho hệ thống
 
 - **Màu thô** ở `:root` (`--vmg-red-600`...). **Vai trò** ở `@theme static` (`--color-brand`...). Giao diện chỉ dùng vai trò: `bg-brand`, `text-ink-2`, `border-line`, `bg-paper`, `bg-surface`... **Không dùng mã hex trong component.**
 - Hai mã chính thức: đỏ Pantone 200C `#be202f`, vàng đồng Pantone 871C `#8b672a`. Các sắc nhạt đo từ PDF trang 24 và 2; vàng biểu tượng `#b6924d` đo từ file logo. Sắc đậm `#921824` (hover) và thang mực là suy ra, nhãn "Suy ra" trên trang tài liệu.
-- Chữ: Montserrat Variable (xem "Điều chưa chốt"). Thang: `text-display`, `text-h1`, `text-h2`, `text-h3`, `text-body`, `text-small`, `text-caption`. Bo góc: `rounded-ctl` (10 px), `rounded-card` (16 px).
+- Chữ: Montserrat Variable (xem "Điều chưa chốt"). Thang: `text-display`, `text-h1`, `text-h2`, `text-h3`, `text-lead`, `text-body`, `text-small`, `text-caption`; tiêu đề đã gắn độ đậm (700 cho Display và H1, 600 cho H2 và H3) và khoảng cách chữ âm nhẹ trong token; lớn nhất khoảng 44 px. Bo góc: `rounded-ctl` (10 px), `rounded-card` (16 px), `rounded-hero` (24 px), `rounded-full` (viên thuốc).
+- Nền thẻ mặc định là `paper` (trắng). Tông nhạt (`brand-soft` hồng nhạt, `sunken`, `surface` kem) chỉ làm điểm nhấn hiếm hoặc nền trạng thái.
 - Muốn thêm hoặc sửa token: sửa `app/globals.css` **và** `lib/design/tokens.ts`. `tests/unit/design-tokens.test.ts` báo lỗi nếu hai nơi lệch nhau, hoặc nếu một cặp chữ và nền dưới 4,5:1.
+
+## Ngôn ngữ thiết kế: nhẹ, mảnh, nền trơn
+
+Bản trước (thân thiện: bo 24 px, thẻ tông xen kẽ, hình tròn mờ, họa tiết hoa) bị phản hồi là thô và họa tiết xấu. Bản này bỏ trang trí, thu nhỏ chữ và thành phần:
+
+| Trước | Nay |
+|---|---|
+| Họa tiết hoa lặp, biểu tượng cắt góc, hình tròn mờ, biểu tượng mờ ở góc thẻ | Không có. Nền trơn. Biểu tượng hoa chỉ ở header, trang đăng nhập, trang báo lỗi, một lần mỗi màn hình |
+| Display tới 72 px, ExtraBold; tên sản phẩm IN HOA đậm | Lớn nhất khoảng 44 px, Bold cho tiêu đề trang, SemiBold cho phần còn lại; tên sản phẩm viết hoa kiểu câu |
+| Thẻ bo 24 px, nền tông xen kẽ, số chặng trong hình tròn | Thẻ bo 16 px, viền 1 px, nền trắng; chỉ thẻ đích đến hồng nhạt; không bong bóng số |
+| Khối mở trang bo 32 px, trang chặng cũng khối đỏ | Khối đỏ gọn bo 24 px ở trang chủ hành trình và đăng nhập; trang chặng dùng đầu trang không nền |
+| Mục đang chọn là viên đỏ đặc | Mục đang chọn là viên hồng nhạt chữ đỏ |
+| Ô nhập cao 56 px, viền 2 px; điểm đánh số lớn có viền | Ô nhập cao 48 px, viền 1 px; điểm đánh số 28 px không viền, đường nối 1 px |
+
+**Vẫn không bóng đổ** (spec 4.4, PDF trang 35). Khoảng trắng, cỡ chữ và đường kẻ mảnh tạo nhịp thay cho trang trí.
 
 ## Quy tắc (từ PDF và spec)
 
-1. Đỏ và vàng đồng là điểm nhấn; nền đọc là trắng và kem. Dải mở trang (`Hero`) là nền đỏ, giữ chiều cao vừa phải.
-2. **Phẳng:** không bóng đổ, không chữ viền, không phản chiếu, không 3D. Phân lớp bằng viền (`border-line`) và nền.
-3. Căn trái. IN HOA chỉ cho tiêu đề trang và nhãn nhỏ; tiêu đề mục và nội dung viết hoa kiểu câu.
-4. **Chữ trên nền đỏ là chữ trắng.** Vàng đồng không đủ tương phản làm chữ trên đỏ (khoảng 2:1) và vàng biểu tượng không đủ trên trắng; vàng chỉ làm họa tiết, hoặc chữ `text-gold` (871C) trên trắng và kem. Không đặt `text-gold` lên `bg-sunken` (4,4:1). Test ghi lại các cặp này.
-5. Họa tiết: chỉ dùng biểu tượng hoa (`BrandSymbol`, `Ornament`, `PatternLayer`). Họa tiết lặp dùng chế độ Overlay, độ mờ từ 15% đến 100% (PDF trang 28).
+1. Đỏ và vàng đồng là điểm nhấn; nền đọc là trắng và kem. Khối mở trang gọn (`Hero tone="brand"`) là nền đỏ; trang chi tiết dùng `Hero tone="plain"`.
+2. **Phẳng:** không bóng đổ, không chữ viền, không phản chiếu, không 3D. Phân lớp bằng viền (`border-line`) và tông nền.
+3. Căn trái. Tiêu đề viết hoa kiểu câu; IN HOA chỉ cho nhãn nhỏ; nội dung viết hoa kiểu câu.
+4. **Chữ trên nền đỏ là chữ trắng.** Vàng đồng không đủ tương phản làm chữ trên đỏ (khoảng 2:1) và vàng biểu tượng không đủ trên trắng; vàng chỉ làm nhãn nhỏ và biểu tượng, hoặc chữ `text-gold` (871C) trên trắng và kem. Không đặt `text-gold` lên `bg-sunken` (4,4:1) hay `bg-brand-tint` (4,1:1). Test ghi lại các cặp này.
+5. **Không họa tiết.** Bộ nhận diện có họa tiết hoa lặp (PDF trang 28) nhưng Brand Lab không dùng: nền trơn. Biểu tượng hoa (`BrandSymbol`) chỉ xuất hiện ở header, đăng nhập, trang báo lỗi; không lặp, không làm hình nền.
 6. Vùng chạm tối thiểu 44 px (`min-h-11`); chữ nội dung từ 16 px; vòng focus luôn hiện (trắng trên nền đỏ nhờ lớp `.on-brand`).
 7. Cho nền đỏ, thêm class `on-brand` lên phần tử cha để vòng focus đổi sang trắng.
 
 ## Thành phần (`components/ui`)
 
-`Button`/`ButtonLink` (primary, secondary, ghost, inverse), `Card`/`CardLink`, `Badge` (neutral, pending, gold, brand, on-brand), `Hero`, `SectionHeading`/`Eyebrow`, `Icon` (bộ nét đều 24 px), `BrandSymbol`/`Ornament`/`PatternLayer`. Thành phần riêng của hành trình ở `components/journey`.
+`Button`/`ButtonLink` (primary, secondary, soft, ghost, inverse; cỡ md, lg; `arrow`), `Card`/`CardLink` (`tone`: paper, blush, champagne, cream, brand; mặc định paper), `Badge` (neutral, pending, gold, brand, soft, on-brand), `Hero` (`tone`: brand, plain), `SectionHeading`/`Eyebrow`, `IconBubble`, `Icon` (bộ nét đều 24 px), `BrandSymbol`. Hoạt ảnh: class `animate-rise` (kèm `animationDelay` để lần lượt) và `lift` (nâng 2 px khi di chuột), cả hai tắt khi giảm chuyển động. Thành phần riêng của hành trình ở `components/journey`.
 
 ## Nguồn gốc tệp thương hiệu trong `public/brand`
 
 - `vmg-symbol.svg`: trích nguyên vẹn các đường vector của biểu tượng hoa từ `Logo VMG.pdf` (bằng PyMuPDF), không vẽ lại, không sửa hình; màu `#b6924d` của file gốc.
-- `vmg-pattern.svg`: lát gạch 160 px từ chính biểu tượng đó, xen kẽ xoay 36 độ.
 - Logo đầy đủ (kèm chữ ENGLISH) **không dùng** trong giao diện.
 
 ## Điều khác với bộ nhận diện, và vì sao

@@ -7,28 +7,28 @@ import { vi } from "@/lib/i18n/vi";
 import { signIn, type LoginState } from "./actions";
 
 const inputClass =
-  "min-h-12 w-full rounded-ctl border border-line-strong bg-paper px-4 text-body text-ink placeholder:text-ink-3 hover:border-ink-3";
+  "min-h-12 w-full rounded-full border border-line-strong bg-paper px-5 text-body text-ink placeholder:text-ink-3 transition-colors hover:border-ink-3 focus:border-brand";
 
 export function LoginForm() {
   const [state, action, pending] = useActionState<LoginState, FormData>(signIn, {});
 
   return (
-    <form action={action} className="flex flex-col gap-5">
+    <form action={action} className="flex flex-col gap-4">
       <label className="flex flex-col gap-1.5">
-        <span className="text-small font-semibold">{vi.login.email}</span>
+        <span className="pl-2 text-small font-medium">{vi.login.email}</span>
         <input name="email" type="email" autoComplete="email" required className={inputClass} />
       </label>
       <label className="flex flex-col gap-1.5">
-        <span className="text-small font-semibold">{vi.login.password}</span>
+        <span className="pl-2 text-small font-medium">{vi.login.password}</span>
         <input name="password" type="password" autoComplete="current-password" required className={inputClass} />
       </label>
       {state.error ? (
-        <p role="alert" className="flex items-start gap-2 rounded-ctl bg-brand-soft p-3 text-small text-brand">
+        <p role="alert" className="flex items-start gap-2 rounded-xl bg-brand-soft p-3 text-small text-brand">
           <Icon name="info" className="mt-0.5 size-4 shrink-0" />
           {state.error}
         </p>
       ) : null}
-      <Button type="submit" disabled={pending} className="min-h-12 w-full">
+      <Button type="submit" size="lg" disabled={pending} arrow={!pending}>
         {pending ? vi.login.pending : vi.login.submit}
       </Button>
     </form>
